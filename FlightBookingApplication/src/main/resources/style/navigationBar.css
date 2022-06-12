@@ -1,0 +1,28 @@
+/*========================================== Navigation-Bar Styling ==========================================*/
+.toggle-button {
+    -fx-background-color : Transparent;
+    -fx-background-radius : 100;
+}
+
+.toggle-button .ikonli-font-icon{
+	-fx-icon-size: 30;
+}
+
+#navigationBar .toggle-button:hover,
+#navigationBar .toggle-button:hover .ikonli-font-icon {
+    -fx-background-color : accentColor-alpha ;
+}
+
+.toggle-button:selected, 
+.toggle-button:selected .ikonli-font-icon {
+    -fx-background-color : accentColor;
+    -fx-icon-color: #ffffff;
+    
+    /* Add Glow Effect to The Selected Item */
+    -fx-effect: dropshadow(gaussian, accentColor-alpha, 10, 0.3, 0, 0);
+}
+
+/* To avoid changing the background color of the selected button while hovering over it */
+#navigationBar .toggle-button:hover:selected {
+    -fx-background-color : accentColor;
+}

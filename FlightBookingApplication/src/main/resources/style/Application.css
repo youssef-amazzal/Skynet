@@ -1,0 +1,18 @@
+.root {
+    BackGroundColor: #eef1fa;
+	-fx-background-color: BackGroundColor;
+    accentColor: rgb(63, 152, 252);
+    accentColor-alpha: rgba(63, 152, 252, 0.4);
+}
+
+.dropShadow {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.Transparent {
+    -fx-background-color: Transparent;
+}
+
+.ikonli-font-icon {
+    -fx-icon-color: accentColor;
+}

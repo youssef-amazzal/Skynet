@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox fx:id="navigationBar" alignment="CENTER" minWidth="-Infinity" prefHeight="768.0" prefWidth="73.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 0 30 30 0;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 50%;" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+         </VBox.margin>
+         <graphic>
+            <FontIcon iconLiteral="mdi-airplane" iconSize="41" />
+         </graphic>
+      </Label>
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="44.0" textFill="#a174ff">
+         <VBox.margin>
+            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+         </VBox.margin>
+      </Label>
+      <ToggleButton id="navigationButton1" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" selected="true" styleClass="toggleGroup">
+         <VBox.margin>
+            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+         </VBox.margin>
+         <graphic>
+            <FontIcon iconLiteral="mdi-home" iconSize="30" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <toggleGroup>
+            <ToggleGroup fx:id="navigationbarGroup" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton id="navigationButton2" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationbarGroup">
+         <VBox.margin>
+            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+         </VBox.margin>
+         <graphic>
+            <FontIcon iconLiteral="mdi-magnify" iconSize="20" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ToggleButton>
+      <ToggleButton id="navigationButton3" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationbarGroup" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+         </VBox.margin>
+         <graphic>
+            <FontIcon iconLiteral="mdi-account" iconSize="20" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ToggleButton>
+      <ToggleButton id="navigationButton4" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationbarGroup">
+         <VBox.margin>
+            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+         </VBox.margin>
+         <graphic>
+            <FontIcon iconLiteral="mdi-settings" iconSize="20" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ToggleButton>
+      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="0.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+         </VBox.margin>
+      </Label>
+      <ToggleButton id="navigationButton5" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationbarGroup">
+         <VBox.margin>
+            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+         </VBox.margin>
+         <graphic>
+            <FontIcon iconLiteral="mdi-exit-to-app" iconSize="20" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ToggleButton>
+   </children>
+</VBox>
