@@ -34,7 +34,7 @@ public class NavigationBar {
 	
 	
 	private void alwaysOneSelected() {
-		ToggleGroup toggleGroup = (ToggleGroup) navigationBarLoader.getNamespace().get("navigationbarGroup");
+		ToggleGroup toggleGroup = (ToggleGroup) navigationBarLoader.getNamespace().get("navigationBarGroup");
 		toggleGroup.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
 		    if (newVal == null)
 		        oldVal.setSelected(true);

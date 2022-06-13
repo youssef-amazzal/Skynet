@@ -34,10 +34,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <toggleGroup>
-            <ToggleGroup fx:id="navigationbarGroup" />
+            <ToggleGroup fx:id="navigationBarGroup" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton id="navigationButton2" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationbarGroup">
+      <ToggleButton id="navigationButton2" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
@@ -48,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ToggleButton>
-      <ToggleButton id="navigationButton3" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationbarGroup" VBox.vgrow="ALWAYS">
+      <ToggleButton id="navigationButton3" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
@@ -59,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ToggleButton>
-      <ToggleButton id="navigationButton4" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationbarGroup">
+      <ToggleButton id="navigationButton4" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
@@ -75,7 +75,7 @@
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
       </Label>
-      <ToggleButton id="navigationButton5" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationbarGroup">
+      <ToggleButton id="navigationButton5" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
