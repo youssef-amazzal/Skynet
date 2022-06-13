@@ -1,8 +1,9 @@
 .root {
-    BackGroundColor: #eef1fa;
-	-fx-background-color: BackGroundColor;
-    accentColor: rgb(63, 152, 252);
-    accentColor-alpha: rgba(63, 152, 252, 0.4);
+    PrimaryColor: #23232f ;
+    SecondaryColor: #1e1f24 ;
+    AccentColor: rgb(63, 152, 252);
+    AccentColor-alpha: rgba(63, 152, 252, 0.4);
+	-fx-background-color: PrimaryColor;
 }
 
 .dropShadow {
@@ -14,5 +15,5 @@
 }
 
 .ikonli-font-icon {
-    -fx-icon-color: accentColor;
+    -fx-icon-color: AccentColor;
 }

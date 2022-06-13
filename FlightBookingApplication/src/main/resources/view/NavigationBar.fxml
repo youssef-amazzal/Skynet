@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="navigationBar" alignment="CENTER" minWidth="-Infinity" prefHeight="768.0" prefWidth="73.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 0 30 30 0;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="NavigationBar" fx:id="navigationBar" alignment="CENTER" minWidth="-Infinity" prefHeight="768.0" prefWidth="73.0" spacing="15.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 50%;" VBox.vgrow="ALWAYS">
          <VBox.margin>

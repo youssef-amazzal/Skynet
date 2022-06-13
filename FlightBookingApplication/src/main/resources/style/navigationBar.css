@@ -1,28 +1,37 @@
 /*========================================== Navigation-Bar Styling ==========================================*/
-.toggle-button {
+
+#NavigationBar {
+	-fx-background-color: SecondaryColor;
+	-fx-background-radius: 0 30 30 0;
+}
+
+#NavigationBar .toggle-button,
+#NavigationBar .toggle-button .ikonli-font-icon {
     -fx-background-color : Transparent;
     -fx-background-radius : 100;
+    -fx-pref-width: 50px ;
+    -fx-pref-height: 50px ;
+    -fx-icon-size: 30px ;
 }
 
-.toggle-button .ikonli-font-icon{
-	-fx-icon-size: 30;
+#NavigationBar .toggle-button:hover,
+#NavigationBar .toggle-button:hover .ikonli-font-icon {
+    -fx-background-color : AccentColor-alpha ;
+    -fx-pref-width: 55px ;
+    -fx-pref-height: 55px ;
+    -fx-icon-size: 35px ;
 }
 
-#navigationBar .toggle-button:hover,
-#navigationBar .toggle-button:hover .ikonli-font-icon {
-    -fx-background-color : accentColor-alpha ;
-}
-
-.toggle-button:selected, 
-.toggle-button:selected .ikonli-font-icon {
-    -fx-background-color : accentColor;
+#NavigationBar .toggle-button:selected, 
+#NavigationBar .toggle-button:selected .ikonli-font-icon {
+    -fx-background-color : AccentColor;
     -fx-icon-color: #ffffff;
     
     /* Add Glow Effect to The Selected Item */
-    -fx-effect: dropshadow(gaussian, accentColor-alpha, 10, 0.3, 0, 0);
+    -fx-effect: dropshadow(gaussian, AccentColor-alpha, 10, 0.3, 0, 0);
 }
 
 /* To avoid changing the background color of the selected button while hovering over it */
-#navigationBar .toggle-button:hover:selected {
-    -fx-background-color : accentColor;
+#NavigationBar .toggle-button:hover:selected {
+    -fx-background-color : AccentColor;
 }

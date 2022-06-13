@@ -20,7 +20,25 @@ public class Main extends Application {
 			Scene scene = new Scene(root, 1366, 768);
 			
 			root.getChildren().add(NavigationBar.getNavigationBar());
-			
+
+
+			Palette DarkPalette = new Palette(
+					"DarkMode",
+					"#23232f",
+					"#1e1f24",
+					"3f98fc"
+			);
+
+			Palette LightPalette = new Palette(
+					"LightMode",
+					"#eef1fa",
+					"white",
+					"3f98fc"
+			);
+
+			LightPalette.usePalette(scene);
+
+
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Flight Booking Application");
 			primaryStage.show();			
