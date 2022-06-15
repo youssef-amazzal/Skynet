@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,9 @@ public class SearchPageController implements Initializable {
 
     @FXML
     private Button SearchButton;
+
+    @FXML
+    private Button topButton;
 
     @FXML
     private ComboBox<?> inputArrivalCity;
@@ -42,6 +46,9 @@ public class SearchPageController implements Initializable {
     private VBox searchPage;
 
     @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
     private Label swapButton;
 
 
@@ -57,5 +64,10 @@ public class SearchPageController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    void goToTop(ActionEvent event) {
+        scrollPane.setVvalue(0);
     }
 }

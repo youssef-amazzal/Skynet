@@ -17,10 +17,10 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<ScrollPane fitToWidth="true" styleClass="backGround" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchPageController">
-   <content>
-      <StackPane alignment="TOP_CENTER">
-         <children>
+<StackPane alignment="BOTTOM_RIGHT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchPageController">
+   <children>
+      <ScrollPane fx:id="scrollPane" fitToWidth="true" styleClass="backGround">
+         <content>
             <VBox fx:id="searchPage" alignment="TOP_CENTER" prefHeight="761.0" prefWidth="1263.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -63,7 +63,8 @@
                                           <FontIcon iconLiteral="mdi-swap-horizontal">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
-                                             </cursor></FontIcon>
+                                             </cursor>
+                                          </FontIcon>
                                        </graphic>
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
@@ -132,7 +133,8 @@
                                     <ChoiceBox fx:id="inputSortBox" prefHeight="25.0" prefWidth="75.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
-                                       </cursor></ChoiceBox>
+                                       </cursor>
+                                    </ChoiceBox>
                                     <FontIcon iconLiteral="mdi-sort" iconSize="25" />
                                  </children>
                                  <cursor>
@@ -148,7 +150,15 @@
                   </HBox>
                </children>
             </VBox>
-         </children>
-      </StackPane>
-   </content>
-</ScrollPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="topButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTop" prefHeight="60.0" prefWidth="60.0">
+         <StackPane.margin>
+            <Insets bottom="50.0" right="50.0" />
+         </StackPane.margin>
+         <graphic>
+            <FontIcon iconLiteral="mdi-arrow-up" />
+         </graphic>
+      </Button>
+   </children>
+</StackPane>

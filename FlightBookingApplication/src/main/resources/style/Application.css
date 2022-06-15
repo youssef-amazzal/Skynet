@@ -14,10 +14,12 @@
  */
 
 /*========================================== Button Styling =============================================*/
-.button {
+.button,
+.button .ikonli-font-icon {
     -fx-background-color: AccentColor;
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-icon-color: white;
 }
 .button:hover {
     -fx-effect: glow;

@@ -27,3 +27,14 @@
     -fx-pref-height: 30;
     -fx-icon-size: 25;
 }
+
+#topButton,
+#topButton .ikonli-font-icon{
+    -fx-background-color: AlphaAccentColor;
+    -fx-background-radius: 50;
+    -fx-icon-size: 25;
+}
+
+#topButton:hover {
+    -fx-background-color: AccentColor;
+}
