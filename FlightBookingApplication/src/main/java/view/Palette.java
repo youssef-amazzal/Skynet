@@ -4,6 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 
+import java.util.Objects;
+
 public class Palette {
 	private String title;
 	private Color PrimaryColor;
@@ -56,7 +58,20 @@ public class Palette {
 				+ "AlphaAccentColor: " + this.getHexValue(AlphaAccentColor) + " ;"
 		);
 
+		if (this.calculateLuminance(PrimaryColor) > 0.5) {
+			scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/TextLightVersion.css")).toExternalForm());
+		}
+		else {
+			scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/TextDarkVersion.css")).toExternalForm());
+		}
+
 	}
+
+	public Double calculateLuminance(Color color)
+	{
+		return ((0.299 * color.getRed() * 255) + (0.587 * color.getGreen() * 255) + (0.114 * color.getBlue() * 255)) / 255;
+	}
+
 
 	public String getTitle() {
 		return title;

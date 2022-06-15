@@ -1,10 +1,12 @@
 package application;
 
+import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import view.NavigationBar;
+import java.util.Objects;
 
 public class Main extends Application {
 	
@@ -17,9 +19,15 @@ public class Main extends Application {
 		try {
 			HBox root = new HBox();
 			root.getStylesheets().add(getClass().getResource("/style/Application.css").toExternalForm());
+			root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/Application.css")).toExternalForm());
 			Scene scene = new Scene(root, 1366, 768);
 			
 			root.getChildren().add(NavigationBar.getNavigationBar());
+			ScrollPane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SearchPage.fxml")));
+			page.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/SearchPage.css")).toExternalForm());
+
+			root.getChildren().addAll(NavigationBar.getNavigationBar(), page);
+			HBox.setHgrow(page, Priority.ALWAYS);
 
 
 			Palette DarkPalette = new Palette(
@@ -39,6 +47,7 @@ public class Main extends Application {
 			LightPalette.usePalette(scene);
 
 
+			CSSFX.start();
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Flight Booking Application");
 			primaryStage.show();			

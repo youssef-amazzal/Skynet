@@ -29,6 +29,11 @@
 			<artifactId>ikonli-materialdesign-pack</artifactId>
 			<version>12.3.1</version>
 		</dependency>
+		<dependency>
+			<groupId>fr.brouillard.oss</groupId>
+			<artifactId>cssfx</artifactId>
+			<version>11.5.1</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
