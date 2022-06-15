@@ -2,10 +2,14 @@ package application;
 
 import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import view.NavigationBar;
+import view.Palette;
 import java.util.Objects;
 
 public class Main extends Application {
@@ -15,14 +19,12 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		try {
 			HBox root = new HBox();
-			root.getStylesheets().add(getClass().getResource("/style/Application.css").toExternalForm());
 			root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/Application.css")).toExternalForm());
 			Scene scene = new Scene(root, 1366, 768);
-			
-			root.getChildren().add(NavigationBar.getNavigationBar());
+
 			ScrollPane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SearchPage.fxml")));
 			page.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/SearchPage.css")).toExternalForm());
 
@@ -32,25 +34,25 @@ public class Main extends Application {
 
 			Palette DarkPalette = new Palette(
 					"DarkMode",
-					"#23232f",
 					"#1e1f24",
-					"3f98fc"
+					"#23232f",
+					"#3f98fc"
 			);
 
 			Palette LightPalette = new Palette(
 					"LightMode",
 					"#eef1fa",
 					"white",
-					"3f98fc"
+					"#3f98fc"
 			);
 
 			LightPalette.usePalette(scene);
-
+			//DarkPalette.usePalette(scene);
 
 			CSSFX.start();
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Flight Booking Application");
-			primaryStage.show();			
+			primaryStage.show();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
