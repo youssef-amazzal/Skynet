@@ -1,19 +1,118 @@
 .root {
-    PrimaryColor: #23232f ;
-    SecondaryColor: #1e1f24 ;
+    PrimaryColor: #eef1fa ;
+    SecondaryColor: white ;
     AccentColor: rgb(63, 152, 252);
-    AccentColor-alpha: rgba(63, 152, 252, 0.4);
+    AlphaAccentColor: rgba(63, 152, 252, 0.4);
+    glow: dropshadow(gaussian, AlphaAccentColor, 10, 0.3, 0, 0);
 	-fx-background-color: PrimaryColor;
 }
 
-.dropShadow {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 0);
+/*
+==========================================================================================
+=                           Customize UI Elements                                        =
+==========================================================================================
+ */
+
+/*========================================== Button Styling =============================================*/
+.button {
+    -fx-background-color: AccentColor;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.button:hover {
+    -fx-effect: glow;
 }
 
-.Transparent {
+.button,
+.toggle-button,
+.arrow-button {
+    -fx-cursor: hand;
+}
+
+.arrow {
+    -fx-background-color: AccentColor;
+}
+
+/*========================================== Separator Styling ==========================================*/
+.separator:vertical,
+.separator:horizontal {
+    -fx-border-color: transparent;
+    -fx-padding: 4;
+}
+.separator:vertical .line,
+.separator:horizontal .line {
+    -fx-border-color: AccentColor;
+    -fx-border-radius: 50%;
+    -fx-border-width: 1;
+}
+/*========================================== Scroll-pane and Scroll-bar Styling ==========================================*/
+.scroll-pane {
+    -fx-background-color: PrimaryColor;
+    -fx-background: PrimaryColor;
+}
+
+.scroll-bar {
     -fx-background-color: Transparent;
 }
 
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: -2 2;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: AlphaAccentColor;
+}
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: AccentColor;
+}
+/*======================================== Date-Picker-Popup ====================================================*/
+
+.date-picker-popup {
+    -fx-background-color: AccentColor;
+
+}
+.date-picker-popup > .month-year-pane,
+.date-picker-popup > .month-year-pane .text {
+    -fx-background-color: AccentColor;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup > * > .spinner > .button > * {
+    -fx-background-color: white;
+}
+
+.date-picker-popup > * > .spinner > .button:hover,
+.date-picker-popup > * > .spinner > .button:focused {
+    -fx-background-color: transparent;
+}
+
+/*======================================== text & font styling ====================================================*/
+.text-input:focused {
+    -fx-font-weight: bold;
+    -fx-font-size: 11;
+}
 .ikonli-font-icon {
     -fx-icon-color: AccentColor;
 }
+/*
+==========================================================================================
+ */
+
+.TransparentTextField,
+.TransparentTextField > *,
+.TransparentTextField > * > .text-field,
+.TransparentTextField > * > .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.card {
+    -fx-background-color: SecondaryColor;
+    -fx-border-color: darkgray;
+    -fx-border-width: 0.5;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+

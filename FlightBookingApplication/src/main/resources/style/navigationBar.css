@@ -1,4 +1,4 @@
-/*========================================== Navigation-Bar Styling ==========================================*/
+@import "Application.css";
 
 #NavigationBar {
 	-fx-background-color: SecondaryColor;
@@ -12,26 +12,24 @@
     -fx-pref-width: 50px ;
     -fx-pref-height: 50px ;
     -fx-icon-size: 30px ;
+    -fx-icon-color: gray;
 }
 
 #NavigationBar .toggle-button:hover,
 #NavigationBar .toggle-button:hover .ikonli-font-icon {
-    -fx-background-color : AccentColor-alpha ;
+    -fx-background-color : AlphaAccentColor ;
     -fx-pref-width: 55px ;
     -fx-pref-height: 55px ;
     -fx-icon-size: 35px ;
+    -fx-icon-color: AccentColor;
 }
 
-#NavigationBar .toggle-button:selected, 
+#NavigationBar .toggle-button:selected,
+#NavigationBar .toggle-button:hover:selected,
 #NavigationBar .toggle-button:selected .ikonli-font-icon {
     -fx-background-color : AccentColor;
     -fx-icon-color: #ffffff;
     
     /* Add Glow Effect to The Selected Item */
-    -fx-effect: dropshadow(gaussian, AccentColor-alpha, 10, 0.3, 0, 0);
-}
-
-/* To avoid changing the background color of the selected button while hovering over it */
-#NavigationBar .toggle-button:hover:selected {
-    -fx-background-color : AccentColor;
+    -fx-effect: glow;
 }

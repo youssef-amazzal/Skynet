@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="backGround" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchPageController">
+   <content>
+      <StackPane alignment="TOP_CENTER">
+         <children>
+            <VBox fx:id="searchPage" alignment="TOP_CENTER" prefHeight="761.0" prefWidth="1263.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="44.0" prefWidth="584.0">
+                           <children>
+                              <FontIcon iconLiteral="mdi-magnify" iconSize="33">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </FontIcon>
+                              <TextField fx:id="inputSearch" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" prefWidth="529.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="card" />
+                              <String fx:value="TransparentTextField" />
+                           </styleClass>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="50.0" prefWidth="1236.0" styleClass="card">
+                           <HBox.margin>
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                           </HBox.margin>
+                           <children>
+                              <HBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ComboBox fx:id="inputDepartureCity" editable="true" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="From where ?" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <Label id="swapButton" fx:id="swapButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="41.0">
+                                       <graphic>
+                                          <FontIcon iconLiteral="mdi-swap-horizontal">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></FontIcon>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ComboBox fx:id="inputArrivalCity" editable="true" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="To where ?" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </HBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Separator>
+                              <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="130.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <DatePicker fx:id="inputDepartureDate" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="130.0" promptText="After When ?" styleClass="TransparentTextField" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </HBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Separator>
+                              <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="108.0" styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextField fx:id="inputPrice" maxWidth="1.7976931348623157E308" promptText="MAX price ?" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </HBox>
+                              <Button fx:id="SearchButton" defaultButton="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="199.0" text="Search" HBox.hgrow="ALWAYS">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="NEVER">
+                     <children>
+                        <HBox maxWidth="-Infinity" prefWidth="1236.0" HBox.hgrow="NEVER">
+                           <children>
+                              <Label fx:id="lblResultsCounter" text="Results" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="SOMETIMES" />
+                              <HBox alignment="CENTER" styleClass="TransparentTextField">
+                                 <children>
+                                    <ChoiceBox fx:id="inputSortBox" prefHeight="25.0" prefWidth="75.0">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></ChoiceBox>
+                                    <FontIcon iconLiteral="mdi-sort" iconSize="25" />
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </content>
+</ScrollPane>

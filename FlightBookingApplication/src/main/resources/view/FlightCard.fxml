@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" prefWidth="1296.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FlightCardController">
+   <children>
+      <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="1236.0">
+         <children>
+            <HBox alignment="CENTER" fillHeight="false">
+               <children>
+                  <ImageView fx:id="AgencyLogo" fitHeight="106.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../../../../../../../Pictures/Avianca_Logo.svg.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.05" contrast="0.08" hue="0.05" saturation="-0.02" />
+                     </effect>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </HBox>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" prefHeight="200.0" spacing="5.0">
+               <children>
+                  <Label maxWidth="1.7976931348623157E308" text="MAR" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Calibri Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <Label maxWidth="1.7976931348623157E308" text="08:00" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Calibri" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="ROYAL AIR MAROC" wrapText="true">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label text="2H 30M">
+                     <font>
+                        <Font name="Impact" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" spacing="5.0" HBox.hgrow="NEVER">
+               <children>
+                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="DEU" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Calibri Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="10:30" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Calibri" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="110.0" prefWidth="232.0" HBox.hgrow="SOMETIMES">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="144.0" text="Book" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+         <HBox.margin>
+            <Insets left="30.0" right="30.0" />
+         </HBox.margin>
+         <styleClass>
+            <String fx:value="card" />
+            <String fx:value="listItem" />
+         </styleClass>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+</HBox>

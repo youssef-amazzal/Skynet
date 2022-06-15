@@ -1,0 +1,29 @@
+@import "Application.css";
+
+#searchBar{
+    -fx-border-width: 0.5px;
+    -fx-border-color: darkgray;
+    -fx-background-color: SecondaryColor;
+}
+
+#SearchButton {
+    -fx-background-color: AccentColor;
+    -fx-background-radius: 0 20 20 0;
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+#SearchButton:hover,
+#swapButton:hover {
+    -fx-effect: glow;
+}
+
+#swapButton,
+#swapButton .ikonli-font-icon {
+    -fx-background-color: AccentColor;
+    -fx-background-radius: 50;
+    -fx-icon-color: white;
+    -fx-pref-width: 30;
+    -fx-pref-height: 30;
+    -fx-icon-size: 25;
+}

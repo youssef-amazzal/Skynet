@@ -1,0 +1,11 @@
+@import "Application.css";
+
+.button {
+    -fx-background-radius: 50;
+    -fx-font-size: 17;
+}
+
+.listItem {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
