@@ -56,7 +56,7 @@ public class Main extends Application {
 				primaryStage.setTitle("Flight Booking Application");
 				primaryStage.show();*/
 
-			Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Signin.fxml")));
+			Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Signup.fxml")));
 			 
 			Scene scene= new Scene(root);
 			root.getStylesheets().add(getClass().getResource("/style/sign.css").toExternalForm());

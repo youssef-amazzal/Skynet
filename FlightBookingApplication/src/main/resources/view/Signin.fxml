@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="506.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="506.0" style="-fx-background-color: #FFFFFF;" stylesheets="-fx-background-color:#FFFFFF" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SwitchSignupController">
    <children>
       <ButtonBar layoutY="14.0" prefHeight="40.0" prefWidth="200.0" />
       <HBox layoutX="-4.0" layoutY="-1.0" prefHeight="150.0" prefWidth="514.0">
@@ -29,7 +29,13 @@
       <TextField layoutX="107.0" layoutY="197.0" prefHeight="26.0" prefWidth="300.0" promptText="    Username" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
       <PasswordField layoutX="107.0" layoutY="247.0" prefHeight="26.0" prefWidth="300.0" promptText="   Password" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
       <Hyperlink layoutX="100.0" layoutY="292.0" prefHeight="24.0" prefWidth="154.0" text="forget your password ?" />
-      <Button layoutX="192.0" layoutY="367.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="122.0" style="-fx-background-color: #536162;" text="Sign in" textFill="WHITE" />
-      <Button layoutX="192.0" layoutY="407.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="122.0" style="-fx-background-color: #536162;" text="Sign up" textFill="WHITE" />
+      <Button layoutX="192.0" layoutY="367.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" style="-fx-background-color: #536162;" text="Sign in" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="192.0" layoutY="407.0" mnemonicParsing="false" onAction="#SwitchtoSignup" prefHeight="33.0" prefWidth="134.0" style="-fx-background-color: #536162;" text="Sign up" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>
