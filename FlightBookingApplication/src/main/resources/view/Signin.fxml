@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -11,12 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="506.0" style="-fx-background-color: #FFFFFF;" stylesheets="-fx-background-color:#FFFFFF" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SwitchSignupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="506.0" styleClass="background" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SwitchSignupController">
    <children>
-      <ButtonBar layoutY="14.0" prefHeight="40.0" prefWidth="200.0" />
       <HBox layoutX="-4.0" layoutY="-1.0" prefHeight="150.0" prefWidth="514.0">
          <children>
-            <Label text="Sign in" textFill="#1c6fc3">
+            <Label alignment="CENTER" styleClass="title" text="Sign in" textFill="#1c6fc3">
                <HBox.margin>
                   <Insets left="190.0" top="50.0" />
                </HBox.margin>
@@ -26,14 +24,14 @@
             </Label>
          </children>
       </HBox>
-      <TextField layoutX="107.0" layoutY="197.0" prefHeight="26.0" prefWidth="300.0" promptText="    Username" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <PasswordField layoutX="107.0" layoutY="247.0" prefHeight="26.0" prefWidth="300.0" promptText="   Password" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <Hyperlink layoutX="100.0" layoutY="292.0" prefHeight="24.0" prefWidth="154.0" text="forget your password ?" />
-      <Button layoutX="192.0" layoutY="367.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" style="-fx-background-color: #536162;" text="Sign in" textFill="WHITE">
+      <TextField layoutX="107.0" layoutY="197.0" prefHeight="26.0" prefWidth="300.0" promptText="    Username" />
+      <PasswordField layoutX="107.0" layoutY="247.0" prefHeight="26.0" prefWidth="300.0" promptText="   Password" />
+      <Hyperlink layoutX="100.0" layoutY="292.0" prefHeight="24.0" prefWidth="154.0" styleClass="title" text="forget your password ?" />
+      <Button layoutX="192.0" layoutY="367.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" text="Sign in" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="192.0" layoutY="407.0" mnemonicParsing="false" onAction="#SwitchtoSignup" prefHeight="33.0" prefWidth="134.0" style="-fx-background-color: #536162;" text="Sign up" textFill="WHITE">
+      <Button id="sign-up" layoutX="192.0" layoutY="407.0" mnemonicParsing="false" onAction="#SwitchtoSignup" prefHeight="33.0" prefWidth="134.0" text="Sign up" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>

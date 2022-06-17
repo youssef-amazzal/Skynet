@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -10,12 +9,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="506.0" style="-fx-background-color: #FFFFFF;" styleClass="sign" stylesheets="@sign.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SwitchSigninController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="506.0" styleClass="background" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SwitchSigninController">
    <children>
-      <ButtonBar layoutY="14.0" prefHeight="40.0" prefWidth="200.0" />
       <HBox layoutX="-4.0" layoutY="-1.0" prefHeight="150.0" prefWidth="514.0">
          <children>
-            <Label prefHeight="88.0" prefWidth="171.0" style="-fx-background-color: #FFFFFF; " text="Sign up" textFill="#1c6fc3">
+            <Label alignment="CENTER" prefHeight="88.0" prefWidth="171.0" styleClass="title" text="Sign up" textFill="#1c6fc3">
                <font>
                   <Font size="48.0" />
                </font>
@@ -25,16 +23,16 @@
             </Label>
          </children>
       </HBox>
-      <TextField layoutX="116.0" layoutY="166.0" prefHeight="27.0" prefWidth="275.0" promptText="Firstname" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <TextField layoutX="116.0" layoutY="212.0" prefHeight="27.0" prefWidth="275.0" promptText="Lastname" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <TextField layoutX="116.0" layoutY="258.0" prefHeight="27.0" prefWidth="275.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <PasswordField layoutX="116.0" layoutY="303.0" prefHeight="25.0" prefWidth="275.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <Button layoutX="187.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" style="-fx-background-color: #536162;" text="Sign up" textFill="#fffdfd">
+      <TextField layoutX="116.0" layoutY="166.0" prefHeight="27.0" prefWidth="275.0" promptText="Firstname" />
+      <TextField layoutX="116.0" layoutY="212.0" prefHeight="27.0" prefWidth="275.0" promptText="Lastname" />
+      <TextField layoutX="116.0" layoutY="258.0" prefHeight="27.0" prefWidth="275.0" promptText="Username" />
+      <PasswordField layoutX="116.0" layoutY="303.0" prefHeight="25.0" prefWidth="275.0" promptText="Password" />
+      <Button id="sign-up" layoutX="187.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" text="Sign up" textFill="#fffdfd">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="187.0" layoutY="414.0" mnemonicParsing="false" onAction="#SwitchtoSignin" prefHeight="33.0" prefWidth="134.0" style="-fx-background-color: #536162;" text="Sign in" textFill="#fffdfd">
+      <Button id="sign-in" layoutX="187.0" layoutY="414.0" mnemonicParsing="false" onAction="#SwitchtoSignin" prefHeight="33.0" prefWidth="134.0" text="Sign in" textFill="#fffdfd">
          <font>
             <Font size="14.0" />
          </font>

@@ -1,0 +1,24 @@
+@import "Application.css";
+
+.button {
+    -fx-background-radius: 50;
+}
+
+#sign-in,
+#sign-in .text,
+.title {
+    -fx-background-color: transparent;
+    -fx-text-fill: AccentColor;
+    -fx-effect: null;
+}
+
+.text-field {
+    -fx-background-color:  transparent;
+    -fx-border-color: AccentColor;
+    -fx-border-width: 0 0 2 0;
+}
+
+.background {
+    -fx-background-color: SecondaryColor;
+}
+	

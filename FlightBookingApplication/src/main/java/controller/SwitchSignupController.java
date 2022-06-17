@@ -11,15 +11,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SwitchSignupController {
-  private Scene scene;
-  private Stage  stage;
-  private Parent root;
   
   public void SwitchtoSignup(ActionEvent e) throws IOException {
-		Parent root =FXMLLoader.load(getClass().getResource("/view/Signup.fxml"));
-		 stage=(Stage)((Node)e.getSource()).getScene().getWindow();
-		  scene=new Scene(root);
-		  stage.setScene(scene);
-		  stage.show();
-	  }
+	  Parent root =FXMLLoader.load(getClass().getResource("/view/Signup.fxml"));
+	  root.getStylesheets().add(getClass().getResource("/style/Sign-up.css").toExternalForm());
+	  Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+	  Scene scene = new Scene(root);
+	  stage.setScene(scene);
+	  stage.show();
+  }
 }
