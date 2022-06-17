@@ -26,8 +26,11 @@ public class Main extends Application {
 			root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/Application.css")).toExternalForm());
 			Scene scene = new Scene(root, 1366, 768);
 
-			StackPane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SearchPage.fxml")));
-			page.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/SearchPage.css")).toExternalForm());
+			//StackPane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SearchPage.fxml")));
+			//page.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/SearchPage.css")).toExternalForm());
+
+			StackPane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SeatMap.fxml")));
+			page.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/SeatMap.css")).toExternalForm());
 
 			root.getChildren().addAll(NavigationBar.getNavigationBar(), page);
 			HBox.setHgrow(page, Priority.ALWAYS);
@@ -36,7 +39,7 @@ public class Main extends Application {
 			Palette DarkPalette = new Palette(
 					"DarkMode",
 					"#1e1f24",
-					"#23232f",
+					"#2d2d3c",
 					"#3f98fc"
 			);
 
@@ -47,8 +50,8 @@ public class Main extends Application {
 					"#3f98fc"
 			);
 
-			LightPalette.usePalette(scene);
-			//DarkPalette.usePalette(scene);
+			//LightPalette.usePalette(scene);
+			DarkPalette.usePalette(scene);
 
 			CSSFX.start();
 			primaryStage.setScene(scene);

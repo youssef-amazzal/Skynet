@@ -56,9 +56,10 @@ public class Palette {
 				+ "SecondaryColor: " + this.getHexValue(SecondaryColor) + " ;"
 				+ "AccentColor: " + this.getHexValue(AccentColor) + " ;"
 				+ "AlphaAccentColor: " + this.getHexValue(AlphaAccentColor) + " ;"
+				+ "DerivedColor: derive(SecondaryColor, " + (this.calculateLuminance(SecondaryColor) > 0.5 ? "-5%" : "30%") + ");"
 		);
 
-		if (this.calculateLuminance(PrimaryColor) > 0.5) {
+		if (this.calculateLuminance(SecondaryColor) > 0.5) {
 			scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/TextLightVersion.css")).toExternalForm());
 		}
 		else {

@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane alignment="BOTTOM_CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SeatMapController">
+   <children>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0">
+         <children>
+            <ScrollPane fitToWidth="true" styleClass="bookingWindow" HBox.hgrow="NEVER">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <content>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="479.0" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <FontIcon iconLiteral="mdi-arrow-left" iconSize="25" />
+                           </graphic>
+                        </Button>
+                        <Label maxWidth="1.7976931348623157E308" text="Reservation information" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox prefWidth="100.0" spacing="10.0">
+                           <children>
+                              <Label text="About the fligtht" textFill="#7c7c7c">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="3.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                             <children>
+                                                <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label maxHeight="1.7976931348623157E308" text="From :" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Rabat" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label maxHeight="1.7976931348623157E308" text="To :" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="New York City" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                             <children>
+                                                <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label maxHeight="1.7976931348623157E308" text="Departure date :" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DD/MM/YYYY" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label maxHeight="1.7976931348623157E308" text="Arrival date :" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DD/MM/YYYY" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                             <children>
+                                                <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label maxHeight="1.7976931348623157E308" text="Departure time :" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="hh:mm" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label maxHeight="1.7976931348623157E308" text="Arrival time :" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="hh:mm" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                             <children>
+                                                <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Label maxHeight="1.7976931348623157E308" text="Airline :" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Royal Air Maroc" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox maxHeight="-Infinity" prefWidth="100.0">
+                           <children>
+                              <Label text="Selected Seat" textFill="#7c7c7c">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefWidth="439.0" text="A7" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="41.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox maxHeight="-Infinity" prefWidth="100.0">
+                           <children>
+                              <Label text="Legend" textFill="#7a7a7a">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="SelectedSeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="55.0" text="Selected" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="UnavailableSeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Unavailable" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="PremiumSeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="55.0" text="Premium" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="EconomySeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="55.0" text="Economy" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label id="StandardSeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="11.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="55.0" text="Standard" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox maxHeight="-Infinity" prefWidth="100.0">
+                           <children>
+                              <Label text="Legend" textFill="#7a7a7a">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label id="SelectedSeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="11.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="55.0" text="Selected" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label id="UnavailableSeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="11.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Unavailable" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label id="PremiumSeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="11.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="55.0" text="Premium" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="................................................................................................................................................................................................................" HBox.hgrow="ALWAYS" />
+                                    <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="31.0" prefHeight="30.0" prefWidth="44.0" text="450$">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label id="EconomySeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="11.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="55.0" text="Economy" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="................................................................................................................................................................................................................" HBox.hgrow="ALWAYS" />
+                                    <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="31.0" prefHeight="30.0" prefWidth="44.0" text="450$">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label id="StandardSeatIcon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="SeatIcon" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="11.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="55.0" text="Standard" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="................................................................................................................................................................................................................" HBox.hgrow="ALWAYS" />
+                                    <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="31.0" prefHeight="30.0" prefWidth="44.0" text="450$">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="card" />
+                        <String fx:value="bookingWindow" />
+                     </styleClass>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+               <content>
+                  <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0">
+                     <children>
+                        <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="85.0" HBox.hgrow="ALWAYS" />
+                        <StackPane id="airPlane" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="562.0" styleClass="card">
+                           <children>
+                              <StackPane maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="439.0" StackPane.alignment="TOP_CENTER">
+                                 <StackPane.margin>
+                                    <Insets bottom="10.0" left="30.0" right="30.0" top="200.0" />
+                                 </StackPane.margin>
+                                 <children>
+                                    <GridPane id="seatMap" fx:id="seatMap" hgap="15.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="406.0" vgap="15.0" StackPane.alignment="TOP_CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <StackPane.margin>
+                                          <Insets bottom="20.0" left="30.0" right="30.0" top="130.0" />
+                                       </StackPane.margin>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </GridPane>
+                                 </children>
+                                 <effect>
+                                    <InnerShadow blurType="GAUSSIAN" choke="0.48" height="69.36" radius="23.555" width="26.86">
+                                       <color>
+                                          <Color opacity="0.1335877925157547" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
+                              </StackPane>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="100.0" />
+                           </HBox.margin>
+                        </StackPane>
+                        <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="85.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <HBox id="confirmationWindow" fx:id="confirmationWindow" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" spacing="30.0" styleClass="card">
+         <children>
+            <TextFlow prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Youssef">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="'s Selected Seat is ">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="A7 ">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="for ">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="MAR ">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="to ">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="USA">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </TextFlow>
+            <Button id="cancel" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="171.0" text="Cancel" />
+            <Button id="confirm" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="171.0" text="Confirm" />
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </HBox>
+   </children>
+</StackPane>

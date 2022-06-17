@@ -3,6 +3,7 @@
     SecondaryColor: white ;
     AccentColor: rgb(63, 152, 252);
     AlphaAccentColor: rgba(63, 152, 252, 0.4);
+    DerivedColor: derive(SecondaryColor, -5%);
     glow: dropshadow(gaussian, AlphaAccentColor, 10, 0.3, 0, 0);
 	-fx-background-color: PrimaryColor;
 }

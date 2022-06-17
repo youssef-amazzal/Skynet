@@ -2,7 +2,6 @@
 
 #NavigationBar {
 	-fx-background-color: SecondaryColor;
-	-fx-background-radius: 0 30 30 0;
 }
 
 #NavigationBar .toggle-button,
