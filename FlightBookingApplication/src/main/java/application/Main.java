@@ -30,10 +30,10 @@ public class Main extends Application {
 				HBox.setHgrow(page, Priority.ALWAYS);
            */
 
-			Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Signup.fxml")));
+			Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/accountPage/MyCards.fxml")));
 
 			Scene scene= new Scene(root);
-			root.getStylesheets().add(getClass().getResource("/style/Sign-up.css").toExternalForm());
+			//root.getStylesheets().add(getClass().getResource("/style/Sign-up.css").toExternalForm());
 			String css= this.getClass().getResource("/style/application.css").toExternalForm();
 			scene.getStylesheets().add(css);
 
