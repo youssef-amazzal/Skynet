@@ -24,7 +24,7 @@
                            <children>
                               <ImageView fitHeight="73.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
-                                    <Image url="@../images/RoyalAirMaroc.png" />
+                                    <Image url="@../../images/RoyalAirMaroc.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
@@ -34,7 +34,7 @@
                               </Label>
                               <ImageView fitHeight="71.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
-                                    <Image url="@../images/logo_ests.png" />
+                                    <Image url="@../../images/logo_ests.png" />
                                  </image>
                               </ImageView>
                            </children>

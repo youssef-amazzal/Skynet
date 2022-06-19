@@ -56,7 +56,7 @@ public class SearchPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         for (int i = 0; i < 10; i++) {
             try {
-                FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/FlightCard.fxml"));
+                FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/FlightCard.fxml"));
                 HBox card = cardLoader.load();
                 card.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/FlightCard.css")).toExternalForm());
                 searchPage.getChildren().add(card);

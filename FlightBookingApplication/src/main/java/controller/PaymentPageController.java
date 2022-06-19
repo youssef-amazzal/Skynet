@@ -20,7 +20,7 @@ public class PaymentPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         for (int i = 0; i < 3; i++) {
             try {
-                AnchorPane creditCard = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CreditCard.fxml")));
+                AnchorPane creditCard = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SearchPage/CreditCard.fxml")));
                 creditCardList.getChildren().add(creditCard);
             } catch (IOException e) {
                 e.printStackTrace();
