@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountPageController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="508.0" spacing="20.0">
+         <children>
+            <StackPane prefHeight="130.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Label maxWidth="1.7976931348623157E308" text="Personnel Information" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="29.0" />
+                           </font>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" text="Here you can change your personal information" wrapText="true" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font></Label>
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </StackPane.margin>
+                  </VBox>
+                  <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tabs">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tabs" />
+                     </toggleGroup>
+                  </ToggleButton>
+               </children>
+               <styleClass>
+                  <String fx:value="card" />
+                  <String fx:value="tabs" />
+               </styleClass>
+            </StackPane>
+            <StackPane prefHeight="135.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="105.0" prefWidth="367.0" spacing="10.0">
+                     <StackPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </StackPane.margin>
+                     <children>
+                        <Label maxWidth="1.7976931348623157E308" text="Password &amp; Security">
+                           <font>
+                              <Font name="System Bold" size="29.0" />
+                           </font>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" prefWidth="367.0" text="Here you can change your username, password &amp; email-address" wrapText="true">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font></Label>
+                     </children>
+                  </VBox>
+                  <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="407.0" styleClass="tabs" toggleGroup="$tabs" />
+               </children>
+               <styleClass>
+                  <String fx:value="card" />
+                  <String fx:value="tabs" />
+               </styleClass>
+            </StackPane>
+            <StackPane prefHeight="130.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <StackPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </StackPane.margin>
+                     <children>
+                        <Label maxWidth="1.7976931348623157E308" text="My Cards">
+                           <font>
+                              <Font name="System Bold" size="29.0" />
+                           </font>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" text="Here you can manage your credit cards" wrapText="true">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font></Label>
+                     </children>
+                  </VBox>
+                  <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tabs" toggleGroup="$tabs" />
+               </children>
+               <styleClass>
+                  <String fx:value="card" />
+                  <String fx:value="tabs" />
+               </styleClass>
+            </StackPane>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </VBox>
+      <VBox fx:id="page" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+   </children>
+</HBox>

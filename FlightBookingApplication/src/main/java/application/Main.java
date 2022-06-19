@@ -3,9 +3,9 @@ package application;
 import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.NavigationBar;
 import view.Palette;
 
 import java.util.Objects;
@@ -20,22 +20,16 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 
-          /*HBox root = new HBox();
+          	HBox root = new HBox();
+			root.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
 
-			root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/Application.css")).toExternalForm());
+			HBox page =  FXMLLoader.load(getClass().getResource("/view/accountPage/AccountPage.fxml"));
+			page.getStylesheets().add(getClass().getResource("/style/AccountPage.css").toExternalForm());
+			//page.getChildren().add();
+			HBox.setHgrow(page, Priority.ALWAYS);
+			root.getChildren().addAll(NavigationBar.getNavigationBar(), page);
+
 			Scene scene = new Scene(root, 1366, 768);
-			StackPane  page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Sign1.fxml")));
-		   page.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/styles.css")).toExternalForm());
-				root.getChildren().addAll(NavigationBar.getNavigationBar(), page);
-				HBox.setHgrow(page, Priority.ALWAYS);
-           */
-
-			Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/accountPage/MyCards.fxml")));
-
-			Scene scene= new Scene(root);
-			//root.getStylesheets().add(getClass().getResource("/style/Sign-up.css").toExternalForm());
-			String css= this.getClass().getResource("/style/application.css").toExternalForm();
-			scene.getStylesheets().add(css);
 
 			Palette DarkPalette = new Palette(
 							"DarkMode",
@@ -51,8 +45,9 @@ public class Main extends Application {
 							"#3f98fc"
 					);
 
+
 			LightPalette.usePalette(scene);
-			//DarkPalette.usePalette(scene);
+			DarkPalette.usePalette(scene);
 
 			CSSFX.start();
 			primaryStage.setScene(scene);
