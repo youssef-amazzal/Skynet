@@ -29,9 +29,9 @@
 #seatMap .seat {
     -fx-background-radius: 30% 30% 0 0;
     -fx-border-radius: 30% 30% 0 0;
-    -fx-background-color: darkgray;
+    -fx-background-color: transparent;
     -fx-border-color: darkgray;
-    -fx-border-width: 2 2 4 2;
+    -fx-border-width: 3;
     -fx-effect: null;
 }
 
@@ -65,7 +65,7 @@
 .SeatIcon {
     -fx-background-radius: 30% 30% 0 0;
     -fx-border-radius: 30% 30% 0 0;
-    -fx-border-width: 2 2 4 2;
+    -fx-border-width: 3;
 }
 
 #SelectedSeatIcon {
@@ -77,13 +77,13 @@
 }
 
 #PremiumSeatIcon  {
-    -fx-background-color: #ffb01e;
+    -fx-border-color: #ffb01e;
 }
 
 #EconomySeatIcon  {
-    -fx-background-color: #59ff05;
+    -fx-border-color: #59ff05;
 }
 
 #StandardSeatIcon  {
-    -fx-background-color: darkgray;
+    -fx-border-color: darkgray;
 }
