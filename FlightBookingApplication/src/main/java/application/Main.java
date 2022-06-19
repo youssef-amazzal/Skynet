@@ -4,10 +4,8 @@ import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import view.NavigationBar;
 import view.Palette;
@@ -29,8 +27,7 @@ public class Main extends Application {
 			//StackPane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SearchPage.fxml")));
 			//page.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/SearchPage.css")).toExternalForm());
 
-			StackPane page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SeatMap.fxml")));
-			page.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/SeatMap.css")).toExternalForm());
+			HBox page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/TicketPage.fxml")));
 
 			root.getChildren().addAll(NavigationBar.getNavigationBar(), page);
 			HBox.setHgrow(page, Priority.ALWAYS);
