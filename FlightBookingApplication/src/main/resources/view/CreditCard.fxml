@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="364.0" styleClass="credit-card" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FontIcon iconLiteral="pf-visa" iconSize="40" layoutX="26.0" layoutY="61.0" />
+      <FontIcon iconLiteral="pf-contactless" iconSize="30" layoutX="279.0" layoutY="58.0" text="" />
+      <Label alignment="CENTER" layoutX="39.0" layoutY="93.0" prefHeight="45.0" prefWidth="287.0" text="**** **** **** 1234">
+         <font>
+            <Font name="Courier New Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="170.0" text="Youssef Amazzal">
+         <font>
+            <Font name="Courier New Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="274.0" layoutY="170.0" text="01/30">
+         <font>
+            <Font name="Courier New Bold" size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

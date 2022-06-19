@@ -34,6 +34,11 @@
 			<artifactId>cssfx</artifactId>
 			<version>11.5.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.kordamp.ikonli</groupId>
+			<artifactId>ikonli-paymentfont-pack</artifactId>
+			<version>12.3.1</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>

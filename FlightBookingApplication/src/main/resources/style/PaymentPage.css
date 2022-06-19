@@ -1,0 +1,93 @@
+@import "Application.css";
+
+.paymentWindow {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+}
+
+.paymentWindow > .scroll-bar:vertical .thumb {
+    -fx-background-color: transparent;
+}
+.paymentWindow > .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: transparent;
+}
+
+#Summary {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+#confirmButton,
+#confirmButton .text {
+    -fx-background-color: AccentColor;
+    -fx-background-radius: 5;
+    -fx-font-size: 15;
+}
+
+.spinner,
+.spinner > * {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-pref-width: 55;
+}
+
+.spinner > .increment-arrow-button,
+.spinner > .decrement-arrow-button {
+    -fx-padding: 1;
+    -fx-cursor: hand;
+}
+
+.spinner > * > .increment-arrow,
+.spinner > * > .decrement-arrow {
+    -fx-background-color: AccentColor;
+}
+.spinner .text-field {
+    -fx-alignment: center;
+}
+
+#creditCardList > *,
+#creditCardList > * .ikonli-font-icon,
+#creditCardList > * .label .text{
+    first-color: rgba(20, 136, 204, 1);
+    second-color: #2B32B2;
+    gradient-color: linear-gradient(to right bottom, first-color, second-color);
+    -fx-background-color: gradient-color;
+    -fx-background-radius: 20;
+    -fx-border-color: DarkGray;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 20;
+    -fx-cursor: hand;
+    -fx-icon-color: white;
+    -fx-fill: white;
+}
+
+#creditCardList > *:hover {
+    -fx-effect: dropshadow(gaussian, rgba(20, 136, 204, 0.25), 10, 0.3, 0, 0);;
+}
+
+#add-credit-card {
+    -fx-background-radius: 20;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 20;
+    -fx-background-color: PrimaryColor;
+    -fx-cursor: default;
+    -fx-effect: null;
+}
+
+#add-credit-card .button,
+#add-credit-card .ikonli-font-icon {
+    -fx-background-color: SecondaryColor;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+    -fx-icon-size: 30;
+    -fx-icon-color: AccentColor;
+}
+
+#add-credit-card .button:hover,
+#add-credit-card .button:hover .ikonli-font-icon {
+    -fx-background-color: AccentColor;
+    -fx-icon-color: white;
+    -fx-background-radius: 50%;
+}
