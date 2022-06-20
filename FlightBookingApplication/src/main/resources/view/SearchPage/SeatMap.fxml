@@ -16,11 +16,11 @@
 <?import javafx.scene.text.TextFlow?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<StackPane alignment="BOTTOM_CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SeatMapController">
+<StackPane fx:id="parent" alignment="BOTTOM_CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SeatMapController">
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0">
          <children>
-            <ScrollPane fitToWidth="true" styleClass="bookingWindow" HBox.hgrow="NEVER">
+            <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="bookingWindow" HBox.hgrow="NEVER">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -440,7 +440,7 @@
             </ScrollPane>
          </children>
       </HBox>
-      <HBox id="confirmationWindow" fx:id="confirmationWindow" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" spacing="30.0" styleClass="card">
+      <HBox id="confirmationWindow" fx:id="confirmationWindow" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" spacing="30.0" styleClass="card" visible="false">
          <children>
             <TextFlow prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
@@ -481,8 +481,8 @@
                   </Label>
                </children>
             </TextFlow>
-            <Button id="cancel" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="171.0" text="Cancel" />
-            <Button id="confirm" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="171.0" text="Confirm" />
+            <Button id="cancel" fx:id="btnCancel" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelSelected" prefHeight="54.0" prefWidth="171.0" text="Cancel" />
+            <Button id="confirm" fx:id="btnConfirm" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#confirmSelected" prefHeight="54.0" prefWidth="171.0" text="Confirm" />
          </children>
          <padding>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />

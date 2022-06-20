@@ -1,19 +1,28 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SeatMapController implements Initializable {
+
+    @FXML
+    private StackPane parent;
+
+    @FXML
+    private Button btnCancel;
+
+    @FXML
+    private Button btnConfirm;
 
     @FXML
     private HBox confirmationWindow;
@@ -21,8 +30,12 @@ public class SeatMapController implements Initializable {
     @FXML
     private GridPane seatMap;
 
+    private ToggleGroup seatGroup;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        parent.getStylesheets().add(getClass().getResource("/style/SeatMap.css").toExternalForm());
+
         int row = 0;
         int col = 0;
         char ref = 'A';
@@ -36,7 +49,7 @@ public class SeatMapController implements Initializable {
         col = 0;
         row = 1;
 
-        ToggleGroup seatGroup = new ToggleGroup();
+        seatGroup = new ToggleGroup();
 
         for (int i = 1; i <= 20 * 6; i++) {
             if (col == 3) {
@@ -68,6 +81,32 @@ public class SeatMapController implements Initializable {
                 row++;
             }
 
+            //when a seat is selected set the confirmationWindow visibility to true, otherwise set it to false
+            seatGroup.selectedToggleProperty().addListener(((observable, oldValue, newValue) -> confirmationWindow.setVisible(newValue != null)));
+
+        }
+    }
+
+    public void getData() {
+
+    }
+
+    @FXML
+    private void cancelSelected() {
+        seatGroup.selectToggle(null);
+    }
+
+    @FXML
+    private void confirmSelected() {
+        try {
+            Parent page = FXMLLoader.load(getClass().getResource("/view/SearchPage/PaymentPage.fxml"));
+            VBox.setVgrow(page, Priority.ALWAYS);
+
+            VBox content = (VBox) parent.getScene().lookup("#content");
+            content.getChildren().clear();
+            content.getChildren().add(page);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

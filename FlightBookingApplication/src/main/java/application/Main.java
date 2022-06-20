@@ -4,11 +4,9 @@ import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import view.NavigationBar;
 import view.Palette;
-
-import java.util.Objects;
 
 public class Main extends Application {
 	
@@ -20,14 +18,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 
-          	HBox root = new HBox();
-			root.getStylesheets().add(getClass().getResource("/style/application.css").toExternalForm());
-
-			HBox page =  FXMLLoader.load(getClass().getResource("/view/accountPage/AccountPage.fxml"));
-			page.getStylesheets().add(getClass().getResource("/style/AccountPage.css").toExternalForm());
-			//page.getChildren().add();
-			HBox.setHgrow(page, Priority.ALWAYS);
-			root.getChildren().addAll(NavigationBar.getNavigationBar(), page);
+          	HBox root = FXMLLoader.load(getClass().getResource("/view/Application.fxml"));
+			root.getStylesheets().add(getClass().getResource("/style/Application.css").toExternalForm());
 
 			Scene scene = new Scene(root, 1366, 768);
 

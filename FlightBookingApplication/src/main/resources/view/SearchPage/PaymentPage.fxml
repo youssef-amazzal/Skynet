@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentPageController">
+<HBox fx:id="parent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentPageController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="paymentWindow" HBox.hgrow="NEVER">
          <HBox.margin>
@@ -244,7 +244,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </padding>
                   </VBox>
-                  <Button id="confirmButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="600.0" text="Make payment" />
+                  <Button id="confirmButton" fx:id="btnPay" mnemonicParsing="false" onAction="#payNow" prefHeight="50.0" prefWidth="600.0" text="Make payment" />
                </children>
             </VBox>
          </content>

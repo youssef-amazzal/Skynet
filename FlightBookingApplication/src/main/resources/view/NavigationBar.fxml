@@ -23,7 +23,7 @@
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
       </Label>
-      <ToggleButton id="navigationButton1" fx:id="homeBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" selected="true" styleClass="toggleGroup">
+      <ToggleButton id="navigationButton1" fx:id="homeBtn" mnemonicParsing="false" onAction="#openHome" prefHeight="50.0" prefWidth="50.0" selected="true" styleClass="toggleGroup">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
@@ -37,7 +37,7 @@
             <ToggleGroup fx:id="navigationBarGroup" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton id="navigationButton2" fx:id="searchBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
+      <ToggleButton id="navigationButton2" fx:id="searchBtn" mnemonicParsing="false" onAction="#openSearch" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
@@ -48,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ToggleButton>
-      <ToggleButton id="navigationButton3" fx:id="accounBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup" VBox.vgrow="ALWAYS">
+      <ToggleButton id="navigationButton3" fx:id="accounBtn" mnemonicParsing="false" onAction="#openAccount" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
@@ -59,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ToggleButton>
-      <ToggleButton id="navigationButton4" fx:id="settingsBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
+      <ToggleButton id="navigationButton4" fx:id="settingsBtn" mnemonicParsing="false" onAction="#openSettings" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
@@ -75,7 +75,7 @@
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>
       </Label>
-      <ToggleButton id="navigationButton5" fx:id="logoutBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
+      <ToggleButton id="navigationButton5" fx:id="logoutBtn" mnemonicParsing="false" onAction="#Logout" prefHeight="50.0" prefWidth="50.0" styleClass="toggleGroup" toggleGroup="$navigationBarGroup">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
          </VBox.margin>

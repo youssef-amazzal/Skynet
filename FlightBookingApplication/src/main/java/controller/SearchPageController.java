@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -14,6 +15,9 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SearchPageController implements Initializable {
+
+    @FXML
+    private StackPane parent;
 
     @FXML
     private Button SearchButton;
@@ -54,11 +58,13 @@ public class SearchPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        parent.getStylesheets().add(getClass().getResource("/style/SearchPage.css").toExternalForm());
+
+        //add search results
         for (int i = 0; i < 10; i++) {
             try {
                 FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/FlightCard.fxml"));
                 HBox card = cardLoader.load();
-                card.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/FlightCard.css")).toExternalForm());
                 searchPage.getChildren().add(card);
             } catch (IOException e) {
                 e.printStackTrace();

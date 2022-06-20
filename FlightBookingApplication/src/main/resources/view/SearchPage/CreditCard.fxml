@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="364.0" styleClass="credit-card" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="364.0" styleClass="credit-card" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <FontIcon iconLiteral="pf-visa" iconSize="40" layoutX="26.0" layoutY="61.0" />
       <FontIcon iconLiteral="pf-contactless" iconSize="30" layoutX="279.0" layoutY="58.0" text="" />
