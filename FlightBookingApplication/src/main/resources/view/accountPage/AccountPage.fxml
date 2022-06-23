@@ -14,7 +14,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="508.0" spacing="20.0">
          <children>
-            <StackPane prefHeight="130.0" prefWidth="200.0">
+            <StackPane minWidth="-Infinity" prefHeight="130.0" prefWidth="408.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                      <children>
@@ -43,7 +43,7 @@
                   <String fx:value="tabs" />
                </styleClass>
             </StackPane>
-            <StackPane prefHeight="135.0" prefWidth="200.0">
+            <StackPane minWidth="-Infinity" prefHeight="135.0" prefWidth="408.0">
                <children>
                   <VBox prefHeight="105.0" prefWidth="367.0" spacing="10.0">
                      <StackPane.margin>
@@ -68,7 +68,7 @@
                   <String fx:value="tabs" />
                </styleClass>
             </StackPane>
-            <StackPane prefHeight="130.0" prefWidth="200.0">
+            <StackPane minWidth="-Infinity" prefHeight="130.0" prefWidth="408.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                      <StackPane.margin>
