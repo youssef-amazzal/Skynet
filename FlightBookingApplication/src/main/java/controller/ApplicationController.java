@@ -3,7 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 public class ApplicationController implements Initializable {
 
     @FXML
-    private VBox content;
+    private StackPane content;
 
     @FXML
     private VBox navBarContainer;

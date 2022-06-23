@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +30,9 @@ public class SeatMapController implements Initializable {
 
     @FXML
     private GridPane seatMap;
+
+    @FXML
+    private Button btnBack;
 
     private ToggleGroup seatGroup;
 
@@ -102,11 +106,17 @@ public class SeatMapController implements Initializable {
             Parent page = FXMLLoader.load(getClass().getResource("/view/SearchPage/PaymentPage.fxml"));
             VBox.setVgrow(page, Priority.ALWAYS);
 
-            VBox content = (VBox) parent.getScene().lookup("#content");
-            content.getChildren().clear();
+            StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().add(page);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void goBack(ActionEvent event) {
+        StackPane content = (StackPane) parent.getScene().lookup("#content");
+        int recentChild = content.getChildren().size() - 1;
+        content.getChildren().remove(recentChild);
     }
 }

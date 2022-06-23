@@ -4,13 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -63,7 +62,7 @@ public class NavigationBarController implements Initializable {
             Parent page = FXMLLoader.load(getClass().getResource(path));
             VBox.setVgrow(page, Priority.ALWAYS);
 
-            VBox content = (VBox) navigationBar.getScene().lookup("#content");
+            StackPane content = (StackPane) navigationBar.getScene().lookup("#content");
             content.getChildren().clear();
             content.getChildren().add(page);
         } catch (IOException e) {

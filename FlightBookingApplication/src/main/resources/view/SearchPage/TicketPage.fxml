@@ -204,14 +204,6 @@
                   </Button>
                </children>
             </VBox>
-            <Button mnemonicParsing="false">
-               <graphic>
-                  <FontIcon iconLiteral="mdi-arrow-left" iconSize="25" />
-               </graphic>
-               <StackPane.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </StackPane.margin>
-            </Button>
          </children>
       </StackPane>
    </children>

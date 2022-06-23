@@ -25,7 +25,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="btnBack" mnemonicParsing="false" onAction="#goBack">
                      <graphic>
                         <FontIcon iconLiteral="mdi-arrow-left" iconSize="25" />
                      </graphic>

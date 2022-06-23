@@ -27,7 +27,7 @@
                <content>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="479.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false">
+                        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#goBack">
                            <graphic>
                               <FontIcon iconLiteral="mdi-arrow-left" iconSize="25" />
                            </graphic>

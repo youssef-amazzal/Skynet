@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -44,8 +45,7 @@ public class FlightCardController implements Initializable {
             Parent page = FXMLLoader.load(getClass().getResource("/view/SearchPage/SeatMap.fxml"));
             VBox.setVgrow(page, Priority.ALWAYS);
 
-            VBox content = (VBox) parent.getScene().lookup("#content");
-            content.getChildren().clear();
+            StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().add(page);
         } catch (IOException e) {
             e.printStackTrace();
