@@ -32,7 +32,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </StackPane.margin>
                   </VBox>
-                  <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tabs">
+                  <ToggleButton fx:id="togglePersonal" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openPersonalTab" styleClass="tabs">
                      <toggleGroup>
                         <ToggleGroup fx:id="tabs" />
                      </toggleGroup>
@@ -61,7 +61,7 @@
                            </font></Label>
                      </children>
                   </VBox>
-                  <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="407.0" styleClass="tabs" toggleGroup="$tabs" />
+                  <ToggleButton fx:id="togglePassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openPasswordTab" prefWidth="407.0" styleClass="tabs" toggleGroup="$tabs" />
                </children>
                <styleClass>
                   <String fx:value="card" />
@@ -86,7 +86,7 @@
                            </font></Label>
                      </children>
                   </VBox>
-                  <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tabs" toggleGroup="$tabs" />
+                  <ToggleButton fx:id="toggleCards" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openCardsTab" styleClass="tabs" toggleGroup="$tabs" />
                </children>
                <styleClass>
                   <String fx:value="card" />
@@ -98,6 +98,6 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </padding>
       </VBox>
-      <VBox fx:id="page" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+      <VBox fx:id="tabContent" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
    </children>
 </HBox>

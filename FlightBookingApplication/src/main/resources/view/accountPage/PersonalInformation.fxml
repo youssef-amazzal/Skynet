@@ -42,12 +42,12 @@
          <children>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="685.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="71.0" prefWidth="290.0" text="Personnel Information">
+                  <Label text="Personnel Information">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
                </children>

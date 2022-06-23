@@ -9,84 +9,86 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+      <VBox prefWidth="771.0" spacing="40.0" styleClass="card" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
          <children>
-            <VBox prefHeight="608.0" prefWidth="771.0" spacing="40.0" styleClass="card">
-               <VBox.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-               </VBox.margin>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="73.0" prefWidth="790.0" text="My Cards">
+                  <Label text="My Cards">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <HBox prefWidth="779.0">
-                     <children>
-                        <TextField prefWidth="500.0" promptText="Name Card" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="0.0" prefWidth="709.0">
-                     <children>
-                        <TextField prefWidth="500.0" promptText="Card Number" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox prefWidth="779.0">
-                     <children>
-                        <TextField prefWidth="500.0" promptText="Expiry Date   MM/YY" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox prefWidth="779.0">
-                     <children>
-                        <PasswordField prefWidth="500.0" promptText="Security Code" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </PasswordField>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="43.0" prefWidth="104.0" text="Confirm" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
                </children>
-               <padding>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </padding>
-            </VBox>
+            </HBox>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <TextField prefHeight="50.0" prefWidth="500.0" promptText="Card Holder" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <TextField prefHeight="50.0" prefWidth="500.0" promptText="Card Number" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <TextField prefHeight="50.0" prefWidth="500.0" promptText="Expiry Date   MM/YY" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <PasswordField prefHeight="50.0" prefWidth="500.0" promptText="CVV" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="500.0" text="Confirm" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+   </padding>
 </VBox>
