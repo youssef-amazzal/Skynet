@@ -1,10 +1,15 @@
 package controller;
 
+import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import view.Palette;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +29,27 @@ public class ApplicationController implements Initializable {
         try {
             navBarContainer.getChildren().add(navBarLoader.load());
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void appLoad(Stage primaryStage){
+        try {
+
+            HBox root = FXMLLoader.load(ApplicationController.class.getResource("/view/Application.fxml"));
+            root.getStylesheets().add(ApplicationController.class.getResource("/style/Application.css").toExternalForm());
+
+            Scene scene = new Scene(root, 1366, 768);
+
+            Palette.getDefaultPalette().usePalette(scene);
+
+            CSSFX.start();
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Flight Booking Application");
+            primaryStage.show();
+
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

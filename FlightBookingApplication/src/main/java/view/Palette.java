@@ -12,6 +12,19 @@ public class Palette {
 	private Color SecondaryColor;
 	private Color AccentColor;
 	private Color AlphaAccentColor;
+	public static final Palette DarkPalette = new Palette(
+			"DarkMode",
+			"#1e1f24",
+			"#2d2d3c",
+			"#3f98fc"
+	);
+	public static final Palette LightPalette = new Palette(
+			"LightMode",
+			"#eef1fa",
+			"white",
+			"#3f98fc"
+	);
+	private static Palette defaultPalette = DarkPalette;
 
 
 	public Palette(String title, Color PrimaryColor, Color SecondaryColor, Color AccentColor) {
@@ -105,5 +118,13 @@ public class Palette {
 	public void setAccentColor(Color accentColor) {
 		AccentColor = accentColor;
 		AlphaAccentColor = new Color(accentColor.getRed(), accentColor.getGreen(), accentColor.getBlue(), AlphaAccentColor.getOpacity());
+	}
+
+	public static Palette getDefaultPalette() {
+		return defaultPalette;
+	}
+
+	public static void setDefaultPalette(Palette defaultPalette) {
+		Palette.defaultPalette = defaultPalette;
 	}
 }
