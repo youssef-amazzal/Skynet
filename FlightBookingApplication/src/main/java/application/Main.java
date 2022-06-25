@@ -25,7 +25,7 @@ public class Main extends Application {
 
 			Scene scene = new Scene(root);
 
-			//Palette.setDefaultPalette(Palette.LightPalette);
+			Palette.setDefaultPalette(Palette.LightPalette);
 			Palette.getDefaultPalette().usePalette(scene);
 
 			CSSFX.start();

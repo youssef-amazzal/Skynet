@@ -1,3 +1,7 @@
 .text-input {
     -fx-text-fill: black;
 }
+
+.credit-card-text {
+    -fx-fill: white;
+}

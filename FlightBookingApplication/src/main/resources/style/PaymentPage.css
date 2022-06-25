@@ -48,7 +48,7 @@
 
 #creditCardList > *,
 #creditCardList > * .ikonli-font-icon,
-#creditCardList > * .label .text{
+#creditCardList > * > .label > .text{
     first-color: rgba(20, 136, 204, 1);
     second-color: #2B32B2;
     gradient-color: linear-gradient(to right bottom, first-color, second-color);
@@ -59,7 +59,7 @@
     -fx-border-radius: 20;
     -fx-cursor: hand;
     -fx-icon-color: white;
-    -fx-fill: white;
+
 }
 
 #creditCardList > *:hover {
