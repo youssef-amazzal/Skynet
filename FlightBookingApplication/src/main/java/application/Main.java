@@ -1,14 +1,13 @@
 package application;
 
+import data.PassengerDao;
 import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.Passenger;
 import view.Palette;
 
 public class Main extends Application {
@@ -31,8 +30,20 @@ public class Main extends Application {
 			CSSFX.start();
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Flight Booking Application");
-			primaryStage.show();
+			//primaryStage.show();
+			/*
+			Connection conn = DataSource.getConnection();
+			PreparedStatement query = conn.prepareStatement("SELECT date('now');");
+			ResultSet res = query.executeQuery();
+			if (res.next()) {
+				System.out.println(res.getString(1));
+			}
+			*/
 
+			PassengerDao pDao = new PassengerDao();
+			Passenger passenger = pDao.read(1);
+
+			System.out.println("Firstname: " + passenger.getFirstname() + "\tLastname: " + passenger.getLastname());
 		}
 		catch (Exception e) {
 			e.printStackTrace();
