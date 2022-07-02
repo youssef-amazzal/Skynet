@@ -84,31 +84,31 @@ public class SeatDao implements Dao<Seat> {
         Connection conn = DataSource.getConnection();
         Seat original =  this.read(id);
 
-        String statement = "UPDATE seat SET column = ?, row = ?, type = ? WHERE id = ? ;";
+        String statement = "UPDATE seats SET column = ?, row = ?, type = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(3, id);
+            query.setInt(4, id);
 
-            if (seat.getFirstname() != null) {
+            if (seat.getColumn() != null) {
                 query.setString(1, seat.getColumn());
             }
             else {
                 query.setString(1, original.getColumn());
             }
 
-            if (seat.getRow() != null) {
-                query.setString(2, seat.getRow());
+            if (seat.getRow() != 0) {
+                query.setInt(2, seat.getRow());
             }
             else {
-                query.setString(2, original.getRow());
+                query.setInt(2, original.getRow());
             }
 
             if (seat.getType() != null) {
-                query.setString(2, seat.getType());
+                query.setString(3, seat.getType());
             }
             else {
-                query.setString(2, original.getType());
+                query.setString(3, original.getType());
             }
      
 

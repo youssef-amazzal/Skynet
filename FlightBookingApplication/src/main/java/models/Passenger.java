@@ -8,12 +8,6 @@ public class Passenger {
     private String lastname;
     private Date birthDate;
 
-    public Passenger() {
-        this.firstname = null;
-        this.lastname = null;
-        this.birthDate = null;
-    }
-
 
     public int getId() {
         return id;

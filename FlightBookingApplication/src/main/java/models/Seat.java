@@ -1,21 +1,10 @@
 package models;
 
-import java.sql.Date;
-
 public class Seat {
     private int id;
     private String column;
-    private Int row;
+    private int row;
     private String type;
-
-
-
-    public Seat() {
-        this.column = null;
-        this.row = null;
-        this.type = null;
-
-    }
 
 
     public int getId() {
@@ -28,14 +17,14 @@ public class Seat {
     public String getColumn() {
         return column;
     }
-    public void setColumn(String Column) {
+    public void setColumn(String column) {
         this.column = column;
     }
 
-    public Int getRow() {
+    public int getRow() {
         return row;
     }
-    public void setRow(Int row) {
+    public void setRow(int row) {
         this.row = row;
     }
 

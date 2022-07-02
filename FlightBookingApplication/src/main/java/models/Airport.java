@@ -1,7 +1,5 @@
 package models;
 
-import java.sql.Date;
-
 public class Airport {
     private int id;
     private String name;
@@ -9,15 +7,6 @@ public class Airport {
     private String country;
     private String IATA;
     private String ICAO;
-
-
-    public Airport() {
-        this.name = null;
-        this.city = null;
-        this.country = null;
-        this.IATA = null;
-        this.ICAO = null;
-    }
 
 
     public int getId() {

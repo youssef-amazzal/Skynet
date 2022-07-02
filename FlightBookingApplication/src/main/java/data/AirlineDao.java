@@ -38,7 +38,7 @@ public class AirlineDao implements Dao<Airline> {
             if (res.next()) {
                 airline = new Airline();
                 airline.setId(res.getInt("id"));
-                airliner.setName(res.getString("name"));
+                airline.setName(res.getString("name"));
                 airline.setLogo(res.getString("logo"));
 
             }
@@ -49,7 +49,7 @@ public class AirlineDao implements Dao<Airline> {
             e.printStackTrace();
         }
 
-        return passenger;
+        return airline;
     }
 
 
@@ -63,9 +63,9 @@ public class AirlineDao implements Dao<Airline> {
             ResultSet res = query.executeQuery();
             while (res.next()) {
                 Airline airline = new Airline();
-                Airline.setId(res.getInt("id"));
-                Airline.setName(res.getString("name"));
-                Airline.setLogo(res.getString("logo"));
+                airline.setId(res.getInt("id"));
+                airline.setName(res.getString("name"));
+                airline.setLogo(res.getString("logo"));
 
 
                 list.add(airline);
@@ -83,11 +83,11 @@ public class AirlineDao implements Dao<Airline> {
         Connection conn = DataSource.getConnection();
         Airline original =  this.read(id);
 
-        String statement = "UPDATE airline SET name = ?, logo = ? WHERE id = ? ;";
+        String statement = "UPDATE airlines SET name = ?, logo = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(2, id);
+            query.setInt(3, id);
 
             if (airline.getName() != null) {
                 query.setString(1, airline.getName());
@@ -96,14 +96,12 @@ public class AirlineDao implements Dao<Airline> {
                 query.setString(1, original.getName());
             }
 
-            if (airline.getLastname() != null) {
+            if (airline.getLogo() != null) {
                 query.setString(2, airline.getLogo());
             }
             else {
                 query.setString(2, original.getLogo());
             }
-
-
             query.executeUpdate();
             query.close();
 

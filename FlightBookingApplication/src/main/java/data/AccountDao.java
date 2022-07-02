@@ -1,11 +1,13 @@
 package data;
 
-import java.sql.*;
-import java.util.*;
-
 import models.Account;
-import model.Passenger;
-import model.Airline;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountDao implements Dao<Account> {
 
@@ -44,9 +46,9 @@ public class AccountDao implements Dao<Account> {
                 account.setId(res.getInt("id"));
                 account.setUsername(res.getString("username"));
                 account.setPassword(res.getString("password"));
-                account.setEmailAdress(res.getString("emailadress"));
-		account.setPassenger(pdao.read(res.getInt("Passenger_id")));
-		account.setAirline(adao.read(res.getInt("Airline_id")));
+                account.setEmailAddress(res.getString("emailAddress"));
+                account.setPassenger(pdao.read(res.getInt("Passenger_id")));
+                account.setAirline(adao.read(res.getInt("Airline_id")));
             }
 
             query.close();
@@ -68,13 +70,13 @@ public class AccountDao implements Dao<Account> {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM accounts;");
             ResultSet res = query.executeQuery();
             while (res.next()) {
-                Account = new Account();
-                Account.setId(res.getInt("id"));
-                Account.setUsername(res.getString("username"));
-                Account.setPassword(res.getString("password"));
-                Account.setEmailAddress(res.getString("emailaddress"));
-                Account.setPassenger(pdao.read(res.getInt("Passenger_id")));
-                Account.setAirline(adao.read(res.getInt("Airline_id")));  
+                Account account = new Account();
+                account.setId(res.getInt("id"));
+                account.setUsername(res.getString("username"));
+                account.setPassword(res.getString("password"));
+                account.setEmailAddress(res.getString("emailAddress"));
+                account.setPassenger(pdao.read(res.getInt("id_passenger")));
+                account.setAirline(adao.read(res.getInt("id_airline")));
 
                 list.add(account);
             }
@@ -91,17 +93,17 @@ public class AccountDao implements Dao<Account> {
         Connection conn = DataSource.getConnection();
         Account original =  this.read(id);
 
-        String statement = "UPDATE account SET username = ?, password = ?, emailaddress = ? WHERE id = ? ;";
+        String statement = "UPDATE accounts SET username = ?, password = ?, emailaddress = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(5, id);
+            query.setInt(4, id);
 
             if (account.getUsername() != null) {
                 query.setString(1, account.getUsername());
             }
             else {
-                query.setString(1, original.getUsertname());
+                query.setString(1, original.getUsername());
             }
 
             if (account.getPassword() != null) {
@@ -111,11 +113,11 @@ public class AccountDao implements Dao<Account> {
                 query.setString(2, original.getPassword());
             }
 
-            if (account.getEmailAdress() != null) {
-                query.setString(2, account.getEmailAdress());
+            if (account.getEmailAddress() != null) {
+                query.setString(3, account.getEmailAddress());
             }
             else {
-                query.setString(2, original.getEmailAdress());
+                query.setString(3, original.getEmailAddress());
             } 
    
           //remember to add id_passenger and id_airline       

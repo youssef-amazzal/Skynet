@@ -6,18 +6,9 @@ public class Account {
     private int id;
     private String username;
     private String password;
-    private String emailadress;
-    private Passenger id_passenger;
-    private Airline id_airline;
-
-
-    public Account() {
-        this.username = null;
-        this.password= null;
-        this.emailadress = null;
-
-    }
-
+    private String emailaddress;
+    private Passenger passenger;
+    private Airline airline;
 
     public int getId() {
         return id;
@@ -40,25 +31,25 @@ public class Account {
         this.password = password;
     }
 
-    public String getEmailAdress() {
-        return emialadress;
+    public String getEmailAddress() {
+        return emailaddress;
     }
-    public void setEmailAdress(String emailadress) {
-        this.emailadress = emailadress;
-    }
-
-    public Passenger getid_passenger() {
-        return id_passenger;
-    }
-    public void setid_passenger(Passenger id_passenger) {
-        this.id_passenger = id_passenger;
+    public void setEmailAddress(String emailaddress) {
+        this.emailaddress = emailaddress;
     }
 
-    public Airline getid_airline() {
-        return id_airline;
+    public Passenger getPassenger() {
+        return passenger;
     }
-    public void setid_airline(Airline id_airline) {
-        this.id_airline = id_airline;
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
+
+    public Airline getAirline() {
+        return airline;
+    }
+    public void setAirline(Airline airline) {
+        this.airline = airline;
     }
 
 

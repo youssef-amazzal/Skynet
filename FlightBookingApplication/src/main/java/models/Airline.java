@@ -1,18 +1,9 @@
 package models;
 
-import java.sql.Date;
-
 public class Airline {
     private int id;
     private String name;
     private String logo;
-
-
-    public Airline() {
-        this.name = null;
-        this.logo = null;
-    }
-
 
     public int getId() {
         return id;

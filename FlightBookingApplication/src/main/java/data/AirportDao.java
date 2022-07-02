@@ -10,14 +10,14 @@ public class AirportDao implements Dao<Airport> {
     @Override
     public void create(Airport airport) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO airports (name, city, country, IATA, ICAI) VALUES (?,?,?,?,?);";
+        String statement = "INSERT INTO airports (name, city, country, IATA, ICAO) VALUES (?,?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement);
             query.setString(1, airport.getName());
-            query.setString(3, airport.getCity());
-            query.setString(4, airport.getCountry());
-            query.setString(5, airport.getIATA());
-            query.setString(6, airport.getICAO());
+            query.setString(2, airport.getCity());
+            query.setString(3, airport.getCountry());
+            query.setString(4, airport.getIATA());
+            query.setString(5, airport.getICAO());
 
             query.executeUpdate();
             query.close();
@@ -38,7 +38,7 @@ public class AirportDao implements Dao<Airport> {
             ResultSet res = query.executeQuery();
 
             if (res.next()) {
-                airport = new Passenger();
+                airport = new Airport();
                 airport .setId(res.getInt("id"));
                 airport .setName(res.getString("name"));
                 airport .setCity(res.getString("city"));
@@ -91,11 +91,11 @@ public class AirportDao implements Dao<Airport> {
         Connection conn = DataSource.getConnection();
         Airport original =  this.read(id);
 
-        String statement = "UPDATE airport SET name = ?, city = ?, country = ?, IATA = ?, ICAO = ? WHERE id = ? ;";
+        String statement = "UPDATE airports SET name = ?, city = ?, country = ?, IATA = ?, ICAO = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(5, id);
+            query.setInt(6, id);
 
             if (airport.getName() != null) {
                 query.setString(1, airport.getName());
@@ -146,11 +146,6 @@ public class AirportDao implements Dao<Airport> {
         try {
             PreparedStatement query = conn.prepareStatement("DELETE FROM airports WHERE id = ? ;");
             query.setInt(1, id);
-            query.setString(2, name);
-            query.setString(3, city);
-            query.setString(4, country);
-            query.setString(5, IATA); 
-            query.setString(6, IACO);           
             query.executeUpdate();
             query.close();
         } catch (SQLException e) {
