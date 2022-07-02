@@ -1,31 +1,27 @@
 package models;
 
-import java.sql.*;
+import java.time.LocalDateTime;
 
 public class Flight {
     private int id;
-    private Double dep_datetime;
-    private Double arr_datetime;
-    private Double first_price;
-    private Double business_price;
-    private Double economy_price;
-    private Double luggage_price;
-    private Double weight_price;
-    private Airport dep_airport;
-    private Airport arr_airport;
-    private Airline id_airline;
-
+    private LocalDateTime depDatetime;
+    private LocalDateTime arrDatetime;
+    private double firstPrice;
+    private double businessPrice;
+    private double economyPrice;
+    private double luggagePrice;
+    private double weightPrice;
+    private Airport depAirport;
+    private Airport arrAirport;
+    private Airline airline;
 
     public Flight() {
-        this.dep_datetime = null;
-        this.arr_datetime= null;
-        this.first_price = null;
-        this.business_price = null;
-        this.economy_price = null;
-        this.luggage_price = null;
-        this.weight_price = null;
+        this.firstPrice = -1;
+        this.businessPrice = -1;
+        this.economyPrice = -1;
+        this.luggagePrice = -1;
+        this.weightPrice = -1;
     }
-
 
     public int getId() {
         return id;
@@ -34,67 +30,75 @@ public class Flight {
         this.id = id;
     }
 
-    public Double getDep_Datetime() {
-        return dep_datetime;
+    public LocalDateTime getDepDatetime() {
+        return depDatetime;
     }
-    public void setDep_Datetime(Double dep_datetime) {
-        this.dep_datetime = dep_datetime;
-    }
-
-    public Double getArr_Datetime() {
-        return arr_datetime;
-    }
-    public void setArr_Datetime(Double arr_datetime) {
-        this.arr_datetime = arr_datetime;
+    public void setDepDatetime(LocalDateTime dep_datetime) {
+        this.depDatetime = dep_datetime;
     }
 
-    public Double getFirst_Price() {
-        return first_price;
+    public LocalDateTime getArrDatetime() {
+        return arrDatetime;
     }
-    public void setFirst_Price(Double first_price) {
-        this.first_price = first_price;
-    }
-
-    public Double getEconomy_Price() {
-        return economy_price;
-    }
-    public void setEconomy_Price(Double economy_price) {
-        this.economy_price = economy_price;
+    public void setArrDatetime(LocalDateTime arr_datetime) {
+        this.arrDatetime = arr_datetime;
     }
 
-    public Double getLuggage_Price() {
-        return luggage_price;
+    public double getFirstPrice() {
+        return firstPrice;
     }
-    public void setLuggage_Price(Double luggage_price) {
-        this.luggage_price = luggage_price;
-    }
-
-    public Double getWeight_Price() {
-        return weight_price;
-    }
-    public void setWeight_Price(Double weight_price) {
-        this.weight_price = weight_price;
+    public void setFirstPrice(double first_price) {
+        this.firstPrice = first_price;
     }
 
-    public Airline getid_airline() {
-        return id_airline;
+    public double getEconomyPrice() {
+        return economyPrice;
     }
-    public void setid_airline(Airline id_airline) {
-        this.id_airline = id_airline;
-    }
-
-    public Airport getdep_airport() {
-        return dep_airport;
-    }
-    public void setdep_airport(Airport dep_airport) {
-        this.dep_airport = dep_airport;
+    public void setEconomyPrice(double economy_price) {
+        this.economyPrice = economy_price;
     }
 
-    public Airport getarr_airport() {
-        return arr_airport;
+    public double getLuggagePrice() {
+        return luggagePrice;
     }
-    public void setarr_airprt(Airport arr_airport) {
-        this.arr_airport = arr_airport;
+    public void setLuggagePrice(double luggage_price) {
+        this.luggagePrice = luggage_price;
+    }
+
+    public double getWeightPrice() {
+        return weightPrice;
+    }
+    public void setWeightPrice(double weight_price) {
+        this.weightPrice = weight_price;
+    }
+
+    public Airline getAirline() {
+        return airline;
+    }
+    public void setAirline(Airline id_airline) {
+        this.airline = id_airline;
+    }
+
+    public Airport getDepAirport() {
+        return depAirport;
+    }
+    public void setDepAirport(Airport dep_airport) {
+        this.depAirport = dep_airport;
+    }
+
+    public Airport getArrAirport() {
+        return arrAirport;
+    }
+    public void setArrAirport(Airport arr_airport) {
+        this.arrAirport = arr_airport;
+    }
+
+    public double getBusinessPrice() {
+        return businessPrice;
+    }
+
+    public void setBusinessPrice(double businessPrice) {
+        this.businessPrice = businessPrice;
     }
 
 }

@@ -17,12 +17,14 @@ public class AccountDao implements Dao<Account> {
     @Override
     public void create(Account account) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO accounts (username, password, emailAddress) VALUES (?,?,?);";
+        String statement = "INSERT INTO accounts (username, password, emailAddress, id_passenger, id_airline) VALUES (?,?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement);
             query.setString(1, account.getUsername());
             query.setString(2, account.getPassword());
             query.setString(3, account.getEmailAddress());
+            query.setInt(4, account.getPassenger().getId());
+            query.setInt(5, account.getPassenger().getId());
 
             query.executeUpdate();
             query.close();
@@ -93,11 +95,11 @@ public class AccountDao implements Dao<Account> {
         Connection conn = DataSource.getConnection();
         Account original =  this.read(id);
 
-        String statement = "UPDATE accounts SET username = ?, password = ?, emailaddress = ? WHERE id = ? ;";
+        String statement = "UPDATE accounts SET username = ?, password = ?, emailaddress = ?, id_passenger = ?, id_airline = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(4, id);
+            query.setInt(6, id);
 
             if (account.getUsername() != null) {
                 query.setString(1, account.getUsername());
@@ -118,9 +120,22 @@ public class AccountDao implements Dao<Account> {
             }
             else {
                 query.setString(3, original.getEmailAddress());
-            } 
-   
-          //remember to add id_passenger and id_airline       
+            }
+
+            if (account.getPassenger() != null) {
+                query.setInt(4, account.getPassenger().getId());
+            }
+            else {
+                query.setInt(4, original.getPassenger().getId());
+            }
+
+            if (account.getAirline() != null) {
+                query.setInt(5, account.getAirline().getId());
+            }
+            else {
+                query.setInt(5, original.getAirline().getId());
+            }
+
             query.executeUpdate();
             query.close();
 

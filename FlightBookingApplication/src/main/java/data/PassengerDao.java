@@ -1,6 +1,9 @@
 package data;
 
 import java.sql.*;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 import models.Passenger;
@@ -10,12 +13,12 @@ public class PassengerDao implements Dao<Passenger> {
     @Override
     public void create(Passenger passenger) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO passengers (firstname, lastname) VALUES (?,?);";
+        String statement = "INSERT INTO passengers (firstname, lastname, birthDate) VALUES (?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement);
             query.setString(1, passenger.getFirstname());
             query.setString(2, passenger.getLastname());
-            // remember to add here a query for birthDate
+            query.setLong(3, passenger.getBirthDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
             query.executeUpdate();
             query.close();
@@ -40,7 +43,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setId(res.getInt("id"));
                 passenger.setFirstname(res.getString("firstname"));
                 passenger.setLastname(res.getString("lastname"));
-                // remember to add here a query for birthDate
+                passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime());
             }
 
             query.close();
@@ -66,7 +69,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setId(res.getInt("id"));
                 passenger.setFirstname(res.getString("firstname"));
                 passenger.setLastname(res.getString("lastname"));
-                // remember to add here a query for birthDate
+                passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime());
 
                 list.add(passenger);
             }
@@ -83,11 +86,11 @@ public class PassengerDao implements Dao<Passenger> {
         Connection conn = DataSource.getConnection();
         Passenger original =  this.read(id);
 
-        String statement = "UPDATE passenger SET firstname = ?, lastname = ? WHERE id = ? ;";
+        String statement = "UPDATE passenger SET firstname = ?, lastname = ?, birthDate = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(3, id);
+            query.setInt(4, id);
 
             if (passenger.getFirstname() != null) {
                 query.setString(1, passenger.getFirstname());
@@ -102,7 +105,13 @@ public class PassengerDao implements Dao<Passenger> {
             else {
                 query.setString(2, original.getLastname());
             }
-            // remember to add here a query for birthDate
+
+            if (passenger.getBirthDate() != null) {
+                query.setLong(3, passenger.getBirthDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+            }
+            else {
+                query.setLong(3, original.getBirthDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+            }
 
             query.executeUpdate();
             query.close();

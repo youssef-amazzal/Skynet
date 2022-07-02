@@ -1,28 +1,29 @@
 package data;
 
 import java.sql.*;
+import java.time.ZoneId;
 import java.util.*;
-
 import models.Flight;
-import models.Airline;
-import models.Airport;
 
 public class FlightDao implements Dao<Flight> {
 		AirlineDao adao = new AirlineDao();
-		AirportDao aiDao = new AirportDao();
+		AirportDao airportDao = new AirportDao();
     @Override
     public void create(Flight flight) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO flights (dep_datetime, arr_datetime, first_price, business_price, economy_price, luggage_price, weight_price) VALUES (?,?,?,?,?,?,?);";
+        String statement = "INSERT INTO flights (dep_datetime, arr_datetime, first_price, business_price, economy_price, luggage_price, weight_price, id_airline, dep_airport, arr_airport) VALUES (?,?,?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setDouble(1, flight.getDep_Datetime());
-            query.setDouble(2, flight.getArr_Datetime());
-            query.setDouble(3, flight.getFirst_Price());
-            query.setDouble(4, flight.getBusiness_Price());
-            query.setDouble(5, flight.getEconomy_Price());
-            query.setDouble(6, flight.getLuggage_Price());
-            query.setDouble(7, flight.getWeight_Price());
+            query.setLong(1, flight.getDepDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+            query.setLong(2, flight.getArrDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+            query.setDouble(3, flight.getFirstPrice());
+            query.setDouble(4, flight.getBusinessPrice());
+            query.setDouble(5, flight.getEconomyPrice());
+            query.setDouble(6, flight.getLuggagePrice());
+            query.setDouble(7, flight.getWeightPrice());
+            query.setInt(8, flight.getAirline().getId());
+            query.setInt(9, flight.getDepAirport().getId());
+            query.setInt(10, flight.getArrAirport().getId());
             query.executeUpdate();
             query.close();
         } catch (SQLException e) {
@@ -44,16 +45,16 @@ public class FlightDao implements Dao<Flight> {
             if (res.next()) {
                 flight = new Flight();
                 flight.setId(res.getInt("id"));
-                flight.setDep_Datetime(res.getString("dep_datetile"));
-                flight.setArr_Dateime(res.getString("arr_datetime"));
-                flight.setFirst_Price(res.getString("first_price"));
-                flight.setBusiness_Price(res.getString("business_price"));
-                flight.setEconomy_Price(res.getString("economy_price"));
-                flight.setLuggage_Price(res.getString("luggage_price"));
-                flight.setWeight_Price(res.getString("weigh_price"));
+                flight.setDepDatetime(res.getTimestamp("dep_datetime").toLocalDateTime());
+                flight.setArrDatetime(res.getTimestamp("arr_datetime").toLocalDateTime());
+                flight.setFirstPrice(res.getDouble("first_price"));
+                flight.setBusinessPrice(res.getDouble("business_price"));
+                flight.setEconomyPrice(res.getDouble("economy_price"));
+                flight.setLuggagePrice(res.getDouble("luggage_price"));
+                flight.setWeightPrice(res.getDouble("weigh_price"));
                 flight.setAirline(adao.read(res.getInt("id_airline")));
-                flight.setDep_Airport(aidao.read(res.getInt("dep_airport")));
-		        flight.setArr_Airport(aidao.read(res.getInt("arr_airport")));
+                flight.setDepAirport(airportDao.read(res.getInt("dep_airport")));
+		        flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));
             }
 
             query.close();
@@ -76,17 +77,17 @@ public class FlightDao implements Dao<Flight> {
             ResultSet res = query.executeQuery();
             while (res.next()) {
                 Flight flight = new Flight();
-                flight.setId(res.getInt("id")); 
-                flight.setDep_Datetime(res.getString("dep_datetile"));
-                flight.setArr_Dateime(res.getString("arr_datetime"));
-                flight.setFirst_Price(res.getString("first_price"));
-                flight.setBusiness_Price(res.getString("business_price"));
-                flight.setEconomy_Price(res.getString("economy_price"));
-                flight.setLuggage_Price(res.getString("luggage_price"));
-                flight.setWeight_Price(res.getString("weigh_price"));
+                flight.setId(res.getInt("id"));
+                flight.setDepDatetime(res.getTimestamp("dep_datetime").toLocalDateTime());
+                flight.setArrDatetime(res.getTimestamp("arr_datetime").toLocalDateTime());
+                flight.setFirstPrice(res.getDouble("first_price"));
+                flight.setBusinessPrice(res.getDouble("business_price"));
+                flight.setEconomyPrice(res.getDouble("economy_price"));
+                flight.setLuggagePrice(res.getDouble("luggage_price"));
+                flight.setWeightPrice(res.getDouble("weigh_price"));
                 flight.setAirline(adao.read(res.getInt("id_airline")));
-                flight.setDep_Airport(aidao.read(res.getInt("dep_airport")));
-		        flight.setArr_Airport(aidao.read(res.getInt("arr_airport")));
+                flight.setDepAirport(airportDao.read(res.getInt("dep_airport")));
+                flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));
               
 
                 list.add(flight);
@@ -104,58 +105,79 @@ public class FlightDao implements Dao<Flight> {
         Connection conn = DataSource.getConnection();
         Flight original =  this.read(id);
 
-        String statement = "UPDATE flight SET dep_datetime= ?, arr_datetime= ?, first_price= ?, business_price= ?, economy_price= ?, luggage_price= ?, weight_price= ?;";
+        String statement = "UPDATE flights SET dep_datetime= ?, arr_datetime= ?, first_price= ?, business_price= ?, economy_price= ?, luggage_price= ?, weight_price= ?, id_airline= ?, dep_airport= ?, arr_airport= ? WHERE id = ?;";
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(7, id);
+            query.setInt(11, id);
 
-            if (flight.getDep_Datetime() != null) {
-                query.setString(1, flight.getDep_Datetime());
+            if (flight.getDepDatetime() != null) {
+                query.setLong(1, flight.getDepDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
             }
             else {
-                query.setString(1, original.getDep_Datetime());
+                query.setLong(1, original.getDepDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
             }
 
-            if (aflight.getArr_Datetime() != null) {
-                query.setString(2, flight.getArr_Datetime());
+            if (flight.getArrDatetime() != null) {
+                query.setLong(2, flight.getArrDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
             }
             else {
-                query.setString(2, original.getArr_Datetime());
+                query.setLong(2, original.getArrDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
             }
 
-            if (flight.getFirst_Price() != null) {
-                query.setString(3, flight.getFirst_Price());
+            if (flight.getFirstPrice() != -1) {
+                query.setDouble(3, flight.getFirstPrice());
             }
             else {
-                query.setString(3, original.getFirst_Price());
+                query.setDouble(3, original.getFirstPrice());
             }
 
-            if (flight.getBusiness_Price() != null) {
-                query.setString(4, flight.getBusiness_Price());
+            if (flight.getBusinessPrice() != -1) {
+                query.setDouble(4, flight.getBusinessPrice());
             }
             else {
-                query.setString(4, original.getBusiness_Price());
+                query.setDouble(4, original.getBusinessPrice());
             }
             
-            if (filght.getEconomy_Price() != null) {
-                query.setString(5, flight.getEconomy_Price());
+            if (flight.getEconomyPrice() != -1) {
+                query.setDouble(5, flight.getEconomyPrice());
             }
             else {
-                query.setString(5, original.getEconomy_Price());
+                query.setDouble(5, original.getEconomyPrice());
             }
 
-            if (filght.getLuggage_Price() != null) {
-                query.setString(6, flight.getLuggage_Price());
+            if (flight.getLuggagePrice() != -1) {
+                query.setDouble(6, flight.getLuggagePrice());
             }
             else {
-                query.setString(6, original.getLuggage_Price());
+                query.setDouble(6, original.getLuggagePrice());
             }
 
-            if (filght.getWeight_Price() != null) {
-                query.setString(7, flight.getWeight_Price());
+            if (flight.getWeightPrice() != -1) {
+                query.setDouble(7, flight.getWeightPrice());
             }
             else {
-                query.setString(7, original.getWeight_Price());
+                query.setDouble(7, original.getWeightPrice());
+            }
+
+            if (flight.getAirline() != null) {
+                query.setInt(8, flight.getAirline().getId());
+            }
+            else {
+                query.setInt(8, original.getAirline().getId());
+            }
+
+            if (flight.getDepAirport() != null) {
+                query.setInt(9, flight.getDepAirport().getId());
+            }
+            else {
+                query.setInt(9, original.getDepAirport().getId());
+            }
+
+            if (flight.getArrAirport() != null) {
+                query.setInt(10, flight.getArrAirport().getId());
+            }
+            else {
+                query.setInt(10, original.getArrAirport().getId());
             }
 
             query.executeUpdate();
@@ -172,13 +194,6 @@ public class FlightDao implements Dao<Flight> {
         try {
             PreparedStatement query = conn.prepareStatement("DELETE FROM flights WHERE id = ? ;");
             query.setInt(1, id);
-            query.setDouble(2, dep_datetime);
-            query.setDouble(3, arr_datetime);
-            query.setDouble(4, first_price);
-            query.setDouble(5, business_price); 
-            query.setDouble(6, economy_price); 
-            query.setDouble(7, luggage_price); 
-            query.setDouble(8, weight_price);    
             query.executeUpdate();
             query.close();
         } catch (SQLException e) {
