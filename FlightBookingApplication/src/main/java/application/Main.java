@@ -10,6 +10,11 @@ import javafx.stage.Stage;
 import models.Passenger;
 import view.Palette;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class Main extends Application {
 	
 	public static void main(String[] args) {
@@ -30,20 +35,15 @@ public class Main extends Application {
 			CSSFX.start();
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Flight Booking Application");
-			//primaryStage.show();
-			/*
-			Connection conn = DataSource.getConnection();
-			PreparedStatement query = conn.prepareStatement("SELECT date('now');");
-			ResultSet res = query.executeQuery();
-			if (res.next()) {
-				System.out.println(res.getString(1));
-			}
-			*/
+			primaryStage.show();
 
-			PassengerDao pDao = new PassengerDao();
+			/*PassengerDao pDao = new PassengerDao();
 			Passenger passenger = pDao.read(1);
 
-			System.out.println("Firstname: " + passenger.getFirstname() + "\tLastname: " + passenger.getLastname());
+			System.out.println(""
+					+"Firstname: " + passenger.getFirstname()
+					+"\tLastname: " + passenger.getLastname()
+					+"\tBirthDate: " + passenger.getBirthDate().toString());*/
 		}
 		catch (Exception e) {
 			e.printStackTrace();
