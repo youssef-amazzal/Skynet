@@ -13,7 +13,7 @@ public class FlightDao implements Dao<Flight> {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO flights (dep_datetime, arr_datetime, first_price, business_price, economy_price, luggage_price, weight_price, id_airline, dep_airport, arr_airport) VALUES (?,?,?,?,?,?,?,?,?,?);";
         try {
-            PreparedStatement query = conn.prepareStatement(statement);
+            PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setLong(1, flight.getDepDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
             query.setLong(2, flight.getArrDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
             query.setDouble(3, flight.getFirstPrice());
@@ -25,6 +25,10 @@ public class FlightDao implements Dao<Flight> {
             query.setInt(9, flight.getDepAirport().getId());
             query.setInt(10, flight.getArrAirport().getId());
             query.executeUpdate();
+            ResultSet id = query.getGeneratedKeys();
+            if (id.next()) {
+                flight.setId(id.getInt(1));
+            }
             query.close();
         } catch (SQLException e) {
             e.printStackTrace();

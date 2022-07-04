@@ -12,13 +12,16 @@ public class SeatDao implements Dao<Seat> {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO seats (column, row, type) VALUES (?,?,?);";
         try {
-            PreparedStatement query = conn.prepareStatement(statement);
+            PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, seat.getColumn());
             query.setInt(2, seat.getRow());
             query.setString(3, seat.getType());
-            
 
             query.executeUpdate();
+            ResultSet id = query.getGeneratedKeys();
+            if (id.next()) {
+                seat.setId(id.getInt(1));
+            }
             query.close();
         } catch (SQLException e) {
             e.printStackTrace();

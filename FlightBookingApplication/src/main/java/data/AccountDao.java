@@ -2,10 +2,7 @@ package data;
 
 import models.Account;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +16,28 @@ public class AccountDao implements Dao<Account> {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO accounts (username, password, emailAddress, id_passenger, id_airline) VALUES (?,?,?,?,?);";
         try {
-            PreparedStatement query = conn.prepareStatement(statement);
+            PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, account.getUsername());
             query.setString(2, account.getPassword());
             query.setString(3, account.getEmailAddress());
-            query.setInt(4, account.getPassenger().getId());
-            query.setInt(5, account.getPassenger().getId());
+            if (account.getPassenger() != null) {
+                query.setInt(4, account.getPassenger().getId());
+            }
+            if (account.getAirline() != null) {
+                query.setInt(5, account.getAirline().getId());
+            }
 
             query.executeUpdate();
+            ResultSet id = query.getGeneratedKeys();
+            if (id.next()) {
+                account.setId(id.getInt(1));
+            }
             query.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
- @Override
+    @Override
     public Account read(int id) {
         Connection conn = DataSource.getConnection();
         Account account = null;
@@ -51,6 +56,35 @@ public class AccountDao implements Dao<Account> {
                 account.setEmailAddress(res.getString("emailAddress"));
                 account.setPassenger(pdao.read(res.getInt("Passenger_id")));
                 account.setAirline(adao.read(res.getInt("Airline_id")));
+            }
+
+            query.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return account;
+    }
+
+    public Account read(String username) {
+        Connection conn = DataSource.getConnection();
+        Account account = null;
+        String statement = "SELECT * FROM accounts WHERE username = ?;";
+        try {
+            PreparedStatement query = conn.prepareStatement(statement);
+            query.setString(1, username);
+
+            ResultSet res = query.executeQuery();
+
+            if (res.next()) {
+                account = new Account();
+                account.setId(res.getInt("id"));
+                account.setUsername(res.getString("username"));
+                account.setPassword(res.getString("password"));
+                account.setEmailAddress(res.getString("emailAddress"));
+                account.setPassenger(pdao.read(res.getInt("id_passenger")));
+                account.setAirline(adao.read(res.getInt("id_airline")));
             }
 
             query.close();

@@ -12,7 +12,7 @@ public class AirportDao implements Dao<Airport> {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO airports (name, city, country, IATA, ICAO) VALUES (?,?,?,?,?);";
         try {
-            PreparedStatement query = conn.prepareStatement(statement);
+            PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, airport.getName());
             query.setString(2, airport.getCity());
             query.setString(3, airport.getCountry());
@@ -20,6 +20,10 @@ public class AirportDao implements Dao<Airport> {
             query.setString(5, airport.getICAO());
 
             query.executeUpdate();
+            ResultSet id = query.getGeneratedKeys();
+            if (id.next()) {
+                airport.setId(id.getInt(1));
+            }
             query.close();
         } catch (SQLException e) {
             e.printStackTrace();

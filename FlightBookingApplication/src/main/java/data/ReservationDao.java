@@ -2,10 +2,7 @@ package data;
 
 import models.Reservation;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +17,18 @@ public class ReservationDao implements Dao<Reservation> {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO reservations (id_flight, id_account, id_seat, nbr_luggages, weight) VALUES (?,?,?,?,?);";
         try {
-            PreparedStatement query = conn.prepareStatement(statement);
+            PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setInt(1, reservation.getFlight().getId());
             query.setInt(2, reservation.getAccount().getId());
             query.setInt(3,reservation.getSeat().getId());
             query.setInt(4,reservation.getNbrLuggages());
             query.setDouble(5,reservation.getWeight());
 
-
             query.executeUpdate();
+            ResultSet id = query.getGeneratedKeys();
+            if (id.next()) {
+                reservation.setId(id.getInt(1));
+            }
             query.close();
         } catch (SQLException e) {
             e.printStackTrace();

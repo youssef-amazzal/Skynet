@@ -1,12 +1,13 @@
 package data;
 
+import models.Passenger;
+
 import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.*;
-
-import models.Passenger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PassengerDao implements Dao<Passenger> {
 
@@ -15,12 +16,17 @@ public class PassengerDao implements Dao<Passenger> {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO passengers (firstname, lastname, birthDate) VALUES (?,?,?);";
         try {
-            PreparedStatement query = conn.prepareStatement(statement);
+            PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, passenger.getFirstname());
             query.setString(2, passenger.getLastname());
             query.setLong(3, passenger.getBirthDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
             query.executeUpdate();
+            ResultSet id = query.getGeneratedKeys();
+            if (id.next()) {
+                passenger.setId(id.getInt(1));
+            }
+
             query.close();
         } catch (SQLException e) {
             e.printStackTrace();

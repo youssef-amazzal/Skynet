@@ -1,9 +1,12 @@
 package data;
 
-import java.sql.*;
-import java.util.*;
-
+import javafx.scene.image.Image;
 import models.Airline;
+
+import java.io.*;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AirlineDao implements Dao<Airline> {
 
@@ -12,12 +15,16 @@ public class AirlineDao implements Dao<Airline> {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO airlines (name, logo) VALUES (?,?);";
         try {
-            PreparedStatement query = conn.prepareStatement(statement);
+            PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, airline.getName());
             query.setString(2, airline.getLogo());
 
 
             query.executeUpdate();
+            ResultSet id = query.getGeneratedKeys();
+            if (id.next()) {
+                airline.setId(id.getInt(1));
+            }
             query.close();
         } catch (SQLException e) {
             e.printStackTrace();
