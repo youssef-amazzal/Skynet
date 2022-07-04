@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import data.AccountDao;
+import data.PassengerDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,14 +13,28 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import models.Account;
+import models.Passenger;
 import view.Palette;
 
 public class SigninController implements Initializable {
 
 	@FXML
+	private Label labelMessage;
+
+	@FXML
 	private AnchorPane parent;
+
+	@FXML
+	private PasswordField txtPassword;
+
+	@FXML
+	private TextField txtUsername;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -27,7 +43,30 @@ public class SigninController implements Initializable {
 
 	@FXML
 	void login(ActionEvent event) {
-		ApplicationController.appLoad((Stage) parent.getScene().getWindow());
+
+		if (txtUsername.getText().isBlank() || txtPassword.getText().isBlank()) {
+			labelMessage.setText("All fields are required");
+			return;
+		}
+
+		AccountDao accountDao = new AccountDao();
+		Account user = accountDao.read(txtUsername.getText().trim());
+
+		if (user == null) {
+			labelMessage.setText("This User doesn't exist.");
+		}
+		else {
+			if (user.getPassword().equals(txtPassword.getText().trim())) {
+
+				Account.setCurrentUser(user);
+
+				ApplicationController.appLoad((Stage) parent.getScene().getWindow());
+
+			}
+			else {
+				labelMessage.setText("Wrong Password");
+			}
+		}
 	}
 
 	public void SwitchtoSignup(ActionEvent e) throws IOException {
