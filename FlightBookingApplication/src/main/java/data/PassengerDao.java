@@ -3,8 +3,6 @@ package data;
 import models.Passenger;
 
 import java.sql.*;
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,7 @@ public class PassengerDao implements Dao<Passenger> {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, passenger.getFirstname());
             query.setString(2, passenger.getLastname());
-            query.setLong(3, passenger.getBirthDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+            query.setLong(3, passenger.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
@@ -49,7 +47,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setId(res.getInt("id"));
                 passenger.setFirstname(res.getString("firstname"));
                 passenger.setLastname(res.getString("lastname"));
-                passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime());
+                passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime().toLocalDate());
             }
 
             query.close();
@@ -75,7 +73,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setId(res.getInt("id"));
                 passenger.setFirstname(res.getString("firstname"));
                 passenger.setLastname(res.getString("lastname"));
-                passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime());
+                passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime().toLocalDate());
 
                 list.add(passenger);
             }
@@ -113,10 +111,10 @@ public class PassengerDao implements Dao<Passenger> {
             }
 
             if (passenger.getBirthDate() != null) {
-                query.setLong(3, passenger.getBirthDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                query.setLong(3, passenger.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
             }
             else {
-                query.setLong(3, original.getBirthDate().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                query.setLong(3, original.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
             }
 
             query.executeUpdate();

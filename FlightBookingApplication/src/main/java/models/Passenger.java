@@ -1,13 +1,13 @@
 package models;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Passenger {
     private int id;
     private String firstname;
     private String lastname;
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
 
     public int getId() {
@@ -31,10 +31,10 @@ public class Passenger {
         this.lastname = lastname;
     }
 
-    public LocalDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
-    public void setBirthDate(LocalDateTime birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 }
