@@ -6,28 +6,56 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import models.Flight;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FlightCardController implements Initializable {
 
     @FXML
-    private HBox parent;
-
-    @FXML
-    private Button btnBook;
-
-    @FXML
     private ImageView AgencyLogo;
+
+    @FXML
+    private Label lblAirLine;
+
+    @FXML
+    private Label lblArrAirport;
+
+    @FXML
+    private Label lblArrCity;
+
+    @FXML
+    private Label lblArrDateTime;
+
+    @FXML
+    private Label lblDepAirport;
+
+    @FXML
+    private Label lblDepCity;
+
+    @FXML
+    private Label lblDepDateTime;
+
+    @FXML
+    private Label lblDuration;
+
+    @FXML
+    private HBox parent;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,5 +78,19 @@ public class FlightCardController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    void setData(Flight flight) {
+        lblDepAirport.setText(flight.getDepAirport().getIATA());
+        lblDepCity.setText(flight.getDepAirport().getCity());
+        lblDepDateTime.setText(flight.getDepDatetime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+
+        lblAirLine.setText(flight.getAirline().getName());
+        long durationInSeconds = Duration.between(flight.getDepDatetime(), flight.getArrDatetime()).getSeconds();
+        lblDuration.setText(String.format("%dH%dM", durationInSeconds / 3600, (durationInSeconds % 3600) / 60));
+
+        lblArrAirport.setText(flight.getArrAirport().getIATA());
+        lblArrCity.setText(flight.getArrAirport().getCity());
+        lblArrDateTime.setText(flight.getArrDatetime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
     }
 }

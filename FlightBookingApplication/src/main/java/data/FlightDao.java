@@ -55,7 +55,7 @@ public class FlightDao implements Dao<Flight> {
                 flight.setBusinessPrice(res.getDouble("business_price"));
                 flight.setEconomyPrice(res.getDouble("economy_price"));
                 flight.setLuggagePrice(res.getDouble("luggage_price"));
-                flight.setWeightPrice(res.getDouble("weigh_price"));
+                flight.setWeightPrice(res.getDouble("weight_price"));
                 flight.setAirline(adao.read(res.getInt("id_airline")));
                 flight.setDepAirport(airportDao.read(res.getInt("dep_airport")));
 		        flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));
@@ -88,7 +88,7 @@ public class FlightDao implements Dao<Flight> {
                 flight.setBusinessPrice(res.getDouble("business_price"));
                 flight.setEconomyPrice(res.getDouble("economy_price"));
                 flight.setLuggagePrice(res.getDouble("luggage_price"));
-                flight.setWeightPrice(res.getDouble("weigh_price"));
+                flight.setWeightPrice(res.getDouble("weight_price"));
                 flight.setAirline(adao.read(res.getInt("id_airline")));
                 flight.setDepAirport(airportDao.read(res.getInt("dep_airport")));
                 flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));

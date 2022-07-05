@@ -32,12 +32,17 @@
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
             <VBox alignment="CENTER" prefHeight="200.0" spacing="5.0">
                <children>
-                  <Label maxWidth="1.7976931348623157E308" text="MAR" VBox.vgrow="ALWAYS">
+                  <Label fx:id="lblDepAirport" maxWidth="1.7976931348623157E308" text="BGBW" VBox.vgrow="ALWAYS">
                      <font>
-                        <Font name="Calibri Bold" size="35.0" />
+                        <Font name="Calibri Bold" size="46.0" />
                      </font>
                   </Label>
-                  <Label maxWidth="1.7976931348623157E308" text="08:00" VBox.vgrow="ALWAYS">
+                  <Label fx:id="lblDepCity" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="123.0" text="Sault Sainte Marie" textAlignment="JUSTIFY" wrapText="true">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblDepDateTime" maxWidth="1.7976931348623157E308" text="2022-09-01 08:00" textAlignment="JUSTIFY" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Calibri" size="17.0" />
                      </font>
@@ -49,14 +54,14 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text="ROYAL AIR MAROC" wrapText="true">
+                  <Label fx:id="lblAirLine" alignment="CENTER" text="ROYAL AIR MAROC" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Book Antiqua Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Label text="2H 30M">
+                  <Label fx:id="lblDuration" alignment="CENTER" text="2H 30M" textAlignment="CENTER">
                      <font>
-                        <Font name="Impact" size="25.0" />
+                        <Font name="Arial Black" size="17.0" />
                      </font>
                   </Label>
                </children>
@@ -66,12 +71,17 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" spacing="5.0" HBox.hgrow="NEVER">
                <children>
-                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="DEU" VBox.vgrow="ALWAYS">
+                  <Label fx:id="lblArrAirport" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="BGBW" textAlignment="JUSTIFY">
                      <font>
-                        <Font name="Calibri Bold" size="35.0" />
+                        <Font name="Calibri Bold" size="46.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="10:30" VBox.vgrow="ALWAYS">
+                  <Label fx:id="lblArrCity" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="123.0" text="Sault Sainte Marie" textAlignment="JUSTIFY" wrapText="true">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblArrDateTime" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="2022-09-01 08:00" textAlignment="JUSTIFY">
                      <font>
                         <Font name="Calibri" size="17.0" />
                      </font>
@@ -84,7 +94,7 @@
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
             <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="110.0" prefWidth="232.0" HBox.hgrow="SOMETIMES">
                <children>
-                  <Button fx:id="btnBook" mnemonicParsing="false" onAction="#bookNow" prefHeight="43.0" prefWidth="144.0" text="Book" VBox.vgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#bookNow" prefHeight="43.0" prefWidth="144.0" text="Book" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="30.0" />
                      </font>

@@ -10,6 +10,26 @@ import java.util.List;
 
 public class AirlineDao implements Dao<Airline> {
 
+    private Image retrieveImage(String imageName, InputStream inputStream) throws IOException {
+        Image image = null;
+        InputStreamReader inputReader = new InputStreamReader(inputStream);
+        if(inputReader.ready())
+        {
+            File tempFile = new File("/images/"+imageName+".png");
+
+            FileOutputStream fileOutputStream = new FileOutputStream(tempFile);
+            byte[] buffer = new byte[1024];
+            while(inputStream.read(buffer) > 0){
+                fileOutputStream.write(buffer);
+            }
+            image = new Image(tempFile.toURI().toURL().toString());
+        }
+        return image;
+    }
+
+    /*private byte[] imageToByteArray(Image image) {
+    }*/
+
     @Override
     public void create(Airline airline) {
         Connection conn = DataSource.getConnection();

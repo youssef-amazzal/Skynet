@@ -1,5 +1,8 @@
 package controller;
 
+import data.AirportDao;
+import data.FlightDao;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,10 +11,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import models.Flight;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SearchPageController implements Initializable {
@@ -26,10 +31,10 @@ public class SearchPageController implements Initializable {
     private Button topButton;
 
     @FXML
-    private ComboBox<?> inputArrivalCity;
+    private ComboBox<String> inputArrivalCity;
 
     @FXML
-    private ComboBox<?> inputDepartureCity;
+    private ComboBox<String> inputDepartureCity;
 
     @FXML
     private DatePicker inputDepartureDate;
@@ -55,16 +60,40 @@ public class SearchPageController implements Initializable {
     @FXML
     private Label swapButton;
 
+    private final FlightDao flightDao = new FlightDao();
+    private FilteredList<String> filteredDepCityList;
+    private FilteredList<String> filteredArrCityList;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/SearchPage.css").toExternalForm());
 
         //add search results
-        for (int i = 0; i < 10; i++) {
+        getData();
+
+        filteredDepCityList = new FilteredList<String>(AirportDao.getCityList());
+        filteredArrCityList = new FilteredList<String>(AirportDao.getCityList());
+
+        inputDepartureCity.setItems(filteredDepCityList);
+        inputArrivalCity.setItems(filteredArrCityList);
+
+    }
+
+    @FXML
+    void goToTop(ActionEvent event) {
+        scrollPane.setVvalue(0);
+    }
+
+    private void getData() {
+        List<Flight> results = new ArrayList<>(flightDao.readAll());
+
+        for (Flight flight : results) {
             try {
                 FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/FlightCard.fxml"));
                 HBox card = cardLoader.load();
+                FlightCardController controller = cardLoader.getController();
+                controller.setData(flight);
                 searchPage.getChildren().add(card);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -72,8 +101,5 @@ public class SearchPageController implements Initializable {
         }
     }
 
-    @FXML
-    void goToTop(ActionEvent event) {
-        scrollPane.setVvalue(0);
     }
 }

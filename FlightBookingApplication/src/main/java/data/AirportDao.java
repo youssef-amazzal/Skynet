@@ -3,9 +3,32 @@ package data;
 import java.sql.*;
 import java.util.*;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import models.Airport;
 
 public class AirportDao implements Dao<Airport> {
+    private static ObservableList<String> cityList;
+
+    public static ObservableList<String> getCityList() {
+        if (cityList == null) {
+            cityList = FXCollections.observableList(new LinkedList<String>());
+            Connection conn = DataSource.getConnection();
+            String statement = "SELECT DISTINCT city FROM airports ORDER BY city;";
+            try {
+                PreparedStatement query = conn.prepareStatement(statement);
+                ResultSet res = query.executeQuery();
+                while (res.next()) {
+                    cityList.add(res.getString("city"));
+                }
+                query.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return  cityList;
+    }
 
     @Override
     public void create(Airport airport) {
@@ -60,7 +83,6 @@ public class AirportDao implements Dao<Airport> {
 
         return airport;
     }
-
 
     @Override
     public List<Airport> readAll() {
