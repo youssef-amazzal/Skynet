@@ -100,6 +100,4 @@ public class SearchPageController implements Initializable {
             }
         }
     }
-
-    }
 }
