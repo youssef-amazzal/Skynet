@@ -2,12 +2,14 @@ package controller;
 
 import data.AirportDao;
 import data.FlightDao;
+import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -62,6 +64,8 @@ public class SearchPageController implements Initializable {
     private final FilteredList<String> filteredDepCityList = new FilteredList<String>(AirportDao.getCityList());
     private final FilteredList<String> filteredArrCityList = new FilteredList<String>(AirportDao.getCityList());
 
+    private final FilteredList<Flight> results = new FilteredList<>(FXCollections.observableList(flightDao.readAll()));;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,8 +85,7 @@ public class SearchPageController implements Initializable {
     }
 
     private void getData() {
-        List<Flight> results = new ArrayList<>(flightDao.readAll());
-
+        searchPage.getChildren().clear();
         for (Flight flight : results) {
             try {
                 FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/FlightCard.fxml"));
@@ -101,5 +104,34 @@ public class SearchPageController implements Initializable {
         int tempCity = inputDepartureCity.getSelectionModel().getSelectedIndex();
         inputDepartureCity.getSelectionModel().select(inputArrivalCity.getSelectionModel().getSelectedIndex());
         inputArrivalCity.getSelectionModel().select(tempCity);
+    }
+
+    @FXML
+    void search(ActionEvent event) {
+
+        results.setPredicate(flight -> {
+            if (inputDepartureCity.getSelectionModel().getSelectedItem() != null) {
+                if (!flight.getDepAirport().getCity().equals(inputDepartureCity.getSelectionModel().getSelectedItem())) {
+                    return false;
+                }
+            }
+
+            if (inputArrivalCity.getSelectionModel().getSelectedItem() != null) {
+                if (!flight.getArrAirport().getCity().equals(inputArrivalCity.getSelectionModel().getSelectedItem())) {
+                    return false;
+                }
+            }
+
+            if (inputDepartureDate.getValue() != null) {
+                if (flight.getDepDatetime().toLocalDate().isBefore(inputDepartureDate.getValue())) {
+                    return false;
+                }
+            }
+
+            return true;
+
+        });
+
+        getData();
     }
 }
