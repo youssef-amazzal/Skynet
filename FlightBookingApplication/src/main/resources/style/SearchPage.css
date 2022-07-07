@@ -38,3 +38,12 @@
 #topButton:hover {
     -fx-background-color: AccentColor;
 }
+
+.searchable-combo-box {
+    -fx-background-color: transparent;
+    -fx-prompt-text-fill: lightgray;
+}
+
+.searchable-combo-box .image-view {
+    visibility:false;
+}

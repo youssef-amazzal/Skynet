@@ -5,7 +5,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -15,13 +14,14 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <StackPane fx:id="parent" alignment="BOTTOM_RIGHT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchPageController">
    <children>
       <ScrollPane fx:id="scrollPane" fitToWidth="true" styleClass="backGround">
          <content>
-            <VBox fx:id="searchPage" alignment="TOP_CENTER" prefHeight="761.0" prefWidth="1263.0">
+            <VBox alignment="TOP_CENTER" prefHeight="761.0" prefWidth="1263.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -55,10 +55,10 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <ComboBox fx:id="inputDepartureCity" editable="true" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="From where ?" HBox.hgrow="ALWAYS" />
+                                          <SearchableComboBox fx:id="inputDepartureCity" editable="true" maxHeight="27.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
-                                    <Label id="swapButton" fx:id="swapButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="41.0">
+                                    <Label id="swapButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#swapCities" prefHeight="41.0" prefWidth="41.0">
                                        <graphic>
                                           <FontIcon iconLiteral="mdi-swap-horizontal">
                                              <cursor>
@@ -72,7 +72,7 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <ComboBox fx:id="inputArrivalCity" editable="true" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="To where ?" HBox.hgrow="ALWAYS" />
+                                          <SearchableComboBox fx:id="inputArrivalCity" editable="true" maxHeight="27.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -106,7 +106,7 @@
                                     <Insets left="5.0" right="5.0" />
                                  </padding>
                               </HBox>
-                              <Button fx:id="SearchButton" defaultButton="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="199.0" text="Search" HBox.hgrow="ALWAYS">
+                              <Button id="SearchButton" defaultButton="true" mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="199.0" text="Search" HBox.hgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -148,6 +148,7 @@
                         </HBox>
                      </children>
                   </HBox>
+                  <VBox fx:id="searchPage" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="761.0" prefWidth="1263.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </content>

@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import models.Flight;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,10 +32,10 @@ public class SearchPageController implements Initializable {
     private Button topButton;
 
     @FXML
-    private ComboBox<String> inputArrivalCity;
+    private SearchableComboBox<String> inputArrivalCity;
 
     @FXML
-    private ComboBox<String> inputDepartureCity;
+    private SearchableComboBox<String> inputDepartureCity;
 
     @FXML
     private DatePicker inputDepartureDate;
@@ -57,12 +58,9 @@ public class SearchPageController implements Initializable {
     @FXML
     private ScrollPane scrollPane;
 
-    @FXML
-    private Label swapButton;
-
     private final FlightDao flightDao = new FlightDao();
-    private FilteredList<String> filteredDepCityList;
-    private FilteredList<String> filteredArrCityList;
+    private final FilteredList<String> filteredDepCityList = new FilteredList<String>(AirportDao.getCityList());
+    private final FilteredList<String> filteredArrCityList = new FilteredList<String>(AirportDao.getCityList());
 
 
     @Override
@@ -71,9 +69,6 @@ public class SearchPageController implements Initializable {
 
         //add search results
         getData();
-
-        filteredDepCityList = new FilteredList<String>(AirportDao.getCityList());
-        filteredArrCityList = new FilteredList<String>(AirportDao.getCityList());
 
         inputDepartureCity.setItems(filteredDepCityList);
         inputArrivalCity.setItems(filteredArrCityList);
