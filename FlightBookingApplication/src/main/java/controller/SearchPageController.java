@@ -95,4 +95,11 @@ public class SearchPageController implements Initializable {
             }
         }
     }
+
+    @FXML
+    void swapCities(MouseEvent event) {
+        int tempCity = inputDepartureCity.getSelectionModel().getSelectedIndex();
+        inputDepartureCity.getSelectionModel().select(inputArrivalCity.getSelectionModel().getSelectedIndex());
+        inputArrivalCity.getSelectionModel().select(tempCity);
+    }
 }
