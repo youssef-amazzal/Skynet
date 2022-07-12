@@ -58,8 +58,8 @@ public class AccountDao implements Dao<Account> {
                 account.setUsername(res.getString("username"));
                 account.setPassword(res.getString("password"));
                 account.setEmailAddress(res.getString("emailAddress"));
-                account.setPassenger(pdao.read(res.getInt("Passenger_id")));
-                account.setAirline(adao.read(res.getInt("Airline_id")));
+                account.setPassenger(pdao.read(res.getInt("id_passenger")));
+                account.setAirline(adao.read(res.getInt("id_airline")));
             }
 
             query.close();

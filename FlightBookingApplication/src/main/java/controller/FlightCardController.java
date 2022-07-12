@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,10 +17,8 @@ import models.Flight;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -57,6 +54,8 @@ public class FlightCardController implements Initializable {
     @FXML
     private HBox parent;
 
+    private Flight flight;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/FlightCard.css").toExternalForm());
@@ -70,8 +69,13 @@ public class FlightCardController implements Initializable {
     @FXML
     void bookNow(ActionEvent event) {
         try {
-            Parent page = FXMLLoader.load(getClass().getResource("/view/SearchPage/SeatMap.fxml"));
+            FXMLLoader flightLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/SeatMap.fxml"));
+
+            Parent page = flightLoader.load();
             VBox.setVgrow(page, Priority.ALWAYS);
+
+            SeatMapController flightController = flightLoader.getController();
+            flightController.setData(flight);
 
             StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().add(page);
@@ -81,6 +85,7 @@ public class FlightCardController implements Initializable {
     }
 
     void setData(Flight flight) {
+        this.flight = flight;
         lblDepAirport.setText(flight.getDepAirport().getIATA());
         lblDepCity.setText(flight.getDepAirport().getCity());
         lblDepDateTime.setText(flight.getDepDatetime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));

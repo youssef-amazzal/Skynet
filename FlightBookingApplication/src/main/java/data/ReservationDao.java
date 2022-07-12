@@ -1,6 +1,9 @@
 package data;
 
+import models.Account;
+import models.Flight;
 import models.Reservation;
+import models.Seat;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ public class ReservationDao implements Dao<Reservation> {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setInt(1, reservation.getFlight().getId());
             query.setInt(2, reservation.getAccount().getId());
-            query.setInt(3,reservation.getSeat().getId());
+            query.setInt(3,reservation.getSeat().getPrimaryKey());
             query.setInt(4,reservation.getNbrLuggages());
             query.setDouble(5,reservation.getWeight());
 
@@ -43,6 +46,66 @@ public class ReservationDao implements Dao<Reservation> {
         try {
             PreparedStatement query = conn.prepareStatement(statement);
             query.setInt(1, id);
+
+            ResultSet res = query.executeQuery();
+
+            if (res.next()) {
+                reservation = new Reservation();
+                reservation.setId(res.getInt("id"));
+                reservation.setFlight(flightDao.read(res.getInt("id_flight")));
+                reservation.setAccount(accountDao.read(res.getInt("id_account")));
+                reservation.setSeat(seatDao.read(res.getInt("id_seat")));
+                reservation.setNbrLuggages(res.getInt("nbr_luggages"));
+                reservation.setWeight(res.getInt("weight"));
+            }
+
+            query.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return reservation;
+    }
+
+    public Reservation read(Flight flight, Seat seat) {
+        Connection conn = DataSource.getConnection();
+        Reservation reservation = null;
+        String statement = "SELECT * FROM reservations WHERE id_flight = ? AND id_seat = ?;";
+        try {
+            PreparedStatement query = conn.prepareStatement(statement);
+            query.setInt(1, flight.getId());
+            query.setInt(2, seat.getPrimaryKey());
+
+            ResultSet res = query.executeQuery();
+
+            if (res.next()) {
+                reservation = new Reservation();
+                reservation.setId(res.getInt("id"));
+                reservation.setFlight(flightDao.read(res.getInt("id_flight")));
+                reservation.setAccount(accountDao.read(res.getInt("id_account")));
+                reservation.setSeat(seatDao.read(res.getInt("id_seat")));
+                reservation.setNbrLuggages(res.getInt("nbr_luggages"));
+                reservation.setWeight(res.getInt("weight"));
+            }
+
+            query.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return reservation;
+    }
+
+    public Reservation read(Flight flight, Account account) {
+        Connection conn = DataSource.getConnection();
+        Reservation reservation = null;
+        String statement = "SELECT * FROM reservations WHERE id_flight = ? AND id_account = ?;";
+        try {
+            PreparedStatement query = conn.prepareStatement(statement);
+            query.setInt(1, flight.getId());
+            query.setInt(2, account.getId());
 
             ResultSet res = query.executeQuery();
 
@@ -119,10 +182,10 @@ public class ReservationDao implements Dao<Reservation> {
             }
 
             if (reservation.getSeat() != null) {
-                query.setInt(3, reservation.getSeat().getId());
+                query.setInt(3, reservation.getSeat().getPrimaryKey());
             }
             else {
-                query.setInt(3, original.getSeat().getId());
+                query.setInt(3, original.getSeat().getPrimaryKey());
             }
 
             if (reservation.getNbrLuggages() != -1) {

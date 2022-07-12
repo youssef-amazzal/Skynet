@@ -1,17 +1,29 @@
 package models;
 
-public class Seat {
-    private int id;
+import data.ReservationDao;
+import javafx.scene.control.ToggleButton;
+
+public class Seat extends ToggleButton {
+    private int PrimaryKey;
     private String column;
     private int row;
     private String type;
 
-
-    public int getId() {
-        return id;
+    public Seat(){
+        this.setMinSize(40, 40);
+        this.getStyleClass().add("seat");
     }
-    public void setId(int id) {
-        this.id = id;
+
+    public boolean isReserved(Flight flight) {
+        ReservationDao reservationDao = new ReservationDao();
+        return reservationDao.read(flight, this) != null;
+    }
+
+    public int getPrimaryKey() {
+        return PrimaryKey;
+    }
+    public void setPrimaryKey(int PrimaryKey) {
+        this.PrimaryKey = PrimaryKey;
     }
 
     public String getColumn() {
@@ -33,6 +45,11 @@ public class Seat {
     }
     public void setType(String type) {
         this.type = type;
+        switch (type.toLowerCase()) {
+            case "first" -> this.getStyleClass().add("FirstSeatIcon");
+            case "business" -> this.getStyleClass().add("BusinessSeatIcon");
+            case "economy" -> this.getStyleClass().add("EconomySeatIcon");
+        }
     }
 
 }

@@ -30,7 +30,6 @@
     -fx-background-radius: 30% 30% 0 0;
     -fx-border-radius: 30% 30% 0 0;
     -fx-background-color: transparent;
-    -fx-border-color: darkgray;
     -fx-border-width: 3;
     -fx-effect: null;
 }
@@ -62,28 +61,37 @@
     -fx-effect: null;
 }
 
-.SeatIcon {
+.SeatIcon,
+#seatMap .SeatIcon {
     -fx-background-radius: 30% 30% 0 0;
     -fx-border-radius: 30% 30% 0 0;
     -fx-border-width: 3;
 }
 
-#SelectedSeatIcon {
-    -fx-background-color: AccentColor;
-}
-
-#UnavailableSeatIcon  {
-    -fx-background-color: #ff3434;
-}
-
-#PremiumSeatIcon  {
+.FirstSeatIcon,
+#seatMap .FirstSeatIcon  {
     -fx-border-color: #ffb01e;
 }
 
-#EconomySeatIcon  {
-    -fx-border-color: #59ff05;
+.BusinessSeatIcon,
+#seatMap .BusinessSeatIcon  {
+    -fx-border-color: #4fc10c;
 }
 
-#StandardSeatIcon  {
+.EconomySeatIcon,
+#seatMap .EconomySeatIcon  {
     -fx-border-color: darkgray;
+}
+
+.SelectedSeatIcon,
+#seatMap .SelectedSeatIcon {
+    -fx-background-color: AccentColor;
+}
+
+.UnavailableSeatIcon,
+#seatMap .UnavailableSeatIcon,
+#seatMap .UnavailableSeatIcon:disabled {
+    -fx-background-color: #ff3434;
+    -fx-border-color: #ff3434;
+    -fx-opacity: 1.0;
 }

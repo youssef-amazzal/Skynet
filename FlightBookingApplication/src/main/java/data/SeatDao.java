@@ -20,7 +20,7 @@ public class SeatDao implements Dao<Seat> {
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
             if (id.next()) {
-                seat.setId(id.getInt(1));
+                seat.setPrimaryKey(id.getInt(1));
             }
             query.close();
         } catch (SQLException e) {
@@ -41,7 +41,7 @@ public class SeatDao implements Dao<Seat> {
 
             if (res.next()) {
                 seat = new Seat();
-                seat.setId(res.getInt("id"));
+                seat.setPrimaryKey(res.getInt("id"));
                 seat.setColumn(res.getString("column"));
                 seat.setRow(res.getInt("row"));
                 seat.setType(res.getString("type"));
@@ -64,11 +64,11 @@ public class SeatDao implements Dao<Seat> {
         List<Seat> list = new ArrayList<Seat>();
 
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM seats;");
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM seats ORDER BY row, \"column\";");
             ResultSet res = query.executeQuery();
             while (res.next()) {
                 Seat seat = new Seat();
-                seat.setId(res.getInt("id"));
+                seat.setPrimaryKey(res.getInt("id"));
                 seat.setColumn(res.getString("column"));
                 seat.setRow(res.getInt("row"));
                 seat.setType(res.getString("type"));

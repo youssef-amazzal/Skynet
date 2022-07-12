@@ -47,12 +47,18 @@ public class Flight {
     public double getFirstPrice() {
         return firstPrice;
     }
+    public String getFirstPriceFormatted() {
+        return String.format("%.02f$",firstPrice);
+    }
     public void setFirstPrice(double first_price) {
         this.firstPrice = first_price;
     }
 
     public double getEconomyPrice() {
         return economyPrice;
+    }
+    public String getEconomyPriceFormatted() {
+        return String.format("%.02f$",economyPrice);
     }
     public void setEconomyPrice(double economy_price) {
         this.economyPrice = economy_price;
@@ -95,6 +101,9 @@ public class Flight {
 
     public double getBusinessPrice() {
         return businessPrice;
+    }
+    public String getBusinessPriceFormatted() {
+        return String.format("%.02f$",businessPrice);
     }
 
     public void setBusinessPrice(double businessPrice) {
