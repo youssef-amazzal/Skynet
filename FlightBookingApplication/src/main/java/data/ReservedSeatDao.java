@@ -1,30 +1,32 @@
 package data;
 
-import models.Reserved_Seat;
+import models.Flight;
+import models.ReservedSeat;
+import models.Seat;
 
 import java.sql.*;
 import java.util.*;
 
-public class Reserved_SeatDao implements Dao<Reserved_Seat> {
+public class ReservedSeatDao implements Dao<ReservedSeat> {
     FlightDao flightDao = new FlightDao();
     SeatDao seatDao = new SeatDao();
 
 
     @Override
-    public void create(Reserved_Seat reserved_seat) {
+    public void create(ReservedSeat reservedSeat) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO reserved_seats ( id_seat,id_flight) VALUES (?,?);";
+        String statement = "INSERT INTO reserved_seats (id_seat,id_flight) VALUES (?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement,Statement.RETURN_GENERATED_KEYS);
-            query.setInt(1,reserved_seat.getSeat().getId());
-            query.setInt(2, reserved_seat.getFlight().getId());
+            query.setInt(1,reservedSeat.getSeat().getPrimaryKey());
+            query.setInt(2, reservedSeat.getFlight().getId());
 
    
 
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
             if (id.next()) {
-                reserved_seat.setId(id.getInt(1));
+                reservedSeat.setId(id.getInt(1));
             }
             query.close();
         } catch (SQLException e) {
@@ -33,9 +35,9 @@ public class Reserved_SeatDao implements Dao<Reserved_Seat> {
     }
 
     @Override
-    public Reserved_Seat read(int id) {
+    public ReservedSeat read(int id) {
         Connection conn = DataSource.getConnection();
-        Reserved_seat reserved_seat = null;
+        ReservedSeat reservedSeat = null;
         String statement = "SELECT * FROM reserved_seats WHERE id = ?;";
         try {
             PreparedStatement query = conn.prepareStatement(statement);
@@ -44,10 +46,10 @@ public class Reserved_SeatDao implements Dao<Reserved_Seat> {
             ResultSet res = query.executeQuery();
 
             if (res.next()) {
-                reserved_seat = new Reserved_Seat();
-                reserved_seat.setId(res.getInt("id"));
-                reserved_seat.setSeat(seatDao.read(res.getInt("id_seat")));
-                reserved_seat.setFlight(flightDao.read(res.getInt("id_flight")));
+                reservedSeat = new ReservedSeat();
+                reservedSeat.setId(res.getInt("id"));
+                reservedSeat.setSeat(seatDao.read(res.getInt("id_seat")));
+                reservedSeat.setFlight(flightDao.read(res.getInt("id_flight")));
 
 
             }
@@ -58,27 +60,26 @@ public class Reserved_SeatDao implements Dao<Reserved_Seat> {
             e.printStackTrace();
         }
 
-        return reserved_seat;
+        return reservedSeat;
     }
 
-
     @Override
-    public List<Reserved_seat> readAll() {
+    public List<ReservedSeat> readAll() {
         Connection conn = DataSource.getConnection();
-        List<Reserved_Seat> list = new ArrayList<Reserved_Seat>();
+        List<ReservedSeat> list = new ArrayList<ReservedSeat>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM reserved_seats;");
             ResultSet res = query.executeQuery();
             while (res.next()) {
-                Reserved_Seat reserved_seat = new Reserved_Seat();
-                reserved_seat.setId(res.getInt("id"));
-                reserved_seat.setSeat(seatDao.read(res.getInt("id_seat")));
-                reserved_seat.setFlight(flightDao.read(res.getInt("id_flight")));
+                ReservedSeat reservedSeat = new ReservedSeat();
+                reservedSeat.setId(res.getInt("id"));
+                reservedSeat.setSeat(seatDao.read(res.getInt("id_seat")));
+                reservedSeat.setFlight(flightDao.read(res.getInt("id_flight")));
 
      
 
-                list.add(reserved_seat);
+                list.add(reservedSeat);
             }
             return list;
         } catch (SQLException e) {
@@ -88,25 +89,25 @@ public class Reserved_SeatDao implements Dao<Reserved_Seat> {
         }
     }
  @Override
-    public void update(int id, Reserved_Seat reserved_seat) {
+    public void update(int id, ReservedSeat reservedSeat) {
         Connection conn = DataSource.getConnection();
-        Reserved_Seat original =  this.read(id);
+        ReservedSeat original =  this.read(id);
 
-        String statement = "UPDATE reserved_seats SET  id_seat = ? , id_flight = ? ;";
+        String statement = "UPDATE reserved_seats SET  id_seat = ? , id_flight = ? WHERE id = ?;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(2, id);
+            query.setInt(3, id);
 
-            if (reserved_seat.getSeat() != null) {
-                query.setInt(1, reserved_seat.getSeat().getId());
+            if (reservedSeat.getSeat() != null) {
+                query.setInt(1, reservedSeat.getSeat().getPrimaryKey());
             }
             else {
-                query.setInt(1, original.getSeat().getId());
+                query.setInt(1, original.getSeat().getPrimaryKey());
             }
 
-            if (reserved_seat.getFlight() != null) {
-                query.setInt(2, reserved_seat.getFlight().getId());
+            if (reservedSeat.getFlight() != null) {
+                query.setInt(2, reservedSeat.getFlight().getId());
             }
             else {
                 query.setInt(2, original.getFlight().getId());

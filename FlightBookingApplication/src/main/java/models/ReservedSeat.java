@@ -1,6 +1,6 @@
 package models;
 
-public class Reserved_Seat {
+public class ReservedSeat {
 	
 	private int id;
 	private Flight flight;
