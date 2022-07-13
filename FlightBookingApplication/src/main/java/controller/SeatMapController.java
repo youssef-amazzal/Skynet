@@ -88,6 +88,7 @@ public class SeatMapController implements Initializable {
     private final ToggleGroup seatGroup = new ToggleGroup();
 
     private Flight flight;
+    private Seat selectedSeat;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,7 +97,7 @@ public class SeatMapController implements Initializable {
         seatGroup.selectedToggleProperty().addListener(((observable, oldValue, newValue) -> {
             //when a seat is selected set the confirmationWindow visibility to true, otherwise set it to false
             confirmationWindow.setVisible(newValue != null);
-            Seat selectedSeat = (Seat) seatGroup.getSelectedToggle();
+            selectedSeat = (Seat) seatGroup.getSelectedToggle();
             lblSeat.setText(selectedSeat.getColumn() + selectedSeat.getRow());
         }));
     }
@@ -135,74 +136,29 @@ public class SeatMapController implements Initializable {
         seatGroup.selectToggle(null);
     }
 
+    @FXML
+    private void confirmSelected() {
+        try {
+            FXMLLoader paymentLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/PaymentPage.fxml"));
+            Parent page = paymentLoader.load();
+            VBox.setVgrow(page, Priority.ALWAYS);
+
+            PaymentPageController paymentController = paymentLoader.getController();
+
+            paymentController.setData(flight, selectedSeat);
+
+            StackPane content = (StackPane) parent.getScene().lookup("#content");
+            content.getChildren().add(page);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void goBack(ActionEvent event) {
         StackPane content = (StackPane) parent.getScene().lookup("#content");
         int recentChild = content.getChildren().size() - 1;
         content.getChildren().remove(recentChild);
-    }
-
-    private void fillSeatMap1() {
-        SeatDao seatDao = new SeatDao();
-        ArrayList<Seat> seatList = new ArrayList<>(seatDao.readAll());
-
-        // add a row contains Columns numbering
-        int col = 0;
-        char ref = 'A';
-        for (int i = 1; i <= 6; i++) {
-            if (col == 3) {i--; col++; continue;}
-            Label lbl = new Label(Character.toString(ref++));
-            lbl.setMinSize(40, 40);
-            lbl.setAlignment(Pos.CENTER);
-            seatMap.add(lbl, col++, 0);
-        }
-
-        col = 0;
-        int row = 1;
-        int id = 0;
-
-        for (int i = 1; i <= seatList.size(); i++) {
-            // add the exit tags
-            if (row == 8 || row == 12) {
-                Label lbl1 = new Label("◀ EXIT");
-                Label lbl2 = new Label("EXIT ▶");
-                lbl1.setMinSize(40, 40);
-                lbl2.setMinSize(40, 40);
-                lbl2.setAlignment(Pos.BASELINE_RIGHT);
-                seatMap.add(lbl1, 0, row);
-                seatMap.add(lbl2, 6, row);
-                continue;
-            }
-            // add a column contains row numbering
-            if (col == 3) {
-                Label lbl = new Label(row + "");
-                lbl.setMinSize(40, 40);
-                lbl.setAlignment(Pos.CENTER);
-                seatMap.add(lbl, col++, row);
-                i--;
-                continue;
-            }
-
-            Seat seat = seatList.get(i - 1);
-
-            seatGroup.getToggles().add(seat);
-
-            //disable the reserved seats
-            if (seat.isReserved(flight)) {
-                seat.getStyleClass().add("UnavailableSeatIcon");
-                seat.setDisable(true);
-            }
-
-            //add the seat to the setMap
-            seatMap.add(seat, col++, row);
-
-            //reset the column to zero when we fill a whole row
-            if (col == 7) {
-                col = 0;
-                row++;
-            }
-        }
     }
 
     private void fillSeatMap() {
@@ -245,18 +201,12 @@ public class SeatMapController implements Initializable {
                     seatMap.add(leftExit, 0, row);
                     seatMap.add(rightExit, 6, row);
 
-    @FXML
-    private void confirmSelected() {
-        try {
-            Parent page = FXMLLoader.load(getClass().getResource("/view/SearchPage/PaymentPage.fxml"));
-            VBox.setVgrow(page, Priority.ALWAYS);
+                    nbRows++;
+                    break;
+                }
 
-            StackPane content = (StackPane) parent.getScene().lookup("#content");
-            content.getChildren().add(page);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+                Seat seat = seatList.get(id++);
+                seatGroup.getToggles().add(seat);
 
                 //disable the reserved seats
                 if (seat.isReserved(flight)) {

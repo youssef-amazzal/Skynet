@@ -47,11 +47,42 @@ public class Flight {
     public double getFirstPrice() {
         return firstPrice;
     }
+    public Airline getAirline() {
+        return airline;
+    }
+
+    public void setAirline(Airline id_airline) {
+        this.airline = id_airline;
+    }
+    public Airport getDepAirport() {
+        return depAirport;
+    }
+
+    public void setDepAirport(Airport dep_airport) {
+        this.depAirport = dep_airport;
+    }
+    public Airport getArrAirport() {
+        return arrAirport;
+    }
+
+    public void setArrAirport(Airport arr_airport) {
+        this.arrAirport = arr_airport;
+    }
     public String getFirstPriceFormatted() {
         return String.format("%.02f$",firstPrice);
     }
     public void setFirstPrice(double first_price) {
         this.firstPrice = first_price;
+    }
+
+    public double getBusinessPrice() {
+        return businessPrice;
+    }
+    public String getBusinessPriceFormatted() {
+        return String.format("%.02f$",businessPrice);
+    }
+    public void setBusinessPrice(double businessPrice) {
+        this.businessPrice = businessPrice;
     }
 
     public double getEconomyPrice() {
@@ -77,37 +108,4 @@ public class Flight {
     public void setWeightPrice(double weight_price) {
         this.weightPrice = weight_price;
     }
-
-    public Airline getAirline() {
-        return airline;
-    }
-    public void setAirline(Airline id_airline) {
-        this.airline = id_airline;
-    }
-
-    public Airport getDepAirport() {
-        return depAirport;
-    }
-    public void setDepAirport(Airport dep_airport) {
-        this.depAirport = dep_airport;
-    }
-
-    public Airport getArrAirport() {
-        return arrAirport;
-    }
-    public void setArrAirport(Airport arr_airport) {
-        this.arrAirport = arr_airport;
-    }
-
-    public double getBusinessPrice() {
-        return businessPrice;
-    }
-    public String getBusinessPriceFormatted() {
-        return String.format("%.02f$",businessPrice);
-    }
-
-    public void setBusinessPrice(double businessPrice) {
-        this.businessPrice = businessPrice;
-    }
-
 }

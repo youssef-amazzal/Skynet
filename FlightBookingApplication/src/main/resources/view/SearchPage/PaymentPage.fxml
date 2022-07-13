@@ -69,7 +69,7 @@
          <content>
             <VBox alignment="CENTER" spacing="40.0">
                <children>
-                  <VBox id="Summary" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="600.0" styleClass="card">
+                  <VBox id="Summary" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" styleClass="card">
                      <children>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Reservation summary" VBox.vgrow="ALWAYS">
                            <font>
@@ -81,90 +81,114 @@
                               <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
                         </Separator>
-                        <VBox prefHeight="84.0" prefWidth="538.0" spacing="3.0">
+                        <VBox prefWidth="530.0" spacing="3.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <HBox spacing="10.0" VBox.vgrow="SOMETIMES">
                                  <children>
                                     <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" text="From :" HBox.hgrow="ALWAYS">
+                                          <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" text="From :" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Rabat" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblDepCity" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Rabat" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" text="To :" HBox.hgrow="ALWAYS">
+                                          <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" text="To :" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="New York City" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblArrCity" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="New York City" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <HBox maxHeight="1.7976931348623157E308" prefWidth="560.0" spacing="10.0" VBox.vgrow="SOMETIMES">
                                  <children>
                                     <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" text="Departure date :" HBox.hgrow="ALWAYS">
+                                          <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="21.0" prefWidth="106.0" text="Departure airport :" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DD/MM/YYYY" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblDepAirport" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" prefWidth="17.0" wrapText="true" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" text="Arrival date :" HBox.hgrow="ALWAYS">
+                                          <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="21.0" prefWidth="87.0" text="Arrival airport :" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DD/MM/YYYY" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblArrAirport" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" prefHeight="17.0" wrapText="true" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <HBox spacing="10.0" VBox.vgrow="SOMETIMES">
                                  <children>
                                     <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" text="Departure time :" HBox.hgrow="ALWAYS">
+                                          <Label alignment="TOP_LEFT" text="Departure date :" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="hh:mm" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblDepDate" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" text="DD/MM/YYYY" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                     <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" text="Arrival time :" HBox.hgrow="ALWAYS">
+                                          <Label alignment="TOP_LEFT" text="Arrival date :" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="hh:mm" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblArrDate" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" text="DD/MM/YYYY" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <HBox spacing="10.0" VBox.vgrow="SOMETIMES">
                                  <children>
                                     <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" text="Airline :" HBox.hgrow="ALWAYS">
+                                          <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" text="Departure time :" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Royal Air Maroc" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblDepTime" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="hh:mm" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" text="Arrival time :" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblArrTime" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="hh:mm" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="10.0" VBox.vgrow="SOMETIMES">
+                                 <children>
+                                    <HBox prefWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" text="Airline :" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblAirline" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Royal Air Maroc" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -183,13 +207,13 @@
                            <children>
                               <HBox alignment="CENTER_LEFT">
                                  <children>
-                                    <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="128.0" text="Economy Class" HBox.hgrow="ALWAYS">
+                                    <Label fx:id="lblClassType" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="128.0" text="Economy Class" HBox.hgrow="ALWAYS">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
                                     <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="346.0" text="................................................................................................................................................................................................................" HBox.hgrow="ALWAYS" />
-                                    <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="450$" />
+                                    <Label fx:id="lblClassPrice" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="450$" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -199,9 +223,9 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Spinner editable="true" minWidth="-Infinity" prefHeight="29.0" prefWidth="55.0" styleClass="split-arrows-horizontal" />
+                                    <Spinner fx:id="spinnerLuggage" editable="true" minWidth="-Infinity" prefHeight="29.0" prefWidth="55.0" styleClass="split-arrows-horizontal" />
                                     <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="0.0" text="................................................................................................................................................................................................................" HBox.hgrow="ALWAYS" />
-                                    <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="450$" />
+                                    <Label fx:id="lblLuggagesPrice" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="450$" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -211,9 +235,9 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Spinner minWidth="-Infinity" prefHeight="29.0" prefWidth="55.0" styleClass="split-arrows-horizontal" />
+                                    <Spinner fx:id="spinnerWeight" editable="true" minWidth="-Infinity" prefHeight="29.0" prefWidth="55.0" styleClass="split-arrows-horizontal" />
                                     <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="0.0" text="................................................................................................................................................................................................................" HBox.hgrow="ALWAYS" />
-                                    <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="450$" />
+                                    <Label fx:id="lblWeightPrice" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="50.0" text="450$" />
                                  </children>
                               </HBox>
                            </children>
@@ -233,7 +257,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" text="1350$" />
+                              <Label fx:id="lblTotalPrice" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" text="1350$" />
                            </children>
                            <VBox.margin>
                               <Insets left="5.0" right="5.0" />
