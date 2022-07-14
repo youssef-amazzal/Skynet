@@ -1,5 +1,6 @@
 package data;
 
+import models.Account;
 import models.BankCard;
 
 import java.sql.*;
@@ -17,9 +18,9 @@ public class BankCardDao implements Dao<BankCard> {
         String statement = "INSERT INTO bankCards (cardNumber, expirationDate, CVV, cardHolder) VALUES (?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
-            query.setLong(1, bankCard.getCardNumber());
+            query.setString(1, bankCard.getCardNumber());
             query.setLong(2, bankCard.getExpirationDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
-            query.setShort(3, bankCard.getCVV());
+            query.setString(3, bankCard.getCVV());
             query.setInt(4, bankCard.getCardHolder().getId());
 
             query.executeUpdate();
@@ -47,9 +48,9 @@ public class BankCardDao implements Dao<BankCard> {
             if (res.next()) {
                 bankCard = new BankCard();
                 bankCard.setPrimaryKey(res.getInt("id"));
-                bankCard.setCardNumber(res.getLong("cardNumber"));
+                bankCard.setCardNumber(res.getString("cardNumber"));
                 bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
-                bankCard.setCVV(res.getShort("CVV"));
+                bankCard.setCVV(res.getString("CVV"));
                 bankCard.setCardHolder(accountDao.read(res.getInt("cardHolder")));
 
             }
@@ -61,6 +62,32 @@ public class BankCardDao implements Dao<BankCard> {
         }
 
         return bankCard;
+    }
+
+    public List<BankCard> read(Account account) {
+        Connection conn = DataSource.getConnection();
+        List<BankCard> list = new ArrayList<BankCard>();
+
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM bankCards Where cardHolder = ?;");
+            query.setInt(1, account.getId());
+            ResultSet res = query.executeQuery();
+
+            while (res.next()) {
+                BankCard bankCard = new BankCard();
+                bankCard.setPrimaryKey(res.getInt("id"));
+                bankCard.setCardNumber(res.getString("cardNumber"));
+                bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
+                bankCard.setCVV(res.getString("CVV"));
+                bankCard.setCardHolder(accountDao.read(res.getInt("cardHolder")));
+
+                list.add(bankCard);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -75,9 +102,9 @@ public class BankCardDao implements Dao<BankCard> {
             while (res.next()) {
                 BankCard bankCard = new BankCard();
                 bankCard.setPrimaryKey(res.getInt("id"));
-                bankCard.setCardNumber(res.getLong("cardNumber"));
+                bankCard.setCardNumber(res.getString("cardNumber"));
                 bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
-                bankCard.setCVV(res.getShort("CVV"));
+                bankCard.setCVV(res.getString("CVV"));
                 bankCard.setCardHolder(accountDao.read(res.getInt("cardHolder")));
 
                 list.add(bankCard);
@@ -100,11 +127,11 @@ public class BankCardDao implements Dao<BankCard> {
             PreparedStatement query = conn.prepareStatement(statement);
             query.setInt(4, id);
 
-            if (bankCard.getCardNumber() != 0) {
-                query.setLong(1, bankCard.getCardNumber());
+            if (bankCard.getCardNumber() != null) {
+                query.setString(1, bankCard.getCardNumber());
             }
             else {
-                query.setLong(1, original.getCardNumber());
+                query.setString(1, original.getCardNumber());
             }
 
             if (bankCard.getExpirationDate() != null) {
@@ -114,11 +141,11 @@ public class BankCardDao implements Dao<BankCard> {
                 query.setLong(2,  bankCard.getExpirationDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
             }
 
-            if (bankCard.getCVV() != 0) {
-                query.setShort(3, bankCard.getCVV());
+            if (bankCard.getCVV() != null) {
+                query.setString(3, bankCard.getCVV());
             }
             else {
-                query.setShort(3, original.getCVV());
+                query.setString(3, original.getCVV());
             }
 
 

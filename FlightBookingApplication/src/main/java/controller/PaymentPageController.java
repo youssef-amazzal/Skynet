@@ -1,20 +1,21 @@
 package controller;
 
+import data.BankCardDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import models.Account;
+import models.BankCard;
 import models.Flight;
 import models.Seat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -86,19 +87,40 @@ public class PaymentPageController implements Initializable {
     private double luggagePrice;
     private double weightPrice;
     private double totalPrice;
+    private final ToggleGroup cardGroup = new ToggleGroup();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/PaymentPage.css").toExternalForm());
 
-        for (int i = 0; i < 3; i++) {
+        BankCardDao bankCardDao = new BankCardDao();
+        ArrayList<BankCard> cardList = new ArrayList<>(bankCardDao.read(Account.getCurrentUser()));
+
+        System.out.println(cardList.size());
+
+        for (BankCard card : cardList) {
             try {
-                AnchorPane creditCard = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/SearchPage/CreditCard.fxml")));
+                FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/SearchPage/CreditCard.fxml")));
+                ToggleButton creditCard = cardLoader.load();
+
+                CreditCardController cardController = cardLoader.getController();
+                cardController.setData(card);
+
                 creditCardList.getChildren().add(creditCard);
+                cardGroup.getToggles().add(creditCard);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        cardGroup.selectToggle(cardGroup.getToggles().get(0));
+        alwaysOneSelected();
+    }
+
+    private void alwaysOneSelected() {
+        cardGroup.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
+            if (newVal == null)
+                oldVal.setSelected(true);
+        });
     }
 
     @FXML

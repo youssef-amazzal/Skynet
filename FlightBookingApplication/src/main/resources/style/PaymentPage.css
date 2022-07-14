@@ -46,9 +46,10 @@
     -fx-alignment: center;
 }
 
-#creditCardList > *,
-#creditCardList > * .ikonli-font-icon,
-#creditCardList > * > .label > .text{
+.credit-card,
+.credit-card-overlay,
+.credit-card .ikonli-font-icon,
+.credit-card .text{
     first-color: rgba(20, 136, 204, 1);
     second-color: #2B32B2;
     gradient-color: linear-gradient(to right bottom, first-color, second-color);
@@ -62,7 +63,15 @@
 
 }
 
-#creditCardList > *:hover {
+.credit-card-overlay {
+    -fx-background-color: rgba(255,255,255,0.2);
+}
+
+.credit-card:selected .credit-card-overlay {
+    -fx-background-color: transparent;
+}
+
+.credit-card:hover {
     -fx-effect: dropshadow(gaussian, rgba(20, 136, 204, 0.25), 10, 0.3, 0, 0);;
 }
 

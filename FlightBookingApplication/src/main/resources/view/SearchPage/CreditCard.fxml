@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="364.0" styleClass="credit-card" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <FontIcon iconLiteral="pf-visa" iconSize="40" layoutX="26.0" layoutY="61.0" />
-      <FontIcon iconLiteral="pf-contactless" iconSize="30" layoutX="279.0" layoutY="58.0" text="" />
-      <Label alignment="CENTER" layoutX="39.0" layoutY="93.0" prefHeight="45.0" prefWidth="287.0" styleClass="credit-card-text" text="**** **** **** 1234" textFill="WHITE">
-         <font>
-            <Font name="Courier New Bold" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="26.0" layoutY="170.0" styleClass="credit-card-text" text="Youssef Amazzal" textFill="WHITE">
-         <font>
-            <Font name="Courier New Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="274.0" layoutY="170.0" styleClass="credit-card-text" text="01/30" textFill="WHITE">
-         <font>
-            <Font name="Courier New Bold" size="17.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+<ToggleButton fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="208.0" prefWidth="364.0" styleClass="credit-card" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreditCardController">
+   <graphic>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="364.0" styleClass="TransparentTextField">
+         <children>
+            <FontIcon iconLiteral="pf-visa" iconSize="40" layoutX="26.0" layoutY="61.0" />
+            <FontIcon iconLiteral="pf-contactless" iconSize="30" layoutX="279.0" layoutY="58.0" text="" />
+            <Label fx:id="lblCardNumber" alignment="CENTER" layoutX="39.0" layoutY="93.0" prefHeight="45.0" prefWidth="287.0" styleClass="credit-card-text" text="**** **** **** 1234" textFill="WHITE">
+               <font>
+                  <Font name="Courier New Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCardHolder" layoutX="26.0" layoutY="170.0" styleClass="credit-card-text" text="Youssef Amazzal" textFill="WHITE">
+               <font>
+                  <Font name="Courier New Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblExpirationDate" layoutX="274.0" layoutY="170.0" styleClass="credit-card-text" text="01/30" textFill="WHITE">
+               <font>
+                  <Font name="Courier New Bold" size="17.0" />
+               </font>
+            </Label>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="208.0" prefWidth="364.0" styleClass="credit-card-overlay" />
+         </children>
+      </AnchorPane>
+   </graphic>
+</ToggleButton>

@@ -1,14 +1,12 @@
 package models;
 
-import javafx.scene.control.ToggleButton;
-
 import java.time.LocalDate;
 
-public class BankCard extends ToggleButton {
+public class BankCard {
     private int primaryKey;
-    private long cardNumber;
+    private String cardNumber;
     private LocalDate expirationDate;
-    private short CVV;
+    private String CVV;
     private Account cardHolder;
 
     public int getPrimaryKey() {
@@ -19,11 +17,15 @@ public class BankCard extends ToggleButton {
         this.primaryKey = primaryKey;
     }
 
-    public long getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(long cardNumber) {
+    public String getCardNumberFormatted() {
+        return "**** **** **** " + cardNumber.substring(12);
+    }
+
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
@@ -35,11 +37,11 @@ public class BankCard extends ToggleButton {
         this.expirationDate = expirationDate;
     }
 
-    public short getCVV() {
+    public String getCVV() {
         return CVV;
     }
 
-    public void setCVV(short CVV) {
+    public void setCVV(String CVV) {
         this.CVV = CVV;
     }
 

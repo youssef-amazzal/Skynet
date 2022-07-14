@@ -8,8 +8,8 @@ import java.util.List;
 
 public class AccountDao implements Dao<Account> {
 
-     PassengerDao pdao = new PassengerDao();
-     AirlineDao adao = new AirlineDao();
+     PassengerDao passengerDao = new PassengerDao();
+     AirlineDao airlineDao = new AirlineDao();
 
     @Override
     public void create(Account account) {
@@ -21,12 +21,10 @@ public class AccountDao implements Dao<Account> {
             query.setString(2, account.getPassword());
             query.setString(3, account.getEmailAddress());
             if (account.getPassenger() != null) {
-                PassengerDao passengerDao = new PassengerDao();
                 passengerDao.create(account.getPassenger());
                 query.setInt(4, account.getPassenger().getId());
             }
             if (account.getAirline() != null) {
-                AirlineDao airlineDao = new AirlineDao();
                 airlineDao.create(account.getAirline());
                 query.setInt(5, account.getAirline().getId());
             }
@@ -58,8 +56,8 @@ public class AccountDao implements Dao<Account> {
                 account.setUsername(res.getString("username"));
                 account.setPassword(res.getString("password"));
                 account.setEmailAddress(res.getString("emailAddress"));
-                account.setPassenger(pdao.read(res.getInt("id_passenger")));
-                account.setAirline(adao.read(res.getInt("id_airline")));
+                account.setPassenger(passengerDao.read(res.getInt("id_passenger")));
+                account.setAirline(airlineDao.read(res.getInt("id_airline")));
             }
 
             query.close();
@@ -87,8 +85,8 @@ public class AccountDao implements Dao<Account> {
                 account.setUsername(res.getString("username"));
                 account.setPassword(res.getString("password"));
                 account.setEmailAddress(res.getString("emailAddress"));
-                account.setPassenger(pdao.read(res.getInt("id_passenger")));
-                account.setAirline(adao.read(res.getInt("id_airline")));
+                account.setPassenger(passengerDao.read(res.getInt("id_passenger")));
+                account.setAirline(airlineDao.read(res.getInt("id_airline")));
             }
 
             query.close();
@@ -115,8 +113,8 @@ public class AccountDao implements Dao<Account> {
                 account.setUsername(res.getString("username"));
                 account.setPassword(res.getString("password"));
                 account.setEmailAddress(res.getString("emailAddress"));
-                account.setPassenger(pdao.read(res.getInt("id_passenger")));
-                account.setAirline(adao.read(res.getInt("id_airline")));
+                account.setPassenger(passengerDao.read(res.getInt("id_passenger")));
+                account.setAirline(airlineDao.read(res.getInt("id_airline")));
 
                 list.add(account);
             }
