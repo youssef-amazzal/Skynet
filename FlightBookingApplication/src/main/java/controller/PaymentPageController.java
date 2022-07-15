@@ -79,6 +79,7 @@ public class PaymentPageController implements Initializable {
     @FXML
     private Spinner<Double> spinnerWeight;
 
+    private Reservation userReservation;
     private Flight flight;
     private Seat selectedSeat;
     private double classPrice;
@@ -124,8 +125,16 @@ public class PaymentPageController implements Initializable {
     @FXML
     void payNow(ActionEvent event) {
         ReservationDao reservationDao = new ReservationDao();
+
         Reservation reservation = new Reservation(flight, Account.getCurrentUser(), selectedSeat, spinnerLuggage.getValue(), spinnerWeight.getValue());
-        reservationDao.create(reservation);
+        userReservation = reservationDao.read(this.flight, Account.getCurrentUser());
+
+        if (userReservation == null) {
+            reservationDao.create(reservation);
+        }
+        else {
+            reservationDao.update(userReservation.getId(), reservation);
+        }
 
         try {
             FXMLLoader ticketLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/TicketPage.fxml"));

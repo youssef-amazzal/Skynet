@@ -18,6 +18,10 @@ public class Seat extends ToggleButton {
         ReservationDao reservationDao = new ReservationDao();
         return reservationDao.read(flight, this) != null;
     }
+    public boolean isReservedBy(Account account, Flight flight) {
+        ReservationDao reservationDao = new ReservationDao();
+        return reservationDao.read(account, flight, this) != null;
+    }
 
     public int getPrimaryKey() {
         return PrimaryKey;

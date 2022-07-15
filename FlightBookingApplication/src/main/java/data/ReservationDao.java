@@ -98,6 +98,37 @@ public class ReservationDao implements Dao<Reservation> {
         return reservation;
     }
 
+    public Reservation read(Account account, Flight flight, Seat seat) {
+        Connection conn = DataSource.getConnection();
+        Reservation reservation = null;
+        String statement = "SELECT * FROM reservations WHERE id_flight = ? AND id_seat = ? AND id_account = ?;";
+        try {
+            PreparedStatement query = conn.prepareStatement(statement);
+            query.setInt(1, flight.getId());
+            query.setInt(2, seat.getPrimaryKey());
+            query.setInt(3, account.getId());
+
+            ResultSet res = query.executeQuery();
+
+            if (res.next()) {
+                reservation = new Reservation();
+                reservation.setId(res.getInt("id"));
+                reservation.setFlight(flightDao.read(res.getInt("id_flight")));
+                reservation.setAccount(accountDao.read(res.getInt("id_account")));
+                reservation.setSeat(seatDao.read(res.getInt("id_seat")));
+                reservation.setNbrLuggages(res.getInt("nbr_luggages"));
+                reservation.setWeight(res.getInt("weight"));
+            }
+
+            query.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return reservation;
+    }
+
     public Reservation read(Flight flight, Account account) {
         Connection conn = DataSource.getConnection();
         Reservation reservation = null;

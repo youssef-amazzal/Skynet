@@ -1,5 +1,6 @@
 package controller;
 
+import data.ReservationDao;
 import data.SeatDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.*;
 import models.Account;
 import models.Flight;
+import models.Reservation;
 import models.Seat;
 
 import java.io.IOException;
@@ -96,14 +98,23 @@ public class SeatMapController implements Initializable {
 
         seatGroup.selectedToggleProperty().addListener(((observable, oldValue, newValue) -> {
             //when a seat is selected set the confirmationWindow visibility to true, otherwise set it to false
-            confirmationWindow.setVisible(newValue != null);
-            selectedSeat = (Seat) seatGroup.getSelectedToggle();
-            lblSeat.setText(selectedSeat.getColumn() + selectedSeat.getRow());
+            if (newValue != null) {
+                confirmationWindow.setVisible(true);
+                selectedSeat = (Seat) seatGroup.getSelectedToggle();
+                lblSeat.setText(selectedSeat.getColumn() + selectedSeat.getRow());
+            }
+            else {
+                confirmationWindow.setVisible(true);
+                selectedSeat = null;
+            }
         }));
     }
 
     public void setData(Flight flight) {
         this.flight = flight;
+
+        fillSeatMap();
+
         lblDepAirport.setText(flight.getDepAirport().getName());
         lblDepCity.setText(flight.getDepAirport().getCity() + " - " + flight.getDepAirport().getCountry());
         lblDepDate.setText(flight.getDepDatetime().toLocalDate().toString());
@@ -115,6 +126,8 @@ public class SeatMapController implements Initializable {
         lblArrCity.setText(flight.getArrAirport().getCity() + " - " + flight.getArrAirport().getCountry());
         lblArrDate.setText(flight.getArrDatetime().toLocalDate().toString());
         lblArrTime.setText(flight.getArrDatetime().toLocalTime().toString());
+
+        lblSelectedSeat.setText((selectedSeat == null) ? "" : selectedSeat.getColumn() + selectedSeat.getRow());
 
         lblFirstPrice.setText(flight.getFirstPriceFormatted());
         lblBusinessPrice.setText(flight.getBusinessPriceFormatted());
@@ -128,7 +141,6 @@ public class SeatMapController implements Initializable {
         String arrICAO = flight.getArrAirport().getICAO();
         lblToCode.setText((arrIATA != null) ? arrIATA : arrICAO);
 
-        fillSeatMap();
     }
 
     @FXML
@@ -209,7 +221,11 @@ public class SeatMapController implements Initializable {
                 seatGroup.getToggles().add(seat);
 
                 //disable the reserved seats
-                if (seat.isReserved(flight)) {
+                if (seat.isReservedBy(Account.getCurrentUser(), flight)) {
+                    seatGroup.selectToggle(seat);
+                    selectedSeat = seat;
+                }
+                else if (seat.isReserved(flight)) {
                     seat.getStyleClass().add("UnavailableSeatIcon");
                     seat.setDisable(true);
                 }
