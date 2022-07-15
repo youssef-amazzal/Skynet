@@ -8,6 +8,14 @@ public class Reservation {
     private int nbrLuggages;
     private double weight;
 
+    public Reservation(Flight flight, Account account, Seat seat, int nbrLuggages, double weight) {
+        this.flight = flight;
+        this.seat = seat;
+        this.account = account;
+        this.nbrLuggages = nbrLuggages;
+        this.weight = weight;
+    }
+
     public Reservation() {
         this.weight = -1;
         this.nbrLuggages = -1;

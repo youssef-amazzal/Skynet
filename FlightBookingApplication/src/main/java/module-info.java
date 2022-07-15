@@ -5,6 +5,8 @@ module FlightBookingApplication {
     requires fr.brouillard.oss.cssfx;
     requires java.sql;
     requires org.controlsfx.controls;
+    requires java.desktop;
+    requires javafx.swing;
 
     opens application;
     opens controller;

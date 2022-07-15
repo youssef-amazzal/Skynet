@@ -22,7 +22,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="19.0" prefWidth="423.0">
                            <children>
-                              <ImageView fitHeight="73.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView fx:id="imgAirlineLogo" fitHeight="73.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../../images/RoyalAirMaroc.png" />
                                  </image>
@@ -32,7 +32,7 @@
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="71.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView fx:id="imgAppLogo" fitHeight="71.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../../images/logo_ests.png" />
                                  </image>
@@ -44,46 +44,42 @@
                               <Insets bottom="10.0" top="10.0" />
                            </VBox.margin>
                         </Separator>
-                        <HBox prefHeight="74.0" prefWidth="413.0">
+                        <HBox prefWidth="413.0">
                            <VBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </VBox.margin>
                            <children>
-                              <VBox prefHeight="84.0" prefWidth="538.0" spacing="3.0" HBox.hgrow="ALWAYS">
+                              <VBox alignment="TOP_CENTER" prefWidth="538.0" spacing="3.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="MAR" VBox.vgrow="NEVER">
+                                    <Label fx:id="lblDepAirport" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="MAR" VBox.vgrow="NEVER">
                                        <font>
                                           <Font name="Arial Black" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Rabat" VBox.vgrow="NEVER">
+                                    <Label fx:id="lblDepCity" alignment="CENTER" prefWidth="138.0" text="Rabat" wrapText="true" VBox.vgrow="ALWAYS">
                                        <font>
                                           <Font name="Arial" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="84.0" prefWidth="538.0" spacing="3.0" HBox.hgrow="ALWAYS">
+                              <VBox alignment="TOP_CENTER" prefWidth="538.0" spacing="3.0" HBox.hgrow="ALWAYS">
                                  <children>
                                     <FontIcon iconLiteral="mdi-airplane-takeoff" iconSize="70" />
                                  </children>
                               </VBox>
-                              <VBox prefHeight="84.0" prefWidth="538.0" spacing="3.0" HBox.hgrow="ALWAYS">
+                              <VBox alignment="TOP_CENTER" prefWidth="538.0" spacing="3.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="USA">
+                                    <Label fx:id="lblArrAirport" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="USA">
                                        <font>
                                           <Font name="Arial Black" size="25.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Los Vegas">
+                                    <Label fx:id="lblArrCity" alignment="CENTER" text="Los Vegas" wrapText="true">
                                        <font>
                                           <Font name="Arial" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
                                  </children>
                               </VBox>
                            </children>
@@ -99,12 +95,12 @@
                                  <children>
                                     <VBox VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label prefWidth="400.0" text="Passenger name">
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Passenger name" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Label prefWidth="400.0" text="Youssef Amazzal">
+                                          <Label fx:id="lblPassengerName" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Youssef Amazzal" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font size="17.0" />
                                              </font>
@@ -113,12 +109,12 @@
                                     </VBox>
                                     <VBox VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label text="Seat">
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Seat" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Label text="A7">
+                                          <Label fx:id="lblSelectedSeat" alignment="CENTER" maxWidth="1.7976931348623157E308" text="A7" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font size="17.0" />
                                              </font>
@@ -127,12 +123,12 @@
                                     </VBox>
                                     <VBox VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label text="Departure">
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Departure" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Label text="01/11/2022 15:30">
+                                          <Label fx:id="lblDepDateTime" alignment="CENTER" maxWidth="1.7976931348623157E308" text="01/11/2022 15:30" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font size="17.0" />
                                              </font>
@@ -145,12 +141,12 @@
                                  <children>
                                     <VBox VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label prefWidth="400.0" text="Flight ID">
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Flight ID" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Label prefWidth="400.0" text="D378690">
+                                          <Label fx:id="lblFlightID" alignment="CENTER" maxWidth="1.7976931348623157E308" text="D378690" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font size="17.0" />
                                              </font>
@@ -159,12 +155,12 @@
                                     </VBox>
                                     <VBox VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label text="Class">
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Class" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Economy">
+                                          <Label fx:id="lblClassType" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Economy" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font size="17.0" />
                                              </font>
@@ -173,12 +169,12 @@
                                     </VBox>
                                     <VBox VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label text="Arrival">
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Arrival" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="17.0" />
                                              </font>
                                           </Label>
-                                          <Label text="01/11/2022 17:30">
+                                          <Label fx:id="lblArrDateTime" alignment="CENTER" maxWidth="1.7976931348623157E308" text="01/11/2022 17:30" VBox.vgrow="ALWAYS">
                                              <font>
                                                 <Font size="17.0" />
                                              </font>
@@ -197,7 +193,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </padding>
                   </VBox>
-                  <Button id="confirmButton" fx:id="btnDownload" mnemonicParsing="false" onAction="#downloadTicket" prefHeight="50.0" prefWidth="485.0">
+                  <Button id="confirmButton" mnemonicParsing="false" onAction="#downloadTicket" prefHeight="50.0" prefWidth="485.0">
                      <graphic>
                         <FontIcon iconLiteral="mdi-download" iconSize="25" />
                      </graphic>

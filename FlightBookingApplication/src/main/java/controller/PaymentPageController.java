@@ -1,6 +1,7 @@
 package controller;
 
 import data.BankCardDao;
+import data.ReservationDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import models.Account;
-import models.BankCard;
-import models.Flight;
-import models.Seat;
+import models.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -125,9 +123,17 @@ public class PaymentPageController implements Initializable {
 
     @FXML
     void payNow(ActionEvent event) {
+        ReservationDao reservationDao = new ReservationDao();
+        Reservation reservation = new Reservation(flight, Account.getCurrentUser(), selectedSeat, spinnerLuggage.getValue(), spinnerWeight.getValue());
+        reservationDao.create(reservation);
+
         try {
-            Parent page = FXMLLoader.load(getClass().getResource("/view/SearchPage/TicketPage.fxml"));
+            FXMLLoader ticketLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/TicketPage.fxml"));
+            Parent page = ticketLoader.load();
             VBox.setVgrow(page, Priority.ALWAYS);
+
+            TicketPageController ticketController = ticketLoader.getController();
+            ticketController.setData(reservation);
 
             StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().clear();
