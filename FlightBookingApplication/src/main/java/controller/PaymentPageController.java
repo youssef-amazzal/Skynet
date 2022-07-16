@@ -95,8 +95,6 @@ public class PaymentPageController implements Initializable {
         BankCardDao bankCardDao = new BankCardDao();
         ArrayList<BankCard> cardList = new ArrayList<>(bankCardDao.read(Account.getCurrentUser()));
 
-        System.out.println(cardList.size());
-
         for (BankCard card : cardList) {
             try {
                 FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/SearchPage/CreditCard.fxml")));
