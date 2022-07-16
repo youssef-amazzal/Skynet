@@ -4,6 +4,7 @@ import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -14,6 +15,7 @@ import view.Palette;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public class ApplicationController implements Initializable {
 
@@ -22,6 +24,8 @@ public class ApplicationController implements Initializable {
 
     @FXML
     private VBox navBarContainer;
+
+    public static Stack<Node> searchPageStack = new Stack<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

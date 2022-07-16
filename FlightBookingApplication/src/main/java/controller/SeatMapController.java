@@ -156,8 +156,9 @@ public class SeatMapController implements Initializable {
             VBox.setVgrow(page, Priority.ALWAYS);
 
             PaymentPageController paymentController = paymentLoader.getController();
-
             paymentController.setData(flight, selectedSeat);
+
+            ApplicationController.searchPageStack.push(page);
 
             StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().add(page);
@@ -171,6 +172,7 @@ public class SeatMapController implements Initializable {
         StackPane content = (StackPane) parent.getScene().lookup("#content");
         int recentChild = content.getChildren().size() - 1;
         content.getChildren().remove(recentChild);
+        ApplicationController.searchPageStack.pop();
     }
 
     private void fillSeatMap() {

@@ -1,19 +1,25 @@
 package controller;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class NavigationBarController implements Initializable {
@@ -42,6 +48,9 @@ public class NavigationBarController implements Initializable {
     @FXML
     private ToggleButton settingsBtn;
 
+    private ObservableList<Node> searchPages = FXCollections.observableList(ApplicationController.searchPageStack);
+    private Node accountPages;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,9 +66,10 @@ public class NavigationBarController implements Initializable {
         });
     }
 
-    private void loadPage (String path) {
+    private Node loadPage (String path) {
+        Parent page = null;
         try {
-            Parent page = FXMLLoader.load(getClass().getResource(path));
+            page = FXMLLoader.load(getClass().getResource(path));
             VBox.setVgrow(page, Priority.ALWAYS);
 
             StackPane content = (StackPane) navigationBar.getScene().lookup("#content");
@@ -68,6 +78,19 @@ public class NavigationBarController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return page;
+    }
+
+    private void loadPage (ObservableList<Node> pageList) {
+        Pane content = (StackPane) navigationBar.getScene().lookup("#content");
+        content.getChildren().clear();
+        content.getChildren().addAll(pageList);
+    }
+
+    private void loadPage (Node page) {
+        Pane content = (StackPane) navigationBar.getScene().lookup("#content");
+        content.getChildren().clear();
+        content.getChildren().add(page);
     }
 
     @FXML
@@ -77,7 +100,12 @@ public class NavigationBarController implements Initializable {
 
     @FXML
     void openAccount(ActionEvent event) {
-        loadPage("/view/accountPage/AccountPage.fxml");
+        if (accountPages == null ) {
+            accountPages = loadPage("/view/accountPage/AccountPage.fxml");
+        }
+        else {
+            loadPage(accountPages);
+        }
     }
 
     @FXML
@@ -86,7 +114,12 @@ public class NavigationBarController implements Initializable {
 
     @FXML
     void openSearch(ActionEvent event) {
-        loadPage("/view/SearchPage/SearchPage.fxml");
+        if (searchPages.isEmpty()) {
+            ApplicationController.searchPageStack.push(loadPage("/view/SearchPage/SearchPage.fxml"));
+        }
+        else {
+            loadPage(searchPages);
+        }
     }
 
     @FXML

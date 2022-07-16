@@ -144,8 +144,9 @@ public class PaymentPageController implements Initializable {
             TicketPageController ticketController = ticketLoader.getController();
             ticketController.setData(reservation);
 
+            ApplicationController.searchPageStack.push(page);
+
             StackPane content = (StackPane) parent.getScene().lookup("#content");
-            content.getChildren().clear();
             content.getChildren().add(page);
         } catch (IOException e) {
             e.printStackTrace();
@@ -157,6 +158,7 @@ public class PaymentPageController implements Initializable {
         StackPane content = (StackPane) parent.getScene().lookup("#content");
         int recentChild = content.getChildren().size() - 1;
         content.getChildren().remove(recentChild);
+        ApplicationController.searchPageStack.pop();
     }
 
     public void setData(Flight flight, Seat selectedSeat) {

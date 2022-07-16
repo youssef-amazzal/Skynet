@@ -79,6 +79,8 @@ public class FlightCardController implements Initializable {
 
             StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().add(page);
+
+            ApplicationController.searchPageStack.push(page);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -3,11 +3,13 @@ package controller;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import models.Flight;
@@ -90,6 +92,18 @@ public class TicketPageController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    void closePage(ActionEvent event) {
+        StackPane content = (StackPane) parent.getScene().lookup("#content");
+        Node firstChild = content.getChildren().get(0);
+
+        content.getChildren().clear();
+        ApplicationController.searchPageStack.clear();
+
+        content.getChildren().add(firstChild);
+        ApplicationController.searchPageStack.push(firstChild);
     }
 
     public void setData(Reservation reservation) {
