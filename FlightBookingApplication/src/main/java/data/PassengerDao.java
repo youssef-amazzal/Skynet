@@ -90,7 +90,7 @@ public class PassengerDao implements Dao<Passenger> {
         Connection conn = DataSource.getConnection();
         Passenger original =  this.read(id);
 
-        String statement = "UPDATE passenger SET firstname = ?, lastname = ?, birthDate = ? WHERE id = ? ;";
+        String statement = "UPDATE passengers SET firstname = ?, lastname = ?, birthDate = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);

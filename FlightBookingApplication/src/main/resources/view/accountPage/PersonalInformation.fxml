@@ -54,7 +54,7 @@
             </HBox>
             <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="FirstName" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="txtfirstname" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="FirstName" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -67,7 +67,7 @@
                      </styleClass>
                   </TextField>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <TextField maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="LastName" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="txtlastname" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="LastName" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -86,7 +86,7 @@
             </HBox>
             <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Country" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="txtcountry" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Country" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -99,7 +99,7 @@
                      </styleClass>
                   </TextField>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <TextField maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Nationality" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="txtnationality" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Nationality" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -118,13 +118,13 @@
             </HBox>
             <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
                <children>
-                  <DatePicker maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Birthday" styleClass="underLine-field" HBox.hgrow="ALWAYS">
+                  <DatePicker fx:id="txtbirthday" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Birthday" styleClass="underLine-field" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </DatePicker>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <TextField maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Gender" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="txtgender" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Gender" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -143,7 +143,7 @@
             </HBox>
             <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="PhoneNumber" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="txtphone" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="PhoneNumber" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -156,7 +156,7 @@
                      </styleClass>
                   </TextField>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <TextField maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Email" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="txtemail" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Email" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -175,7 +175,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="60.0" prefWidth="633.0" text="Update" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateData" prefHeight="60.0" prefWidth="633.0" text="Update" textFill="WHITE" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
