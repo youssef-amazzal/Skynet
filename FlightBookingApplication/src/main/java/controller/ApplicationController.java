@@ -1,12 +1,15 @@
 package controller;
 
 import fr.brouillard.oss.cssfx.CSSFX;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -32,6 +35,10 @@ public class ApplicationController implements Initializable {
         FXMLLoader navBarLoader = new FXMLLoader(getClass().getResource("/view/NavigationBar.fxml"));
         try {
             navBarContainer.getChildren().add(navBarLoader.load());
+
+            NavigationBarController navBarController = navBarLoader.getController();
+            navBarController.openHome(new ActionEvent());
+
         } catch (IOException e) {
             e.printStackTrace();
         }

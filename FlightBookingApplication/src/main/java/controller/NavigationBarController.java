@@ -48,8 +48,9 @@ public class NavigationBarController implements Initializable {
     @FXML
     private ToggleButton settingsBtn;
 
-    private ObservableList<Node> searchPages = FXCollections.observableList(ApplicationController.searchPageStack);
+    private final ObservableList<Node> searchPages = FXCollections.observableList(ApplicationController.searchPageStack);
     private Node accountPages;
+    private Node HomePage;
 
 
     @Override
@@ -72,7 +73,7 @@ public class NavigationBarController implements Initializable {
             page = FXMLLoader.load(getClass().getResource(path));
             VBox.setVgrow(page, Priority.ALWAYS);
 
-            StackPane content = (StackPane) navigationBar.getScene().lookup("#content");
+            StackPane content = (StackPane) navigationBar.getParent().getParent().lookup("#content");
             content.getChildren().clear();
             content.getChildren().add(page);
         } catch (IOException e) {
@@ -82,13 +83,13 @@ public class NavigationBarController implements Initializable {
     }
 
     private void loadPage (ObservableList<Node> pageList) {
-        Pane content = (StackPane) navigationBar.getScene().lookup("#content");
+        Pane content = (StackPane) navigationBar.getParent().getParent().lookup("#content");
         content.getChildren().clear();
         content.getChildren().addAll(pageList);
     }
 
     private void loadPage (Node page) {
-        Pane content = (StackPane) navigationBar.getScene().lookup("#content");
+        Pane content = (StackPane) navigationBar.getParent().getParent().lookup("#content");
         content.getChildren().clear();
         content.getChildren().add(page);
     }
@@ -110,6 +111,12 @@ public class NavigationBarController implements Initializable {
 
     @FXML
     void openHome(ActionEvent event) {
+        if (HomePage == null) {
+            HomePage = loadPage("/view/HomePage.fxml");
+        }
+        else {
+            loadPage(HomePage);
+        }
     }
 
     @FXML
