@@ -94,23 +94,24 @@ public class PaymentPageController implements Initializable {
 
         BankCardDao bankCardDao = new BankCardDao();
         ArrayList<BankCard> cardList = new ArrayList<>(bankCardDao.read(Account.getCurrentUser()));
+        if (!cardList.isEmpty()) {
+            for (BankCard card : cardList) {
+                try {
+                    FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/SearchPage/CreditCard.fxml")));
+                    ToggleButton creditCard = cardLoader.load();
 
-        for (BankCard card : cardList) {
-            try {
-                FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/SearchPage/CreditCard.fxml")));
-                ToggleButton creditCard = cardLoader.load();
+                    CreditCardController cardController = cardLoader.getController();
+                    cardController.setData(card);
 
-                CreditCardController cardController = cardLoader.getController();
-                cardController.setData(card);
-
-                creditCardList.getChildren().add(creditCard);
-                cardGroup.getToggles().add(creditCard);
-            } catch (IOException e) {
-                e.printStackTrace();
+                    creditCardList.getChildren().add(creditCard);
+                    cardGroup.getToggles().add(creditCard);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            cardGroup.selectToggle(cardGroup.getToggles().get(0));
+            alwaysOneSelected();
         }
-        cardGroup.selectToggle(cardGroup.getToggles().get(0));
-        alwaysOneSelected();
     }
 
     private void alwaysOneSelected() {
