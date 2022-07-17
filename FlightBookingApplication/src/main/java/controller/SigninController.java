@@ -60,7 +60,10 @@ public class SigninController implements Initializable {
 
 				Account.setCurrentUser(user);
 
-				ApplicationController.appLoad((Stage) parent.getScene().getWindow());
+				Stage currentStage = (Stage) parent.getScene().getWindow();
+				currentStage.close();
+
+				ApplicationController.appLoad(new Stage());
 
 			}
 			else {
