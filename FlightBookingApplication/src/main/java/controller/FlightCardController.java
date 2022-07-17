@@ -28,16 +28,13 @@ public class FlightCardController implements Initializable {
     private ImageView AgencyLogo;
 
     @FXML
-    private Label lblAirLine;
-
-    @FXML
     private Label lblArrAirport;
 
     @FXML
     private Label lblArrCity;
 
     @FXML
-    private Label lblArrDateTime;
+    private Label lblArrTime;
 
     @FXML
     private Label lblDepAirport;
@@ -46,7 +43,10 @@ public class FlightCardController implements Initializable {
     private Label lblDepCity;
 
     @FXML
-    private Label lblDepDateTime;
+    private Label lblDepDate;
+
+    @FXML
+    private Label lblDepTime;
 
     @FXML
     private Label lblDuration;
@@ -90,14 +90,14 @@ public class FlightCardController implements Initializable {
         this.flight = flight;
         lblDepAirport.setText(flight.getDepAirport().getIATA());
         lblDepCity.setText(flight.getDepAirport().getCity());
-        lblDepDateTime.setText(flight.getDepDatetime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+        lblDepTime.setText(flight.getDepDatetime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+        lblDepDate.setText(flight.getDepDatetime().toLocalDate().format(DateTimeFormatter.ofPattern("MMM dd, yyyy")));
 
-        lblAirLine.setText(flight.getAirline().getName());
         long durationInSeconds = Duration.between(flight.getDepDatetime(), flight.getArrDatetime()).getSeconds();
-        lblDuration.setText(String.format("%dH%dM", durationInSeconds / 3600, (durationInSeconds % 3600) / 60));
+        lblDuration.setText(String.format("%dh %dm", durationInSeconds / 3600, (durationInSeconds % 3600) / 60));
 
         lblArrAirport.setText(flight.getArrAirport().getIATA());
         lblArrCity.setText(flight.getArrAirport().getCity());
-        lblArrDateTime.setText(flight.getArrDatetime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+        lblArrTime.setText(flight.getArrDatetime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 }

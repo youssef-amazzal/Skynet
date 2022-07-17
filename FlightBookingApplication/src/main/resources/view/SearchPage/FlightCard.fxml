@@ -2,97 +2,119 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
-<HBox fx:id="parent" alignment="CENTER" prefWidth="1296.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FlightCardController">
+<HBox fx:id="parent" alignment="CENTER" maxHeight="-Infinity" prefHeight="160.0" prefWidth="1296.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FlightCardController">
    <children>
-      <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="1236.0">
+      <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="1236.0" spacing="20.0">
          <children>
-            <HBox alignment="CENTER" fillHeight="false">
+            <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
                <children>
-                  <ImageView fx:id="AgencyLogo" fitHeight="106.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                  <ImageView fx:id="AgencyLogo" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <effect>
                         <ColorAdjust brightness="0.05" contrast="0.08" hue="0.05" saturation="-0.02" />
                      </effect>
+                     <image>
+                        <Image url="@../../../../../../../../../Pictures/default_logo.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
                   </ImageView>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets />
                </HBox.margin>
             </HBox>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" prefHeight="200.0" spacing="5.0">
+            <VBox alignment="CENTER" minWidth="-Infinity" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblDepAirport" maxWidth="1.7976931348623157E308" text="BGBW" VBox.vgrow="ALWAYS">
+                  <Label fx:id="lblDepTime" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="06:00" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                      <font>
-                        <Font name="Calibri Bold" size="46.0" />
+                        <Font name="Arial Black" size="26.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblDepCity" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="123.0" text="Sault Sainte Marie" textAlignment="JUSTIFY" wrapText="true">
+                  <Label fx:id="lblDepCity" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sault Sainte Marie" textAlignment="JUSTIFY" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblDepDateTime" maxWidth="1.7976931348623157E308" text="2022-09-01 08:00" textAlignment="JUSTIFY" VBox.vgrow="ALWAYS">
-                     <font>
-                        <Font name="Calibri" size="17.0" />
-                     </font>
-                  </Label>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" maxWidth="-Infinity" prefWidth="200.0">
                <children>
-                  <Label fx:id="lblAirLine" alignment="CENTER" text="ROYAL AIR MAROC" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="Book Antiqua Bold" size="17.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblDuration" alignment="CENTER" text="2H 30M" textAlignment="CENTER">
-                     <font>
-                        <Font name="Arial Black" size="17.0" />
-                     </font>
-                  </Label>
+                  <TextFlow textAlignment="CENTER">
+                     <children>
+                        <Label text="Duration : ">
+                           <font>
+                              <Font name="Calibri" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblDuration" text="2h 30m">
+                           <font>
+                              <Font name="Calibri" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </TextFlow>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Circle fill="#208ceb00" radius="5.0" stroke="#3f98fc" strokeType="INSIDE" strokeWidth="2.0" />
+                        <Line endX="100.0" startX="-101.0" stroke="#3f98fc" strokeLineCap="BUTT" strokeWidth="2.0" HBox.hgrow="ALWAYS" />
+                        <Circle fill="#208ceb00" radius="5.0" stroke="#3f98fc" strokeType="INSIDE" strokeWidth="2.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="10.0" prefWidth="221.0">
+                     <children>
+                        <Label fx:id="lblDepAirport" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" minWidth="-Infinity" text="BGBW">
+                           <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" prefHeight="81.0" prefWidth="145.0" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Calibri" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblArrAirport" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" minWidth="-Infinity" text="BGBW" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" spacing="5.0" HBox.hgrow="NEVER">
+            <VBox alignment="CENTER" minWidth="-Infinity" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblArrAirport" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="BGBW" textAlignment="JUSTIFY">
+                  <Label fx:id="lblArrTime" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="08:30" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                      <font>
-                        <Font name="Calibri Bold" size="46.0" />
+                        <Font name="Arial Black" size="26.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblArrCity" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="123.0" text="Sault Sainte Marie" textAlignment="JUSTIFY" wrapText="true">
+                  <Label fx:id="lblArrCity" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sault Sainte Marie" textAlignment="JUSTIFY" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblArrDateTime" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="2022-09-01 08:00" textAlignment="JUSTIFY">
-                     <font>
-                        <Font name="Calibri" size="17.0" />
-                     </font>
-                  </Label>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
             </VBox>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="110.0" prefWidth="232.0" HBox.hgrow="SOMETIMES">
+            <Label fx:id="lblDepDate" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="146.0" text="Nov 02, 2022" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="146.0" prefWidth="162.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#bookNow" prefHeight="43.0" prefWidth="144.0" text="Book" VBox.vgrow="ALWAYS">
                      <font>
