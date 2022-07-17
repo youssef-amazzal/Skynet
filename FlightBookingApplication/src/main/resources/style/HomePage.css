@@ -1,0 +1,69 @@
+@import "Application.css";
+
+.card {
+    -fx-effect: null;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 0;
+}
+
+.tab,
+.tab .text {
+    -fx-background-radius: 10;
+    -fx-font-size: 20px;
+    -fx-font-family: "Arial Black";
+}
+
+.tab:selected .label {
+    -fx-text-fill: white;
+}
+
+#history-tab .ikonli-font-icon {
+    -fx-icon-color: #5fe700;
+}
+#history-tab:selected,
+#history-tab:selected .ikonli-font-icon {
+    -fx-background-color: #5fe700;
+    -fx-icon-color: white;
+}
+
+
+#upcoming-tab .ikonli-font-icon {
+    -fx-icon-color: #3f98fc;
+}
+#upcoming-tab:selected,
+#upcoming-tab:selected .ikonli-font-icon {
+    -fx-background-color: #3f98fc;
+    -fx-icon-color: white;
+}
+
+
+#favorites-tab .ikonli-font-icon {
+    -fx-icon-color: #ff3966;
+}
+#favorites-tab:selected,
+#favorites-tab:selected .ikonli-font-icon {
+    -fx-background-color: #ff3966;
+    -fx-icon-color: white;
+}
+
+
+#archive-tab .ikonli-font-icon {
+    -fx-icon-color: #ffc400;
+}
+#archive-tab:selected,
+#archive-tab:selected .ikonli-font-icon {
+    -fx-background-color: #ffc400;
+    -fx-icon-color: white;
+}
+#calendarContainer,
+#calendarContainer .date-picker-popup {
+    -fx-pref-width: 100.0;
+    -fx-pref-height: 100.0;
+    -fx-effect: null;
+}
+
+.date-picker-popup,
+.date-picker-popup > * {
+    -fx-background-color: transparent;
+}
