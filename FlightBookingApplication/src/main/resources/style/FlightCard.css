@@ -9,3 +9,16 @@
     -fx-background-radius: 0;
     -fx-border-radius: 0;
 }
+
+.favorite {
+    -fx-background-color: transparent;
+}
+.favorite .ikonli-font-icon {
+    -fx-icon-code: mdi-heart-outline;
+    -fx-icon-color: #ff3966;
+    -fx-icon-size: 40;
+}
+
+.favorite:selected .ikonli-font-icon {
+    -fx-icon-code: mdi-heart;
+}
