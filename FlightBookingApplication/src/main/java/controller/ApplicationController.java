@@ -29,6 +29,7 @@ public class ApplicationController implements Initializable {
     private VBox navBarContainer;
 
     public static Stack<Node> searchPageStack = new Stack<>();
+    public static NavigationBarController navBarController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,7 +37,7 @@ public class ApplicationController implements Initializable {
         try {
             navBarContainer.getChildren().add(navBarLoader.load());
 
-            NavigationBarController navBarController = navBarLoader.getController();
+            navBarController = navBarLoader.getController();
             navBarController.openHome(new ActionEvent());
 
         } catch (IOException e) {

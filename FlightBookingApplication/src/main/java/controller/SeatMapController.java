@@ -188,6 +188,7 @@ public class SeatMapController implements Initializable {
     void cancelReservation(ActionEvent event) {
         ReservationDao reservationDao = new ReservationDao();
         reservationDao.delete(Account.getCurrentUser().getReservation(flight).getId());
+        ApplicationController.navBarController.refreshSearchPage();
     }
 
     private void fillSeatMap() {

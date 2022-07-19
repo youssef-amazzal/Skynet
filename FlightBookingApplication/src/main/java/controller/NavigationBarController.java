@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +18,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class NavigationBarController implements Initializable {
@@ -132,5 +130,10 @@ public class NavigationBarController implements Initializable {
     @FXML
     void openSettings(ActionEvent event) {
 
+    }
+
+    public void refreshSearchPage() {
+        ApplicationController.searchPageStack.clear();
+        openSearch(new ActionEvent());
     }
 }
