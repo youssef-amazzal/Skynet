@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationDao implements Dao<Reservation> {
-    AccountDao accountDao = new AccountDao();
     FlightDao flightDao = new FlightDao();
     SeatDao seatDao = new SeatDao();
 
@@ -53,7 +52,7 @@ public class ReservationDao implements Dao<Reservation> {
                 reservation = new Reservation();
                 reservation.setId(res.getInt("id"));
                 reservation.setFlight(flightDao.read(res.getInt("id_flight")));
-                reservation.setAccount(accountDao.read(res.getInt("id_account")));
+                reservation.setAccount((res.getInt("id_account")));
                 reservation.setSeat(seatDao.read(res.getInt("id_seat")));
                 reservation.setNbrLuggages(res.getInt("nbr_luggages"));
                 reservation.setWeight(res.getInt("weight"));
@@ -83,7 +82,7 @@ public class ReservationDao implements Dao<Reservation> {
                 reservation = new Reservation();
                 reservation.setId(res.getInt("id"));
                 reservation.setFlight(flightDao.read(res.getInt("id_flight")));
-                reservation.setAccount(accountDao.read(res.getInt("id_account")));
+                reservation.setAccount((res.getInt("id_account")));
                 reservation.setSeat(seatDao.read(res.getInt("id_seat")));
                 reservation.setNbrLuggages(res.getInt("nbr_luggages"));
                 reservation.setWeight(res.getInt("weight"));
@@ -114,7 +113,7 @@ public class ReservationDao implements Dao<Reservation> {
                 reservation = new Reservation();
                 reservation.setId(res.getInt("id"));
                 reservation.setFlight(flightDao.read(res.getInt("id_flight")));
-                reservation.setAccount(accountDao.read(res.getInt("id_account")));
+                reservation.setAccount((res.getInt("id_account")));
                 reservation.setSeat(seatDao.read(res.getInt("id_seat")));
                 reservation.setNbrLuggages(res.getInt("nbr_luggages"));
                 reservation.setWeight(res.getInt("weight"));
@@ -144,7 +143,7 @@ public class ReservationDao implements Dao<Reservation> {
                 reservation = new Reservation();
                 reservation.setId(res.getInt("id"));
                 reservation.setFlight(flightDao.read(res.getInt("id_flight")));
-                reservation.setAccount(accountDao.read(res.getInt("id_account")));
+                reservation.setAccount((res.getInt("id_account")));
                 reservation.setSeat(seatDao.read(res.getInt("id_seat")));
                 reservation.setNbrLuggages(res.getInt("nbr_luggages"));
                 reservation.setWeight(res.getInt("weight"));
@@ -163,7 +162,7 @@ public class ReservationDao implements Dao<Reservation> {
     @Override
     public List<Reservation> readAll() {
         Connection conn = DataSource.getConnection();
-        List<Reservation> list = new ArrayList<Reservation>();
+        List<Reservation> list = new ArrayList<>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM reservations;");
@@ -172,7 +171,7 @@ public class ReservationDao implements Dao<Reservation> {
                 Reservation reservation = new Reservation();
                 reservation.setId(res.getInt("id"));
                 reservation.setFlight(flightDao.read(res.getInt("id_flight")));
-                reservation.setAccount(accountDao.read(res.getInt("id_account")));
+                reservation.setAccount((res.getInt("id_account")));
                 reservation.setSeat(seatDao.read(res.getInt("id_seat")));
                 reservation.setNbrLuggages(res.getInt("nbr_luggages"));
                 reservation.setWeight(res.getInt("weight"));

@@ -86,7 +86,7 @@ public class SignupController implements Initializable {
         passenger.setFirstname(txtFirstname.getText().trim());
         passenger.setLastname(txtLastname.getText().trim());
         passenger.setBirthDate(birthDatePicker.getValue());
-        account.setPassenger(passenger);
+        account.setPassenger(passenger.getId());
 
         if (accountDao.read(txtUsername.getText()) != null) {
             labelMessage.setText("This username is already taken");

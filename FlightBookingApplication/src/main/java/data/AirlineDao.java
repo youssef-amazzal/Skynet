@@ -5,12 +5,20 @@ import javafx.scene.image.Image;
 import models.Airline;
 
 import javax.imageio.ImageIO;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AirlineDao implements Dao<Airline> {
+    public static final HashMap<Integer, Airline> airlinesMap = new HashMap<>();
+
+    public void updateAirlinesMap(int id) {
+        read(id);
+    }
 
     private FileInputStream imageToStream(Image logo) throws IOException {
         File file = new File("logo.png");
@@ -32,6 +40,7 @@ public class AirlineDao implements Dao<Airline> {
             ResultSet id = query.getGeneratedKeys();
             if (id.next()) {
                 airline.setId(id.getInt(1));
+                airlinesMap.put(id.getInt(1), airline);
             }
             query.close();
         } catch (SQLException e) {
@@ -57,6 +66,7 @@ public class AirlineDao implements Dao<Airline> {
                 airline.setId(res.getInt("id"));
                 airline.setName(res.getString("name"));
                 airline.setLogo(new Image(res.getBinaryStream("logo")));
+                airlinesMap.put(res.getInt("id"), airline);
             }
 
             query.close();
@@ -83,8 +93,8 @@ public class AirlineDao implements Dao<Airline> {
                 airline.setName(res.getString("name"));
                 airline.setLogo(new Image(res.getBinaryStream("logo")));
 
-
                 list.add(airline);
+                airlinesMap.put(res.getInt("id"), airline);
             }
             return list;
         } catch (SQLException e) {
@@ -120,6 +130,7 @@ public class AirlineDao implements Dao<Airline> {
             }
             query.executeUpdate();
             query.close();
+            read(id);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,6 +147,8 @@ public class AirlineDao implements Dao<Airline> {
             query.setInt(1, id);
             query.executeUpdate();
             query.close();
+
+            airlinesMap.remove(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }

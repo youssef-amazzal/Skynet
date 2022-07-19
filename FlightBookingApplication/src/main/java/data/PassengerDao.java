@@ -5,9 +5,15 @@ import models.Passenger;
 import java.sql.*;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PassengerDao implements Dao<Passenger> {
+    public static final HashMap<Integer,Passenger> passengersMap = new HashMap<>();
+
+    public void updatePassengersMap(int id) {
+        read(id);
+    }
 
     @Override
     public void create(Passenger passenger) {
@@ -23,6 +29,7 @@ public class PassengerDao implements Dao<Passenger> {
             ResultSet id = query.getGeneratedKeys();
             if (id.next()) {
                 passenger.setId(id.getInt(1));
+                passengersMap.put(id.getInt(1), passenger);
             }
 
             query.close();
@@ -48,6 +55,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setFirstname(res.getString("firstname"));
                 passenger.setLastname(res.getString("lastname"));
                 passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime().toLocalDate());
+                passengersMap.put(res.getInt("id"), passenger);
             }
 
             query.close();
@@ -63,7 +71,7 @@ public class PassengerDao implements Dao<Passenger> {
     @Override
     public List<Passenger> readAll() {
         Connection conn = DataSource.getConnection();
-        List<Passenger> list = new ArrayList<Passenger>();
+        List<Passenger> list = new ArrayList<>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM passengers;");
@@ -74,8 +82,8 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setFirstname(res.getString("firstname"));
                 passenger.setLastname(res.getString("lastname"));
                 passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime().toLocalDate());
-
                 list.add(passenger);
+                passengersMap.put(res.getInt("id"), passenger);
             }
             return list;
         } catch (SQLException e) {
@@ -119,6 +127,7 @@ public class PassengerDao implements Dao<Passenger> {
 
             query.executeUpdate();
             query.close();
+            read(id);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,6 +142,8 @@ public class PassengerDao implements Dao<Passenger> {
             query.setInt(1, id);
             query.executeUpdate();
             query.close();
+
+            passengersMap.remove(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }

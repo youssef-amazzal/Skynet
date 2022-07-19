@@ -6,8 +6,7 @@ import java.util.*;
 import models.Flight;
 
 public class FlightDao implements Dao<Flight> {
-		AirlineDao adao = new AirlineDao();
-		AirportDao airportDao = new AirportDao();
+    AirportDao airportDao = new AirportDao();
     @Override
     public void create(Flight flight) {
         Connection conn = DataSource.getConnection();
@@ -56,7 +55,7 @@ public class FlightDao implements Dao<Flight> {
                 flight.setEconomyPrice(res.getDouble("economy_price"));
                 flight.setLuggagePrice(res.getDouble("luggage_price"));
                 flight.setWeightPrice(res.getDouble("weight_price"));
-                flight.setAirline(adao.read(res.getInt("id_airline")));
+                flight.setAirline(res.getInt("id_airline"));
                 flight.setDepAirport(airportDao.read(res.getInt("dep_airport")));
 		        flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));
             }
@@ -89,7 +88,7 @@ public class FlightDao implements Dao<Flight> {
                 flight.setEconomyPrice(res.getDouble("economy_price"));
                 flight.setLuggagePrice(res.getDouble("luggage_price"));
                 flight.setWeightPrice(res.getDouble("weight_price"));
-                flight.setAirline(adao.read(res.getInt("id_airline")));
+                flight.setAirline(res.getInt("id_airline"));
                 flight.setDepAirport(airportDao.read(res.getInt("dep_airport")));
                 flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));
               

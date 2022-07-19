@@ -1,14 +1,16 @@
 package models;
 
+import data.AccountDao;
+
 public class Reservation {
     private int id;
     private Flight flight;
-    private Account account;
+    private int account;
     private Seat seat;
     private int nbrLuggages;
     private double weight;
 
-    public Reservation(Flight flight, Account account, Seat seat, int nbrLuggages, double weight) {
+    public Reservation(Flight flight, int account, Seat seat, int nbrLuggages, double weight) {
         this.flight = flight;
         this.seat = seat;
         this.account = account;
@@ -38,11 +40,13 @@ public class Reservation {
     }
 
     public Account getAccount() {
-        return account;
+        return AccountDao.accountsMap.get(account);
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(int account) {
         this.account = account;
+        AccountDao accountDao = new AccountDao();
+        accountDao.updateAccountsMap(account);
     }
 
     public Seat getSeat() {

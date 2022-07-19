@@ -1,20 +1,22 @@
 package models;
 
+import data.AccountDao;
+
 import java.time.LocalDate;
 
 public class BankCard {
-    private int primaryKey;
+    private int id;
     private String cardNumber;
     private LocalDate expirationDate;
     private String CVV;
-    private Account cardHolder;
+    private int cardHolder;
 
-    public int getPrimaryKey() {
-        return primaryKey;
+    public int getId() {
+        return id;
     }
 
-    public void setPrimaryKey(int primaryKey) {
-        this.primaryKey = primaryKey;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCardNumber() {
@@ -46,10 +48,12 @@ public class BankCard {
     }
 
     public Account getCardHolder() {
-        return cardHolder;
+        return AccountDao.accountsMap.get(cardHolder);
     }
 
-    public void setCardHolder(Account cardHolder) {
+    public void setCardHolder(int cardHolder) {
         this.cardHolder = cardHolder;
+        AccountDao accountDao = new AccountDao();
+        accountDao.updateAccountsMap(cardHolder);
     }
 }

@@ -1,5 +1,7 @@
 package models;
 
+import data.AirlineDao;
+
 import java.time.LocalDateTime;
 
 public class Flight {
@@ -13,7 +15,7 @@ public class Flight {
     private double weightPrice;
     private Airport depAirport;
     private Airport arrAirport;
-    private Airline airline;
+    private int airline;
 
     public Flight() {
         this.firstPrice = -1;
@@ -48,11 +50,12 @@ public class Flight {
         return firstPrice;
     }
     public Airline getAirline() {
-        return airline;
+        return AirlineDao.airlinesMap.get(airline);
     }
-
-    public void setAirline(Airline id_airline) {
-        this.airline = id_airline;
+    public void setAirline(int airline) {
+        this.airline = airline;
+        AirlineDao airlineDao = new AirlineDao();
+        airlineDao.updateAirlinesMap(airline);
     }
     public Airport getDepAirport() {
         return depAirport;

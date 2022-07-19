@@ -26,7 +26,7 @@ public class BankCardDao implements Dao<BankCard> {
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
             if (id.next()) {
-                bankCard.setPrimaryKey(id.getInt(1));
+                bankCard.setId(id.getInt(1));
             }
             query.close();
         } catch (SQLException e) {
@@ -47,11 +47,11 @@ public class BankCardDao implements Dao<BankCard> {
 
             if (res.next()) {
                 bankCard = new BankCard();
-                bankCard.setPrimaryKey(res.getInt("id"));
+                bankCard.setId(res.getInt("id"));
                 bankCard.setCardNumber(res.getString("cardNumber"));
                 bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
                 bankCard.setCVV(res.getString("CVV"));
-                bankCard.setCardHolder(accountDao.read(res.getInt("cardHolder")));
+                bankCard.setCardHolder(res.getInt("cardHolder"));
 
             }
 
@@ -66,7 +66,7 @@ public class BankCardDao implements Dao<BankCard> {
 
     public List<BankCard> read(Account account) {
         Connection conn = DataSource.getConnection();
-        List<BankCard> list = new ArrayList<BankCard>();
+        List<BankCard> list = new ArrayList<>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM bankCards Where cardHolder = ?;");
@@ -75,11 +75,11 @@ public class BankCardDao implements Dao<BankCard> {
 
             while (res.next()) {
                 BankCard bankCard = new BankCard();
-                bankCard.setPrimaryKey(res.getInt("id"));
+                bankCard.setId(res.getInt("id"));
                 bankCard.setCardNumber(res.getString("cardNumber"));
                 bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
                 bankCard.setCVV(res.getString("CVV"));
-                bankCard.setCardHolder(accountDao.read(res.getInt("cardHolder")));
+                bankCard.setCardHolder(res.getInt("cardHolder"));
 
                 list.add(bankCard);
             }
@@ -94,18 +94,18 @@ public class BankCardDao implements Dao<BankCard> {
     @Override
     public List<BankCard> readAll() {
         Connection conn = DataSource.getConnection();
-        List<BankCard> list = new ArrayList<BankCard>();
+        List<BankCard> list = new ArrayList<>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM bankCards;");
             ResultSet res = query.executeQuery();
             while (res.next()) {
                 BankCard bankCard = new BankCard();
-                bankCard.setPrimaryKey(res.getInt("id"));
+                bankCard.setId(res.getInt("id"));
                 bankCard.setCardNumber(res.getString("cardNumber"));
                 bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
                 bankCard.setCVV(res.getString("CVV"));
-                bankCard.setCardHolder(accountDao.read(res.getInt("cardHolder")));
+                bankCard.setCardHolder(res.getInt("cardHolder"));
 
                 list.add(bankCard);
             }

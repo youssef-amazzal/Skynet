@@ -1,6 +1,7 @@
 package models;
 
-import java.sql.Date;
+import data.AirlineDao;
+import data.PassengerDao;
 
 public class Account {
     private static Account currentUser;
@@ -8,8 +9,8 @@ public class Account {
     private String username;
     private String password;
     private String emailaddress;
-    private Passenger passenger;
-    private Airline airline;
+    private int passenger;
+    private int airline;
 
     public static Account getCurrentUser() {
         return currentUser;
@@ -48,17 +49,21 @@ public class Account {
     }
 
     public Passenger getPassenger() {
-        return passenger;
+        return PassengerDao.passengersMap.get(passenger);
     }
-    public void setPassenger(Passenger passenger) {
+    public void setPassenger(int passenger) {
         this.passenger = passenger;
+        PassengerDao passengerDao = new PassengerDao();
+        passengerDao.updatePassengersMap(passenger);
     }
 
     public Airline getAirline() {
-        return airline;
+        return AirlineDao.airlinesMap.get(airline);
     }
-    public void setAirline(Airline airline) {
+    public void setAirline(int airline) {
         this.airline = airline;
+        AirlineDao airlineDao = new AirlineDao();
+        airlineDao.updateAirlinesMap(airline);
     }
 
 

@@ -4,12 +4,18 @@ import models.Account;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AccountDao implements Dao<Account> {
 
-     PassengerDao passengerDao = new PassengerDao();
-     AirlineDao airlineDao = new AirlineDao();
+    public static final HashMap<Integer, Account> accountsMap = new HashMap<>();
+    PassengerDao passengerDao = new PassengerDao();
+    AirlineDao airlineDao = new AirlineDao();
+
+    public void updateAccountsMap(int id) {
+        read(id);
+    }
 
     @Override
     public void create(Account account) {
@@ -33,6 +39,7 @@ public class AccountDao implements Dao<Account> {
             ResultSet id = query.getGeneratedKeys();
             if (id.next()) {
                 account.setId(id.getInt(1));
+                accountsMap.put(id.getInt(1), account);
             }
             query.close();
         } catch (SQLException e) {
@@ -56,8 +63,9 @@ public class AccountDao implements Dao<Account> {
                 account.setUsername(res.getString("username"));
                 account.setPassword(res.getString("password"));
                 account.setEmailAddress(res.getString("emailAddress"));
-                account.setPassenger(passengerDao.read(res.getInt("id_passenger")));
-                account.setAirline(airlineDao.read(res.getInt("id_airline")));
+                account.setPassenger(res.getInt("id_passenger"));
+                account.setAirline(res.getInt("id_airline"));
+                accountsMap.put(res.getInt("id"), account);
             }
 
             query.close();
@@ -85,8 +93,9 @@ public class AccountDao implements Dao<Account> {
                 account.setUsername(res.getString("username"));
                 account.setPassword(res.getString("password"));
                 account.setEmailAddress(res.getString("emailAddress"));
-                account.setPassenger(passengerDao.read(res.getInt("id_passenger")));
-                account.setAirline(airlineDao.read(res.getInt("id_airline")));
+                account.setPassenger(res.getInt("id_passenger"));
+                account.setAirline(res.getInt("id_airline"));
+                accountsMap.put(res.getInt("id"), account);
             }
 
             query.close();
@@ -102,7 +111,7 @@ public class AccountDao implements Dao<Account> {
     @Override
     public List<Account> readAll() {
         Connection conn = DataSource.getConnection();
-        List<Account> list = new ArrayList<Account>();
+        List<Account> list = new ArrayList<>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM accounts;");
@@ -113,10 +122,11 @@ public class AccountDao implements Dao<Account> {
                 account.setUsername(res.getString("username"));
                 account.setPassword(res.getString("password"));
                 account.setEmailAddress(res.getString("emailAddress"));
-                account.setPassenger(passengerDao.read(res.getInt("id_passenger")));
-                account.setAirline(airlineDao.read(res.getInt("id_airline")));
+                account.setPassenger(res.getInt("id_passenger"));
+                account.setAirline(res.getInt("id_airline"));
 
                 list.add(account);
+                accountsMap.put(res.getInt("id"), account);
             }
             return list;
         } catch (SQLException e) {
@@ -160,6 +170,7 @@ public class AccountDao implements Dao<Account> {
 
             query.executeUpdate();
             query.close();
+            read(id);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -174,6 +185,7 @@ public class AccountDao implements Dao<Account> {
             query.setInt(1, id);
             query.executeUpdate();
             query.close();
+            accountsMap.remove(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
