@@ -1,9 +1,11 @@
 package models;
 
+import javafx.scene.image.Image;
+
 public class Airline {
     private int id;
     private String name;
-    private String logo;
+    private Image logo;
 
     public int getId() {
         return id;
@@ -19,10 +21,10 @@ public class Airline {
         this.name = name;
     }
 
-    public String getLogo() {
+    public Image getLogo() {
         return logo;
     }
-    public void setLogo(String logo) {
+    public void setLogo(Image logo) {
         this.logo = logo;
     }
 

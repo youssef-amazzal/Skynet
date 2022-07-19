@@ -1,8 +1,10 @@
 package data;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import models.Airline;
 
+import javax.imageio.ImageIO;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,25 +12,11 @@ import java.util.List;
 
 public class AirlineDao implements Dao<Airline> {
 
-    private Image retrieveImage(String imageName, InputStream inputStream) throws IOException {
-        Image image = null;
-        InputStreamReader inputReader = new InputStreamReader(inputStream);
-        if(inputReader.ready())
-        {
-            File tempFile = new File("/images/"+imageName+".png");
-
-            FileOutputStream fileOutputStream = new FileOutputStream(tempFile);
-            byte[] buffer = new byte[1024];
-            while(inputStream.read(buffer) > 0){
-                fileOutputStream.write(buffer);
-            }
-            image = new Image(tempFile.toURI().toURL().toString());
-        }
-        return image;
+    private FileInputStream imageToStream(Image logo) throws IOException {
+        File file = new File("logo.png");
+        ImageIO.write(SwingFXUtils.fromFXImage(logo, null), "png", file);
+        return new FileInputStream(file);
     }
-
-    /*private byte[] imageToByteArray(Image image) {
-    }*/
 
     @Override
     public void create(Airline airline) {
@@ -37,7 +25,7 @@ public class AirlineDao implements Dao<Airline> {
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, airline.getName());
-            query.setString(2, airline.getLogo());
+            query.setBinaryStream(2, imageToStream(airline.getLogo()));
 
 
             query.executeUpdate();
@@ -48,6 +36,8 @@ public class AirlineDao implements Dao<Airline> {
             query.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -66,8 +56,7 @@ public class AirlineDao implements Dao<Airline> {
                 airline = new Airline();
                 airline.setId(res.getInt("id"));
                 airline.setName(res.getString("name"));
-                airline.setLogo(res.getString("logo"));
-
+                airline.setLogo(new Image(res.getBinaryStream("logo")));
             }
 
             query.close();
@@ -92,7 +81,7 @@ public class AirlineDao implements Dao<Airline> {
                 Airline airline = new Airline();
                 airline.setId(res.getInt("id"));
                 airline.setName(res.getString("name"));
-                airline.setLogo(res.getString("logo"));
+                airline.setLogo(new Image(res.getBinaryStream("logo")));
 
 
                 list.add(airline);
@@ -124,16 +113,18 @@ public class AirlineDao implements Dao<Airline> {
             }
 
             if (airline.getLogo() != null) {
-                query.setString(2, airline.getLogo());
+                query.setBinaryStream(2, imageToStream(airline.getLogo()));
             }
             else {
-                query.setString(2, original.getLogo());
+                query.setBinaryStream(2, imageToStream(original.getLogo()));
             }
             query.executeUpdate();
             query.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

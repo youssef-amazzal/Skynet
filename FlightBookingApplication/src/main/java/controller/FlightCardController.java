@@ -18,14 +18,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FlightCardController implements Initializable {
 
     @FXML
-    private ImageView AgencyLogo;
+    private ImageView AirlineLogo;
 
     @FXML
     private Label lblArrAirport;
@@ -59,11 +58,6 @@ public class FlightCardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/FlightCard.css").toExternalForm());
-
-        Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/RoyalAirMaroc.png")));
-        AgencyLogo.setImage(logo);
-        HBox viewPort = (HBox) AgencyLogo.getParent();
-        AgencyLogo.setFitHeight(viewPort.getHeight());
     }
 
     @FXML
@@ -88,6 +82,11 @@ public class FlightCardController implements Initializable {
 
     void setData(Flight flight) {
         this.flight = flight;
+
+        Image defaultLogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_logo_x96.png")));
+        Image airLineLogo = flight.getAirline().getLogo();
+        AirlineLogo.setImage((airLineLogo != null) ? airLineLogo : defaultLogo);
+
         lblDepAirport.setText(flight.getDepAirport().getIATA());
         lblDepCity.setText(flight.getDepAirport().getCity());
         lblDepTime.setText(flight.getDepDatetime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
