@@ -2,6 +2,7 @@ package models;
 
 import data.AirlineDao;
 import data.PassengerDao;
+import data.ReservationDao;
 
 public class Account {
     private static Account currentUser;
@@ -64,6 +65,15 @@ public class Account {
         this.airline = airline;
         AirlineDao airlineDao = new AirlineDao();
         airlineDao.updateAirlinesMap(airline);
+    }
+
+    public boolean hasReservation(Flight flight) {
+        return getReservation(flight) != null;
+    }
+
+    public Reservation getReservation(Flight flight) {
+        ReservationDao reservationDao = new ReservationDao();
+        return reservationDao.read(flight, this);
     }
 
 

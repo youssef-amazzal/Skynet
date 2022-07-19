@@ -78,14 +78,11 @@ public class PaymentPageController implements Initializable {
 
     @FXML
     private Spinner<Double> spinnerWeight;
-
-    private Reservation userReservation;
     private Flight flight;
     private Seat selectedSeat;
     private double classPrice;
     private double luggagePrice;
     private double weightPrice;
-    private double totalPrice;
     private final ToggleGroup cardGroup = new ToggleGroup();
 
     @Override
@@ -124,15 +121,13 @@ public class PaymentPageController implements Initializable {
     @FXML
     void payNow(ActionEvent event) {
         ReservationDao reservationDao = new ReservationDao();
+        Reservation reservation = new Reservation(flight, Account.getCurrentUser().getId(), selectedSeat, spinnerLuggage.getValue(), spinnerWeight.getValue());
 
-        Reservation reservation = new Reservation(flight, Account.getCurrentUser(), selectedSeat, spinnerLuggage.getValue(), spinnerWeight.getValue());
-        userReservation = reservationDao.read(this.flight, Account.getCurrentUser());
-
-        if (userReservation == null) {
-            reservationDao.create(reservation);
+        if (Account.getCurrentUser().hasReservation(flight)) {
+            reservationDao.update(Account.getCurrentUser().getReservation(flight).getId(), reservation);
         }
         else {
-            reservationDao.update(userReservation.getId(), reservation);
+            reservationDao.create(reservation);
         }
 
         try {
@@ -214,6 +209,12 @@ public class PaymentPageController implements Initializable {
 
                 lblTotalPrice.setText(calculateTotalPrice() + "$");
             });
+        }
+
+        if (Account.getCurrentUser().hasReservation(flight)) {
+            Reservation reservation = Account.getCurrentUser().getReservation(flight);
+            spinnerWeight.getValueFactory().setValue(reservation.getWeight());
+            spinnerLuggage.getValueFactory().setValue(reservation.getNbrLuggages());
         }
 
         lblTotalPrice.setText(calculateTotalPrice() + "$");

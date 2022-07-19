@@ -23,7 +23,7 @@
          <children>
             <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
                <children>
-                  <ImageView fx:id="AgencyLogo" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                  <ImageView fx:id="AirlineLogo" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <effect>
                         <ColorAdjust brightness="0.05" contrast="0.08" hue="0.05" saturation="-0.02" />
                      </effect>
@@ -118,12 +118,17 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="146.0" prefWidth="162.0" spacing="10.0">
                <children>
-                  <ToggleButton mnemonicParsing="false" styleClass="favorite">
+                  <ToggleButton fx:id="btnFavorite" mnemonicParsing="false" styleClass="favorite">
                      <graphic>
                         <FontIcon iconLiteral="mdi-heart" />
                      </graphic>
                   </ToggleButton>
-                  <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#bookNow" prefHeight="43.0" prefWidth="144.0" text="Book">
+                  <Label fx:id="lblExpired" ellipsisString="" text="Expired!" textFill="RED">
+                     <font>
+                        <Font name="Calibri Italic" size="19.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnAction" minWidth="-Infinity" mnemonicParsing="false" onAction="#bookNow" prefHeight="43.0" prefWidth="144.0" text="Book">
                      <font>
                         <Font size="30.0" />
                      </font>

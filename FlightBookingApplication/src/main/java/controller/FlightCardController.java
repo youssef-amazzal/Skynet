@@ -1,27 +1,36 @@
 package controller;
 
+import data.ReservationDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import models.Account;
 import models.Flight;
+import models.Reservation;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FlightCardController implements Initializable {
+
+    @FXML
+    private Button btnAction;
+
+    @FXML
+    private ToggleButton btnFavorite;
 
     @FXML
     private ImageView AirlineLogo;
@@ -49,6 +58,9 @@ public class FlightCardController implements Initializable {
 
     @FXML
     private Label lblDuration;
+
+    @FXML
+    private Label lblExpired;
 
     @FXML
     private HBox parent;
@@ -98,5 +110,20 @@ public class FlightCardController implements Initializable {
         lblArrAirport.setText(flight.getArrAirport().getIATA());
         lblArrCity.setText(flight.getArrAirport().getCity());
         lblArrTime.setText(flight.getArrDatetime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+
+        changeActionButtons();
     }
+
+    private void changeActionButtons() {
+
+        if (Account.getCurrentUser().hasReservation(flight)) {
+            btnAction.setText("Edit");
+        }
+
+        if (flight.getDepDatetime().isBefore(LocalDateTime.now())) {
+            btnAction.setPrefWidth(0);
+            lblExpired.setMinWidth(Region.USE_PREF_SIZE);
+        }
+    }
+
 }

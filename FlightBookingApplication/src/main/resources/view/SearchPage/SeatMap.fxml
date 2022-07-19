@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -27,11 +28,26 @@
                <content>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="600.0" spacing="10.0">
                      <children>
-                        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 50%;">
-                           <graphic>
-                              <FontIcon iconLiteral="mdi-arrow-left" iconSize="25" />
-                           </graphic>
-                        </Button>
+                        <HBox prefHeight="40.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="btnBack" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 50%;">
+                                 <graphic>
+                                    <FontIcon iconLiteral="mdi-arrow-left" iconSize="25" />
+                                 </graphic>
+                              </Button>
+                              <Label maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelReservation" styleClass="cancel" visible="false">
+                                 <graphic>
+                                    <FontIcon iconLiteral="mdi-delete" iconSize="40" />
+                                 </graphic>
+                              </Button>
+                              <ToggleButton fx:id="btnFavorite" mnemonicParsing="false" styleClass="favorite">
+                                 <graphic>
+                                    <FontIcon iconLiteral="mdi-heart" />
+                                 </graphic>
+                              </ToggleButton>
+                           </children>
+                        </HBox>
                         <Label maxWidth="1.7976931348623157E308" text="Reservation information" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="33.0" />

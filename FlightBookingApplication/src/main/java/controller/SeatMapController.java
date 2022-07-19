@@ -8,9 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import models.Account;
 import models.Flight;
@@ -26,6 +24,12 @@ public class SeatMapController implements Initializable {
 
     @FXML
     private Button btnBack;
+
+    @FXML
+    private Button btnCancel;
+
+    @FXML
+    private ToggleButton btnFavorite;
 
     @FXML
     private HBox confirmationWindow;
@@ -96,6 +100,8 @@ public class SeatMapController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/SeatMap.css").toExternalForm());
 
+        btnCancel.setTooltip(new Tooltip("Cancel Reservation"));
+
         seatGroup.selectedToggleProperty().addListener(((observable, oldValue, newValue) -> {
             //when a seat is selected set the confirmationWindow visibility to true, otherwise set it to false
             if (newValue != null) {
@@ -141,6 +147,9 @@ public class SeatMapController implements Initializable {
         String arrICAO = flight.getArrAirport().getICAO();
         lblToCode.setText((arrIATA != null) ? arrIATA : arrICAO);
 
+        if(Account.getCurrentUser().hasReservation(flight)) {
+            btnCancel.setVisible(true);
+        }
     }
 
     @FXML
@@ -173,6 +182,12 @@ public class SeatMapController implements Initializable {
         int recentChild = content.getChildren().size() - 1;
         content.getChildren().remove(recentChild);
         ApplicationController.searchPageStack.pop();
+    }
+
+    @FXML
+    void cancelReservation(ActionEvent event) {
+        ReservationDao reservationDao = new ReservationDao();
+        reservationDao.delete(Account.getCurrentUser().getReservation(flight).getId());
     }
 
     private void fillSeatMap() {

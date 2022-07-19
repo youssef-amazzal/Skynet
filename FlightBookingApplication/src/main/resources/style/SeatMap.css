@@ -95,3 +95,26 @@
     -fx-border-color: #ff3434;
     -fx-opacity: 1.0;
 }
+
+.cancel,
+.favorite {
+    -fx-background-color: transparent;
+}
+.favorite .ikonli-font-icon {
+    -fx-icon-code: mdi-heart-outline;
+    -fx-icon-color: #ff3966;
+    -fx-icon-size: 40;
+}
+
+.favorite:selected .ikonli-font-icon {
+    -fx-icon-code: mdi-heart;
+}
+
+.cancel:hover {
+    -fx-effect: null;
+}
+.cancel .ikonli-font-icon {
+    -fx-icon-code: mdi-delete;
+    -fx-icon-color: #ff1f1f;
+    -fx-icon-size: 40;
+}
