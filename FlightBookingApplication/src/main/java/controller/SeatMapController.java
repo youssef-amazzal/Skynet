@@ -150,6 +150,22 @@ public class SeatMapController implements Initializable {
         if(Account.getCurrentUser().hasReservation(flight)) {
             btnCancel.setVisible(true);
         }
+
+        btnFavorite.setSelected(flight.isFavorite());
+
+        flight.getFavoriteProperty().addListener((observable, oldValue, newValue) -> {
+            btnFavorite.setSelected(newValue);
+        });
+
+        btnFavorite.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && !oldValue) {
+                flight.addFavorite();
+            }
+
+            if (!newValue && oldValue) {
+                flight.removeFavorite();
+            }
+        });
     }
 
     @FXML

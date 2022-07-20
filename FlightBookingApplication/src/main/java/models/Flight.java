@@ -1,6 +1,9 @@
 package models;
 
 import data.AirlineDao;
+import data.FavoriteDao;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +26,47 @@ public class Flight {
         this.economyPrice = -1;
         this.luggagePrice = -1;
         this.weightPrice = -1;
+    }
+
+    public boolean isFavorite() {
+        FavoriteDao favoriteDao = new FavoriteDao();
+        Favorite favorite = favoriteDao.read(this, Account.getCurrentUser());
+        if (favorite != null) {
+            return favorite.getIsFavoriteProperty().get();
+        }
+        else {
+            favoriteDao.create(new Favorite(this, Account.getCurrentUser(), false));
+            return false;
+        }
+    }
+
+    public SimpleBooleanProperty getFavoriteProperty() {
+        FavoriteDao favoriteDao = new FavoriteDao();
+        Favorite favorite = favoriteDao.read(this, Account.getCurrentUser());
+        return favorite.getIsFavoriteProperty();
+    }
+
+    public void addFavorite() {
+        FavoriteDao favoriteDao = new FavoriteDao();
+        Favorite favorite = favoriteDao.read(this, Account.getCurrentUser());
+        if (favorite != null) {
+            favorite.setIsFavorite(true);
+            favoriteDao.update(favorite.getId(), favorite);
+            FavoriteDao.favoritesMap.get(this.getId()).setIsFavorite(true);
+        }
+        else {
+            favoriteDao.create(new Favorite(this, Account.getCurrentUser(), true));
+        }
+    }
+
+    public void removeFavorite() {
+        FavoriteDao favoriteDao = new FavoriteDao();
+        Favorite favorite = favoriteDao.read(this, Account.getCurrentUser());
+        if (favorite != null) {
+            favorite.setIsFavorite(false);
+            favoriteDao.update(favorite.getId(), favorite);
+            FavoriteDao.favoritesMap.get(this.getId()).setIsFavorite(false);
+        }
     }
 
     public int getId() {
