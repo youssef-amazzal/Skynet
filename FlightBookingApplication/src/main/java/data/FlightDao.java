@@ -8,7 +8,7 @@ import models.Flight;
 public class FlightDao implements Dao<Flight> {
     AirportDao airportDao = new AirportDao();
     @Override
-    public void create(Flight flight) {
+    public int create(Flight flight) {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO flights (dep_datetime, arr_datetime, first_price, business_price, economy_price, luggage_price, weight_price, id_airline, dep_airport, arr_airport) VALUES (?,?,?,?,?,?,?,?,?,?);";
         try {
@@ -29,9 +29,11 @@ public class FlightDao implements Dao<Flight> {
                 flight.setId(id.getInt(1));
             }
             query.close();
+            return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override

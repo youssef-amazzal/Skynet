@@ -18,7 +18,7 @@ public class AccountDao implements Dao<Account> {
     }
 
     @Override
-    public void create(Account account) {
+    public int create(Account account) {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO accounts (username, password, emailAddress, id_passenger, id_airline) VALUES (?,?,?,?,?);";
         try {
@@ -42,9 +42,11 @@ public class AccountDao implements Dao<Account> {
                 accountsMap.put(id.getInt(1), account);
             }
             query.close();
+            return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
     @Override
     public Account read(int id) {

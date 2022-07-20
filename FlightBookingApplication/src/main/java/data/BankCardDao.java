@@ -13,7 +13,7 @@ public class BankCardDao implements Dao<BankCard> {
     AccountDao accountDao = new AccountDao();
 
     @Override
-    public void create(BankCard bankCard) {
+    public int create(BankCard bankCard) {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO bankCards (cardNumber, expirationDate, CVV, cardHolder) VALUES (?,?,?,?);";
         try {
@@ -29,9 +29,11 @@ public class BankCardDao implements Dao<BankCard> {
                 bankCard.setId(id.getInt(1));
             }
             query.close();
+            return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override

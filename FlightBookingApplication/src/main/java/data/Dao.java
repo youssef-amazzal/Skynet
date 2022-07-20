@@ -3,7 +3,7 @@ package data;
 import java.util.List;
 
 public interface Dao<Type> {
-    void create(Type object);
+    int create(Type object);
 
     Type read(int id);
 

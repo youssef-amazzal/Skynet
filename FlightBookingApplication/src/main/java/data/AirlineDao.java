@@ -27,7 +27,7 @@ public class AirlineDao implements Dao<Airline> {
     }
 
     @Override
-    public void create(Airline airline) {
+    public int create(Airline airline) {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO airlines (name, logo) VALUES (?,?);";
         try {
@@ -43,11 +43,13 @@ public class AirlineDao implements Dao<Airline> {
                 airlinesMap.put(id.getInt(1), airline);
             }
             query.close();
+            return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return 0;
     }
 
     @Override

@@ -8,7 +8,7 @@ import models.Seat;
 public class SeatDao implements Dao<Seat> {
 
     @Override
-    public void create(Seat seat) {
+    public int create(Seat seat) {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO seats (column, row, type) VALUES (?,?,?);";
         try {
@@ -23,9 +23,11 @@ public class SeatDao implements Dao<Seat> {
                 seat.setPrimaryKey(id.getInt(1));
             }
             query.close();
+            return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class AirportDao implements Dao<Airport> {
     }
 
     @Override
-    public void create(Airport airport) {
+    public int create(Airport airport) {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO airports (name, city, country, IATA, ICAO) VALUES (?,?,?,?,?);";
         try {
@@ -48,9 +48,11 @@ public class AirportDao implements Dao<Airport> {
                 airport.setId(id.getInt(1));
             }
             query.close();
+            return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override

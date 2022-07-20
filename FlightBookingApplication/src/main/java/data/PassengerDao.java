@@ -16,7 +16,7 @@ public class PassengerDao implements Dao<Passenger> {
     }
 
     @Override
-    public void create(Passenger passenger) {
+    public int create(Passenger passenger) {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO passengers (firstname, lastname, birthDate) VALUES (?,?,?);";
         try {
@@ -33,9 +33,11 @@ public class PassengerDao implements Dao<Passenger> {
             }
 
             query.close();
+            return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override

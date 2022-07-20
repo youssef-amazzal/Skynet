@@ -15,7 +15,7 @@ public class ReservationDao implements Dao<Reservation> {
 
 
     @Override
-    public void create(Reservation reservation) {
+    public int create(Reservation reservation) {
         Connection conn = DataSource.getConnection();
         String statement = "INSERT INTO reservations (id_flight, id_account, id_seat, nbr_luggages, weight) VALUES (?,?,?,?,?);";
         try {
@@ -32,9 +32,11 @@ public class ReservationDao implements Dao<Reservation> {
                 reservation.setId(id.getInt(1));
             }
             query.close();
+            return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override
