@@ -104,7 +104,7 @@ public class HomePageController implements Initializable {
 
     private void getArchiveFlights() {
         results.setPredicate(flight -> {
-            if (flight.getDepDatetime().isBefore(LocalDateTime.now())) {
+            if (Account.getCurrentUser().hasReservation(flight) && flight.getDepDatetime().isBefore(LocalDateTime.now())) {
                 return true;
             }
             return false;

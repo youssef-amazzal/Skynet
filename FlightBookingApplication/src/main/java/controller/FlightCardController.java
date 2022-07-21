@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -124,8 +125,9 @@ public class FlightCardController implements Initializable {
         }
 
         if (flight.getDepDatetime().isBefore(LocalDateTime.now())) {
+            lblExpired.setMinWidth(btnAction.getPrefWidth());
+            lblExpired.setAlignment(Pos.CENTER);
             btnAction.setPrefWidth(0);
-            lblExpired.setMinWidth(Region.USE_PREF_SIZE);
         }
 
         btnFavorite.setSelected(flight.isFavorite());
