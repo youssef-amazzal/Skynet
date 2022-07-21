@@ -12,10 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import models.Flight;
-import models.Passenger;
-import models.Reservation;
-import models.Seat;
+import models.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
@@ -126,6 +123,9 @@ public class TicketPageController {
         lblArrCity.setText(flight.getArrAirport().getCity() + " - " + flight.getArrAirport().getCountry());
 
         lblPassengerName.setText(passenger.getFirstname() + " " + passenger.getLastname());
+        Account.getCurrentUser().getPassenger().firstnameProperty().addListener((observable, oldValue, newValue) -> {
+            lblPassengerName.setText(Account.getCurrentUser().getPassenger().getFirstname() + " " + Account.getCurrentUser().getPassenger().getLastname());
+        });
         lblFlightID.setText(String.valueOf(flight.getId()));
 
         lblSelectedSeat.setText(selectedSeat.getColumn()+selectedSeat.getRow());

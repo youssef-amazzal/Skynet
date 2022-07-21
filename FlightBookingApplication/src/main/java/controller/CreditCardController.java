@@ -30,9 +30,16 @@ public class CreditCardController implements Initializable {
     }
 
     public void setData(BankCard bankCard) {
+
         String firstname = bankCard.getCardHolder().getPassenger().getFirstname();
         String lastname = bankCard.getCardHolder().getPassenger().getLastname();
         lblCardHolder.setText(firstname + " " + lastname);
+        Account.getCurrentUser().getPassenger().firstnameProperty().addListener((observable, oldValue, newValue) -> {
+            lblCardHolder.setText(bankCard.getCardHolder().getPassenger().getFirstname() + " " + bankCard.getCardHolder().getPassenger().getLastname());
+        });
+        Account.getCurrentUser().getPassenger().lastnameProperty().addListener((observable, oldValue, newValue) -> {
+            lblCardHolder.setText(bankCard.getCardHolder().getPassenger().getFirstname() + " " + bankCard.getCardHolder().getPassenger().getLastname());
+        });
         lblCardNumber.setText(String.valueOf(bankCard.getCardNumberFormatted()));
         int expYear = bankCard.getExpirationDate().getYear();
         int expMonth = bankCard.getExpirationDate().getMonthValue();

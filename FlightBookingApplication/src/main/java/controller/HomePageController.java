@@ -6,14 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.control.skin.DatePickerSkin;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import models.Account;
 import models.Flight;
 
@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
@@ -38,6 +39,12 @@ public class HomePageController implements Initializable {
     private StackPane calendarContainer;
 
     @FXML
+    private Circle profilePicture;
+
+    @FXML
+    private Label lblFirstName;
+
+    @FXML
     private StackPane parent;
 
     @FXML
@@ -51,6 +58,15 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/HomePage.css").toExternalForm());
+
+
+        lblFirstName.setText(Account.getCurrentUser().getPassenger().getFirstname());
+        Account.getCurrentUser().getPassenger().firstnameProperty().addListener((observable, oldValue, newValue) -> {
+            lblFirstName.setText(newValue);
+        });
+        Image picture = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ProfilePicture.png")));
+        profilePicture.setFill(new ImagePattern(picture));
+
 
         alwaysOneSelected();
 

@@ -138,6 +138,9 @@ public class SeatMapController implements Initializable {
         lblEconomyPrice.setText(flight.getEconomyPriceFormatted());
 
         lblFirstname.setText(Account.getCurrentUser().getPassenger().getFirstname());
+        Account.getCurrentUser().getPassenger().firstnameProperty().addListener((observable, oldValue, newValue) -> {
+            lblFirstname.setText(newValue);
+        });
         String depIATA = flight.getDepAirport().getIATA();
         String depICAO = flight.getDepAirport().getICAO();
         lblFromCode.setText((depIATA != null) ? depIATA : depICAO);

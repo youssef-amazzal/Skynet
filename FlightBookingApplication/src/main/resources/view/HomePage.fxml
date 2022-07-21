@@ -119,14 +119,14 @@
                                     <Font name="Arial" size="28.0" />
                                  </font>
                               </Label>
-                              <Label maxWidth="1.7976931348623157E308" text="Youssef" wrapText="true" VBox.vgrow="ALWAYS">
+                              <Label fx:id="lblFirstName" maxWidth="1.7976931348623157E308" text="Youssef" wrapText="true" VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font name="Arial Bold" size="37.0" />
                                  </font>
                               </Label>
                            </children>
                         </VBox>
-                        <Circle fill="#e1e1e14d" radius="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Circle fx:id="profilePicture" fill="#e1e1e14d" radius="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                      </children>
                   </HBox>
                   <Label text="Quick Stats">
@@ -138,7 +138,7 @@
                      </VBox.margin>
                   </Label>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-                  <StackPane fx:id="calendarContainer" prefHeight="100.0" prefWidth="100.0" />
+                  <StackPane fx:id="calendarContainer" prefHeight="256.0" prefWidth="331.0" />
                </children>
                <padding>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="70.0" />

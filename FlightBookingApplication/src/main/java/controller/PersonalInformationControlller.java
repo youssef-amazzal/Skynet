@@ -69,7 +69,7 @@ public class PersonalInformationControlller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image picture = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ProfilePicture.jpg")));
+        Image picture = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ProfilePicture.png")));
         profilePicture.setFill(new ImagePattern(picture));
         
         this.setData();

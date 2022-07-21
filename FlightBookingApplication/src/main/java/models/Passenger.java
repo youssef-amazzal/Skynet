@@ -1,13 +1,19 @@
 package models;
 
-import java.sql.Date;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.time.LocalDate;
 
 public class Passenger {
     private int id;
-    private String firstname;
-    private String lastname;
+    private SimpleStringProperty firstname;
+    private SimpleStringProperty lastname;
     private LocalDate birthDate;
+
+    public Passenger() {
+        this.firstname = new SimpleStringProperty();
+        this.lastname = new SimpleStringProperty();
+    }
 
 
     public int getId() {
@@ -18,17 +24,24 @@ public class Passenger {
     }
 
     public String getFirstname() {
-        return firstname;
+        return firstname.getValue();
     }
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstname.setValue(firstname);
+    }
+
+    public SimpleStringProperty firstnameProperty() {
+        return firstname;
     }
 
     public String getLastname() {
-        return lastname;
+        return lastname.getValue();
     }
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastname.setValue(lastname);
+    }
+    public SimpleStringProperty lastnameProperty() {
+        return lastname;
     }
 
     public LocalDate getBirthDate() {

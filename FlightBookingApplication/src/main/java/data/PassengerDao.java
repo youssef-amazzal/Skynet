@@ -1,5 +1,6 @@
 package data;
 
+import models.Favorite;
 import models.Passenger;
 
 import java.sql.*;
@@ -42,8 +43,13 @@ public class PassengerDao implements Dao<Passenger> {
 
     @Override
     public Passenger read(int id) {
+
+        Passenger passenger = passengersMap.get(id);
+        if (passenger != null) {
+            return passenger;
+        }
+
         Connection conn = DataSource.getConnection();
-        Passenger passenger = null;
         String statement = "SELECT * FROM passengers WHERE id = ?;";
         try {
             PreparedStatement query = conn.prepareStatement(statement);
@@ -108,6 +114,7 @@ public class PassengerDao implements Dao<Passenger> {
 
             if (passenger.getFirstname() != null) {
                 query.setString(1, passenger.getFirstname());
+                original.setFirstname(passenger.getFirstname());
             }
             else {
                 query.setString(1, original.getFirstname());
@@ -115,6 +122,7 @@ public class PassengerDao implements Dao<Passenger> {
 
             if (passenger.getLastname() != null) {
                 query.setString(2, passenger.getLastname());
+                original.setLastname(passenger.getLastname());
             }
             else {
                 query.setString(2, original.getLastname());
@@ -122,6 +130,7 @@ public class PassengerDao implements Dao<Passenger> {
 
             if (passenger.getBirthDate() != null) {
                 query.setLong(3, passenger.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                original.setBirthDate(passenger.getBirthDate());
             }
             else {
                 query.setLong(3, original.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());

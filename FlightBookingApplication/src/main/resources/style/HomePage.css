@@ -78,8 +78,10 @@
 .date-picker-popup > * > .spinner > .button:focused,
 .date-picker-popup > * > .spinner > .button {
     -fx-background-radius: 50%;
-    -fx-pref-width: 20;
-    -fx-pref-height: 20;
+    -fx-min-width: 20;
+    -fx-min-height: 20;
+    -fx-max-width: 20;
+    -fx-max-height: 20;
     -fx-background-color: AccentColor;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 0);
 }
