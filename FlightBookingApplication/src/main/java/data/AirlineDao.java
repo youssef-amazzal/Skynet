@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,7 +68,12 @@ public class AirlineDao implements Dao<Airline> {
                 airline = new Airline();
                 airline.setId(res.getInt("id"));
                 airline.setName(res.getString("name"));
-                airline.setLogo(new Image(res.getBinaryStream("logo")));
+                InputStream inputStream = res.getBinaryStream("logo");
+                if ((inputStream != null)) {
+                    airline.setLogo(new Image(inputStream));
+                } else {
+                    airline.setLogo(null);
+                }
                 airlinesMap.put(res.getInt("id"), airline);
             }
 
