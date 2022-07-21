@@ -1,6 +1,6 @@
 package controller;
 
-import data.ReservationDao;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import models.Account;
 import models.Flight;
-import models.Reservation;
 
 import java.io.IOException;
 import java.net.URL;
@@ -79,6 +78,7 @@ public class FlightCardController implements Initializable {
 
             Parent page = flightLoader.load();
             VBox.setVgrow(page, Priority.ALWAYS);
+            page.setUserData(this);
 
             SeatMapController flightController = flightLoader.getController();
             flightController.setData(flight);
@@ -86,7 +86,7 @@ public class FlightCardController implements Initializable {
             StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().add(page);
 
-            ApplicationController.searchPageStack.push(page);
+            ApplicationController.navBarController.pushPage(page);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -114,10 +114,13 @@ public class FlightCardController implements Initializable {
         changeActionButtons();
     }
 
-    private void changeActionButtons() {
+    public void changeActionButtons() {
 
         if (Account.getCurrentUser().hasReservation(flight)) {
             btnAction.setText("Edit");
+        }
+        else {
+            btnAction.setText("Book");
         }
 
         if (flight.getDepDatetime().isBefore(LocalDateTime.now())) {
@@ -126,6 +129,8 @@ public class FlightCardController implements Initializable {
         }
 
         btnFavorite.setSelected(flight.isFavorite());
+
+        SimpleBooleanProperty property = flight.getFavoriteProperty();
 
         flight.getFavoriteProperty().addListener((observable, oldValue, newValue) -> {
             btnFavorite.setSelected(newValue);

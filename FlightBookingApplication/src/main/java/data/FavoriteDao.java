@@ -13,7 +13,7 @@ public class FavoriteDao implements Dao<Favorite> {
 
     public static final HashMap<Integer, Favorite> favoritesMap = new HashMap<>();
 
-    FlightDao flightDao = new FlightDao();
+    FlightDao flightDao = FlightDao.getInstance();
 
     @Override
     public int create(Favorite favorite) {

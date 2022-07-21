@@ -1,11 +1,37 @@
 package data;
 
-import java.sql.*;
-import java.time.ZoneId;
-import java.util.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import models.Account;
 import models.Flight;
 
+import java.sql.*;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class FlightDao implements Dao<Flight> {
+    private static FlightDao flightDao;
+    private static ObservableList<Flight> fightsList;
+
+    private FlightDao() {
+    }
+
+    public static FlightDao getInstance() {
+        if (flightDao == null) {
+            flightDao = new FlightDao();
+        }
+        return flightDao;
+    }
+
+    public ObservableList<Flight> getFlightsList() {
+        if (fightsList == null) {
+            fightsList = FXCollections.observableList(this.readAll());
+        }
+        return  fightsList;
+    }
+
     AirportDao airportDao = new AirportDao();
     @Override
     public int create(Flight flight) {
@@ -71,11 +97,47 @@ public class FlightDao implements Dao<Flight> {
         return flight;
     }
 
+    public List<Flight> readUpComing() {
+        Connection conn = DataSource.getConnection();
+        List<Flight> list = new ArrayList<Flight>();
+
+        try {
+            PreparedStatement query = conn.prepareStatement("" +
+                    "SELECT * FROM flights WHERE id IN ("
+                        + "SELECT id_flight FROM reservations where id_account = ?);"
+            );
+            query.setInt(1, Account.getCurrentUser().getId());
+            ResultSet res = query.executeQuery();
+            while (res.next()) {
+                Flight flight = new Flight();
+                flight.setId(res.getInt("id"));
+                flight.setDepDatetime(res.getTimestamp("dep_datetime").toLocalDateTime());
+                flight.setArrDatetime(res.getTimestamp("arr_datetime").toLocalDateTime());
+                flight.setFirstPrice(res.getDouble("first_price"));
+                flight.setBusinessPrice(res.getDouble("business_price"));
+                flight.setEconomyPrice(res.getDouble("economy_price"));
+                flight.setLuggagePrice(res.getDouble("luggage_price"));
+                flight.setWeightPrice(res.getDouble("weight_price"));
+                flight.setAirline(res.getInt("id_airline"));
+                flight.setDepAirport(airportDao.read(res.getInt("dep_airport")));
+                flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));
+
+
+                list.add(flight);
+            }
+            return list;
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     @Override
     public List<Flight> readAll() {
         Connection conn = DataSource.getConnection();
-        List<Flight> list = new ArrayList<Flight>();
+        LinkedList<Flight> list = new LinkedList<>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM flights;");
@@ -95,7 +157,7 @@ public class FlightDao implements Dao<Flight> {
                 flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));
               
 
-                list.add(flight);
+                list.addFirst(flight);
             }
             return list;
         } catch (SQLException e) {

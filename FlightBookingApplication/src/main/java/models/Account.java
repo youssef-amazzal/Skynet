@@ -1,8 +1,12 @@
 package models;
 
 import data.AirlineDao;
+import data.FavoriteDao;
 import data.PassengerDao;
 import data.ReservationDao;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Account {
     private static Account currentUser;
@@ -76,5 +80,12 @@ public class Account {
         return reservationDao.read(flight, this);
     }
 
+    public List<Flight> getFavoriteFlights() {
+        FavoriteDao favoriteDao = new FavoriteDao();
+        List<Favorite> favoriteList = favoriteDao.readAll();
+        List<Flight> favoriteFlights = new ArrayList<>();
+        favoriteList.forEach(favorite -> favoriteFlights.add(favorite.getFlight()));
+        return favoriteFlights;
+    }
 
 }

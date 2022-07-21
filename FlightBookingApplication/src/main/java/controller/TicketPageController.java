@@ -97,7 +97,16 @@ public class TicketPageController {
     @FXML
     void closePage(ActionEvent event) {
         StackPane content = (StackPane) parent.getScene().lookup("#content");
-        ApplicationController.navBarController.refreshSearchPage();
+        Node page = ApplicationController.navBarController.getCurrentStack().firstElement();
+        FlightCardController cardController = (FlightCardController) ApplicationController.navBarController.getCurrentStack().get(1).getUserData();
+
+        ApplicationController.navBarController.getCurrentStack().clear();
+        content.getChildren().clear();
+
+        ApplicationController.navBarController.getCurrentStack().push(page);
+        ApplicationController.navBarController.openPage();
+
+        cardController.changeActionButtons();
     }
 
     public void setData(Reservation reservation) {

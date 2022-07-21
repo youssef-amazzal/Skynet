@@ -138,7 +138,7 @@ public class PaymentPageController implements Initializable {
             TicketPageController ticketController = ticketLoader.getController();
             ticketController.setData(reservation);
 
-            ApplicationController.searchPageStack.push(page);
+            ApplicationController.navBarController.pushPage(page);
 
             StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().add(page);

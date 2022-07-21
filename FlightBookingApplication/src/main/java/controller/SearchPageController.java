@@ -2,7 +2,6 @@ package controller;
 
 import data.AirportDao;
 import data.FlightDao;
-import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,8 +17,6 @@ import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class SearchPageController implements Initializable {
@@ -59,12 +56,9 @@ public class SearchPageController implements Initializable {
 
     @FXML
     private ScrollPane scrollPane;
-
-    private final FlightDao flightDao = new FlightDao();
     private final FilteredList<String> filteredDepCityList = new FilteredList<String>(AirportDao.getCityList());
     private final FilteredList<String> filteredArrCityList = new FilteredList<String>(AirportDao.getCityList());
-
-    private final FilteredList<Flight> results = new FilteredList<>(FXCollections.observableList(flightDao.readAll()));;
+    private final FilteredList<Flight> results = new FilteredList<>(FlightDao.getInstance().getFlightsList());
 
 
     @Override

@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 public class NavigationBarController implements Initializable {
 
@@ -47,8 +48,8 @@ public class NavigationBarController implements Initializable {
     private ToggleButton settingsBtn;
 
     private final ObservableList<Node> searchPages = FXCollections.observableList(ApplicationController.searchPageStack);
+    private final ObservableList<Node> homePages = FXCollections.observableList(ApplicationController.homePageStack);
     private Node accountPages;
-    private Node HomePage;
 
 
     @Override
@@ -109,11 +110,11 @@ public class NavigationBarController implements Initializable {
 
     @FXML
     void openHome(ActionEvent event) {
-        if (HomePage == null) {
-            HomePage = loadPage("/view/HomePage.fxml");
+        if (homePages.isEmpty()) {
+            ApplicationController.homePageStack.push(loadPage("/view/HomePage.fxml"));
         }
         else {
-            loadPage(HomePage);
+            loadPage(homePages);
         }
     }
 
@@ -135,5 +136,46 @@ public class NavigationBarController implements Initializable {
     public void refreshSearchPage() {
         ApplicationController.searchPageStack.clear();
         openSearch(new ActionEvent());
+    }
+    public void refreshHomePage() {
+        ApplicationController.homePageStack.clear();
+        openHome(new ActionEvent());
+    }
+
+    public void pushPage(Node page) {
+        if (navigationBarGroup.getSelectedToggle() == homeBtn) {
+            ApplicationController.homePageStack.push(page);
+        }
+        else if (navigationBarGroup.getSelectedToggle() == searchBtn) {
+            ApplicationController.searchPageStack.push(page);
+        }
+    }
+
+    public void popPage() {
+        if (navigationBarGroup.getSelectedToggle() == homeBtn) {
+            ApplicationController.homePageStack.pop();
+        }
+        else if (navigationBarGroup.getSelectedToggle() == searchBtn) {
+            ApplicationController.searchPageStack.pop();
+        }
+    }
+
+    public Stack<Node> getCurrentStack() {
+        if (navigationBarGroup.getSelectedToggle() == homeBtn) {
+            return ApplicationController.homePageStack;
+        }
+        else if (navigationBarGroup.getSelectedToggle() == searchBtn) {
+            return ApplicationController.searchPageStack;
+        }
+        return null;
+    }
+
+    public void openPage() {
+        if (navigationBarGroup.getSelectedToggle() == homeBtn) {
+            openHome(new ActionEvent());
+        }
+        else if (navigationBarGroup.getSelectedToggle() == searchBtn) {
+            openSearch(new ActionEvent());
+        }
     }
 }

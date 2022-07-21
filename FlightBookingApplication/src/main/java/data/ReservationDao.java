@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationDao implements Dao<Reservation> {
-    FlightDao flightDao = new FlightDao();
+    FlightDao flightDao = FlightDao.getInstance();
     SeatDao seatDao = new SeatDao();
 
 

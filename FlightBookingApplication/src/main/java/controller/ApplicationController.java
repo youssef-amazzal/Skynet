@@ -29,6 +29,7 @@ public class ApplicationController implements Initializable {
     private VBox navBarContainer;
 
     public static Stack<Node> searchPageStack = new Stack<>();
+    public static Stack<Node> homePageStack = new Stack<>();
     public static NavigationBarController navBarController;
 
     @Override

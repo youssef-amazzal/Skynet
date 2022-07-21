@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import models.Account;
 import models.Flight;
-import models.Reservation;
 import models.Seat;
 
 import java.io.IOException;
@@ -92,7 +91,6 @@ public class SeatMapController implements Initializable {
     private GridPane seatMap;
 
     private final ToggleGroup seatGroup = new ToggleGroup();
-
     private Flight flight;
     private Seat selectedSeat;
 
@@ -165,6 +163,9 @@ public class SeatMapController implements Initializable {
             if (!newValue && oldValue) {
                 flight.removeFavorite();
             }
+
+            FlightCardController cardController = (FlightCardController) parent.getUserData();
+            cardController.changeActionButtons();
         });
     }
 
@@ -183,7 +184,7 @@ public class SeatMapController implements Initializable {
             PaymentPageController paymentController = paymentLoader.getController();
             paymentController.setData(flight, selectedSeat);
 
-            ApplicationController.searchPageStack.push(page);
+            ApplicationController.navBarController.pushPage(page);
 
             StackPane content = (StackPane) parent.getScene().lookup("#content");
             content.getChildren().add(page);
@@ -197,14 +198,16 @@ public class SeatMapController implements Initializable {
         StackPane content = (StackPane) parent.getScene().lookup("#content");
         int recentChild = content.getChildren().size() - 1;
         content.getChildren().remove(recentChild);
-        ApplicationController.searchPageStack.pop();
+        ApplicationController.navBarController.popPage();
+        FlightCardController cardController = (FlightCardController) parent.getUserData();
+        cardController.changeActionButtons();
     }
 
     @FXML
     void cancelReservation(ActionEvent event) {
         ReservationDao reservationDao = new ReservationDao();
         reservationDao.delete(Account.getCurrentUser().getReservation(flight).getId());
-        ApplicationController.navBarController.refreshSearchPage();
+        goBack(new ActionEvent());
     }
 
     private void fillSeatMap() {
