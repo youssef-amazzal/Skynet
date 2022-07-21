@@ -3,3 +3,7 @@
     -fx-text-fill: white;
     -fx-fill: white;
 }
+
+#calendarContainer .text {
+    -fx-fill: white;
+}

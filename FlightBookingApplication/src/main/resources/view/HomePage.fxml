@@ -138,7 +138,7 @@
                      </VBox.margin>
                   </Label>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-                  <StackPane fx:id="calendarContainer" prefHeight="300.0" prefWidth="347.0" />
+                  <StackPane fx:id="calendarContainer" prefHeight="100.0" prefWidth="100.0" />
                </children>
                <padding>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="70.0" />
