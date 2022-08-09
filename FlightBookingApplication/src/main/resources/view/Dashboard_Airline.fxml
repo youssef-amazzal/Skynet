@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox minHeight="-Infinity" spacing="30.0" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Dashboard">
+                                 <font>
+                                    <Font name="Arial Black" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                              <ToggleButton fx:id="themeButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#changeTheme" prefHeight="50.0" prefWidth="50.0" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <FontIcon iconLiteral="mdi-weather-night" iconSize="30" />
+                                 </graphic>
+                              </ToggleButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox spacing="20.0">
+                     <children>
+                        <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="199.0" spacing="10.0" styleClass="card">
+                           <children>
+                              <StackPane id="avatar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="120.0">
+                                 <children>
+                                    <ImageView fx:id="airlineLogo" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Button contentDisplay="TOP" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#uploadeImage" text="uploade image" wrapText="true">
+                                       <graphic>
+                                          <FontIcon iconLiteral="mdi-camera" iconSize="30" />
+                                       </graphic>
+                                       <font>
+                                          <Font name="Arial" size="11.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </StackPane>
+                              <Label fx:id="lblAirlineName" text="Royal Air Maroc">
+                                 <font>
+                                    <Font name="Arial Black" size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                           </padding>
+                        </VBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="310.0" spacing="2.0" styleClass="search-bar">
+                                 <children>
+                                    <FontIcon iconLiteral="mdi-magnify" iconSize="25" />
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <TextField fx:id="serachBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="TransparentTextField" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </HBox>
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <Button id="add-button" fx:id="addButton" mnemonicParsing="false" onAction="#openAddTab" prefWidth="100.0" styleClass="action-button" text="Add">
+                                 <graphic>
+                                    <FontIcon iconLiteral="mdi-plus" iconSize="20" stroke="WHITE" strokeWidth="1.5" />
+                                 </graphic>
+                              </Button>
+                              <Button id="edit-button" fx:id="editButton" disable="true" mnemonicParsing="false" onAction="#openEditTab" prefWidth="100.0" styleClass="action-button" text="Edit">
+                                 <graphic>
+                                    <FontIcon iconLiteral="mdi-pencil" iconSize="20" />
+                                 </graphic>
+                              </Button>
+                              <Button id="delete-button" fx:id="deleteButton" disable="true" mnemonicParsing="false" onAction="#deleteFlight" prefWidth="100.0" styleClass="action-button" text="Delete">
+                                 <graphic>
+                                    <FontIcon iconLiteral="mdi-delete" iconSize="20" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" visible="false" />
+                        <TableView fx:id="flightTable" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn fx:id="colId" maxWidth="1000.0" minWidth="-Infinity" prefWidth="-1.0" styleClass="main-header" text="#" />
+                            <TableColumn prefWidth="75.0" styleClass="main-header" text="Departure">
+                                 <columns>
+                                    <TableColumn fx:id="colDepAirport" prefWidth="75.0" styleClass="sub-header" text="Airport" />
+                                    <TableColumn fx:id="colDepDateTime" prefWidth="75.0" styleClass="sub-header" text="DateTime" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn prefWidth="75.0" styleClass="main-header" text="Arrival">
+                                 <columns>
+                                    <TableColumn fx:id="colArrAirport" prefWidth="75.0" styleClass="sub-header" text="Airport" />
+                                    <TableColumn fx:id="colArrDateTime" prefWidth="75.0" styleClass="sub-header" text="DateTime" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="colCapacity" maxWidth="2300.0" prefWidth="75.0" styleClass="main-header" text="Capacity" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <StackPane fx:id="actionPanel" alignment="TOP_RIGHT" minWidth="-Infinity" prefWidth="0.0" visible="false">
+               <children>
+                  <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="392.0" spacing="30.0" styleClass="card">
+                     <children>
+                        <VBox prefWidth="100.0">
+                           <children>
+                              <Label fx:id="lblTitle" ellipsisString="" text="Flight #273">
+                                 <font>
+                                    <Font name="Arial Black" size="28.0" />
+                                 </font>
+                              </Label>
+                              <Separator prefWidth="200.0" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0">
+                           <children>
+                              <Label text="Departure">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="20.0">
+                                 <children>
+                                    <SearchableComboBox fx:id="depCountry" maxWidth="1.7976931348623157E308" promptText="Country" HBox.hgrow="ALWAYS" />
+                                    <SearchableComboBox fx:id="depCity" maxWidth="1.7976931348623157E308" promptText="City" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <SearchableComboBox fx:id="depAirport" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" promptText="Airport" VBox.vgrow="ALWAYS" />
+                              <HBox>
+                                 <children>
+                                    <DatePicker fx:id="depDate" prefHeight="31.0" prefWidth="263.0" promptText="Date" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </DatePicker>
+                                    <HBox styleClass="time-picker">
+                                       <children>
+                                          <Spinner fx:id="depHour" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" styleClass="arrows-on-left-vertical" HBox.hgrow="ALWAYS" />
+                                          <Label ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="-Infinity" text=":" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="Arial Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Spinner fx:id="depMinute" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" styleClass="arrows-on-right-vertical" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0">
+                           <children>
+                              <Label text="Arrival">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="20.0">
+                                 <children>
+                                    <SearchableComboBox fx:id="arrCountry" maxWidth="1.7976931348623157E308" promptText="Country" HBox.hgrow="ALWAYS" />
+                                    <SearchableComboBox fx:id="arrCity" maxWidth="1.7976931348623157E308" promptText="City" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <SearchableComboBox fx:id="arrAirport" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" promptText="Airport" VBox.vgrow="ALWAYS" />
+                              <HBox>
+                                 <children>
+                                    <DatePicker fx:id="arrDate" prefHeight="31.0" prefWidth="263.0" promptText="Date" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </DatePicker>
+                                    <HBox styleClass="time-picker">
+                                       <children>
+                                          <Spinner fx:id="arrHour" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" styleClass="arrows-on-left-vertical" HBox.hgrow="ALWAYS" />
+                                          <Label ellipsisString="" maxWidth="1.7976931348623157E308" minWidth="-Infinity" text=":" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="Arial Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Spinner fx:id="arrMinute" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" styleClass="arrows-on-right-vertical" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="100.0" spacing="10.0">
+                           <children>
+                              <Label text="Pricing">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <VBox prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="0.0" prefWidth="100.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="FirstSeatIcon" />
+                                                      <String fx:value="SeatIcon" />
+                                                   </styleClass>
+                                                </Label>
+                                                <Label minWidth="-Infinity" prefWidth="55.0" text="First" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="priceFirstClass" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="underLine-field" HBox.hgrow="ALWAYS" />
+                                                <Label minWidth="-Infinity" text="\$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="SeatIcon" />
+                                                      <String fx:value="BusinessSeatIcon" />
+                                                   </styleClass>
+                                                </Label>
+                                                <Label minWidth="-Infinity" prefWidth="55.0" text="Business" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="priceBusinessClass" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="underLine-field" HBox.hgrow="ALWAYS" />
+                                                <Label minWidth="-Infinity" text="\$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="EconomySeatIcon" />
+                                                      <String fx:value="SeatIcon" />
+                                                   </styleClass>
+                                                </Label>
+                                                <Label minWidth="-Infinity" prefWidth="55.0" text="Economy" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="priceEconomyClass" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="underLine-field" HBox.hgrow="ALWAYS" />
+                                                <Label minWidth="-Infinity" text="\$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <FontIcon iconLiteral="mdi-wallet-travel" iconSize="20" />
+                                                <Label minWidth="-Infinity" prefWidth="55.0" text="Luggage" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="priceLuggage" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="underLine-field" HBox.hgrow="ALWAYS" />
+                                                <Label minWidth="-Infinity" text="\$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <FontIcon iconLiteral="mdi-weight-kilogram" iconSize="20" />
+                                                <Label minWidth="-Infinity" prefWidth="55.0" text="Weight" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="priceWeight" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="underLine-field" HBox.hgrow="ALWAYS" />
+                                                <Label minWidth="-Infinity" text="\$">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="actionButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="43.0" prefWidth="312.0" text="Add" VBox.vgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                     </padding>
+                  </VBox>
+                  <Button id="close-button" ellipsisString="" mnemonicParsing="false" onAction="#closePanel">
+                     <StackPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </StackPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="mdi-close" iconSize="40" />
+                     </graphic>
+                  </Button>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </children>
+</StackPane>

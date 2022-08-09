@@ -73,9 +73,11 @@ public class Palette {
 		);
 
 		if (this.calculateLuminance(SecondaryColor) > 0.5) {
+			scene.getStylesheets().clear();
 			scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/TextLightVersion.css")).toExternalForm());
 		}
 		else {
+			scene.getStylesheets().clear();
 			scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style/TextDarkVersion.css")).toExternalForm());
 		}
 

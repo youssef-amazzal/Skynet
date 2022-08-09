@@ -2,22 +2,17 @@ package data;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import models.Account;
+import models.Airline;
 import models.Flight;
 
 import java.sql.*;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class FlightDao implements Dao<Flight> {
     private static FlightDao flightDao;
     private static ObservableList<Flight> fightsList;
-
-    private FlightDao() {
-    }
-
     public static FlightDao getInstance() {
         if (flightDao == null) {
             flightDao = new FlightDao();
@@ -97,16 +92,13 @@ public class FlightDao implements Dao<Flight> {
         return flight;
     }
 
-    public List<Flight> readUpComing() {
+    public List<Flight> read(Airline airline) {
         Connection conn = DataSource.getConnection();
-        List<Flight> list = new ArrayList<Flight>();
+        LinkedList<Flight> list = new LinkedList<>();
 
         try {
-            PreparedStatement query = conn.prepareStatement("" +
-                    "SELECT * FROM flights WHERE id IN ("
-                        + "SELECT id_flight FROM reservations where id_account = ?);"
-            );
-            query.setInt(1, Account.getCurrentUser().getId());
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM flights WHERE id_airline = ? ORDER BY dep_datetime;");
+            query.setInt(1, airline.getId());
             ResultSet res = query.executeQuery();
             while (res.next()) {
                 Flight flight = new Flight();
@@ -122,8 +114,7 @@ public class FlightDao implements Dao<Flight> {
                 flight.setDepAirport(airportDao.read(res.getInt("dep_airport")));
                 flight.setArrAirport(airportDao.read(res.getInt("arr_airport")));
 
-
-                list.add(flight);
+                list.addFirst(flight);
             }
             return list;
         } catch (SQLException e) {
@@ -132,7 +123,6 @@ public class FlightDao implements Dao<Flight> {
             return null;
         }
     }
-
 
     @Override
     public List<Flight> readAll() {

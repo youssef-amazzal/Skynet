@@ -7,3 +7,11 @@
 #calendarContainer .text {
     -fx-fill: white;
 }
+
+.table-row-cell {
+    -fx-text-background-color: #ffffff;
+}
+
+.searchable-combo-box .text {
+    -fx-fill: white;
+}

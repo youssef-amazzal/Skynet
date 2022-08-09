@@ -10,6 +10,7 @@ import models.Airport;
 
 public class AirportDao implements Dao<Airport> {
     private static ObservableList<String> cityList;
+    private static ObservableList<String> countryList;
 
     public static ObservableList<String> getCityList() {
         if (cityList == null) {
@@ -28,6 +29,76 @@ public class AirportDao implements Dao<Airport> {
             }
         }
         return  cityList;
+    }
+
+    public static ObservableList<String> getCountryList() {
+        if (countryList == null) {
+            countryList = FXCollections.observableList(new LinkedList<String>());
+            Connection conn = DataSource.getConnection();
+            String statement = "SELECT DISTINCT country FROM airports ORDER BY country;";
+            try {
+                PreparedStatement query = conn.prepareStatement(statement);
+                ResultSet res = query.executeQuery();
+                while (res.next()) {
+                    countryList.add(res.getString("country"));
+                }
+                query.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return  countryList;
+    }
+
+    public static ObservableList<String> getCityList(String country) {
+
+        if (country == null) {
+            return FXCollections.observableList(new LinkedList<>());
+        }
+
+        LinkedList<String> cityList = new LinkedList<>();
+
+        Connection conn = DataSource.getConnection();
+        String statement = "SELECT DISTINCT city FROM airports WHERE country = ? ORDER BY city DESC;";
+        try {
+            PreparedStatement query = conn.prepareStatement(statement);
+            query.setString(1, country);
+            ResultSet res = query.executeQuery();
+            while (res.next()) {
+                cityList.addFirst(res.getString("city"));
+            }
+            query.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return FXCollections.observableList(cityList);
+    }
+
+    public static ObservableList<Airport> getAirportList(String city) {
+        Connection conn = DataSource.getConnection();
+        LinkedList<Airport> list = new LinkedList<>();
+
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM airports WHERE city = ? ORDER BY name DESC;");
+            query.setString(1, city);
+            ResultSet res = query.executeQuery();
+            while (res.next()) {
+                Airport airport = new Airport();
+                airport.setId(res.getInt("id"));
+                airport.setName(res.getString("name"));
+                airport.setCity(res.getString("city"));
+                airport.setCountry(res.getString("country"));
+                airport.setIATA(res.getString("IATA"));
+                airport.setICAO(res.getString("ICAO"));
+
+
+                list.addFirst(airport);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return FXCollections.observableList(list);
     }
 
     @Override
@@ -74,7 +145,7 @@ public class AirportDao implements Dao<Airport> {
                 airport .setCountry(res.getString("country"));
                 airport .setIATA(res.getString("IATA"));
                 airport .setICAO(res.getString("ICAO"));
-                
+
             }
 
             query.close();
@@ -102,13 +173,13 @@ public class AirportDao implements Dao<Airport> {
                 airport.setCountry(res.getString("country"));
                 airport.setIATA(res.getString("IATA"));
                 airport.setICAO(res.getString("ICAO"));
-              
+
 
                 list.add(airport);
             }
             return list;
         } catch (SQLException e) {
-           
+
             e.printStackTrace();
             return null;
         }

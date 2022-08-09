@@ -1,0 +1,219 @@
+@import "Application.css";
+
+.card {
+    -fx-effect: null;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+}
+
+.searchable-combo-box .list-view {
+    -fx-background-color: PrimaryColor;
+    -fx-border-color: darkgrey;
+    -fx-border-width: 0.5;
+    -fx-effect: null;
+}
+
+.searchable-combo-box .list-view .list-cell {
+    -fx-background-color: transparent;
+}
+
+.searchable-combo-box .list-view .list-cell:hover,
+.searchable-combo-box .list-view .list-cell:hover .text {
+    -fx-background-color: AlphaAccentColor;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.searchable-combo-box .list-view .list-cell:selected,
+.searchable-combo-box .list-view .list-cell:selected .text {
+    -fx-background-color: AccentColor;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.searchable-combo-box {
+    -fx-prompt-text-fill: grey;
+    -fx-border-width: 1;
+    -fx-border-color: AccentColor;
+}
+
+.searchable-combo-box,
+.searchable-combo-box > * {
+    -fx-background-color: transparent;
+    -fx-border-radius: 50%;
+}
+
+.searchable-combo-box .image-view {
+    visibility:false;
+}
+
+
+.date-picker {
+    -fx-border-width: 2;
+    -fx-border-color: AccentColor;
+    -fx-border-radius: 50%;
+}
+
+.spinner,
+.spinner > * {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-pref-width: 35;
+    -fx-padding: 0;
+}
+
+.spinner > .increment-arrow-button,
+.spinner > .decrement-arrow-button {
+    -fx-padding: 1;
+    -fx-cursor: hand;
+}
+
+.spinner > * > .increment-arrow,
+.spinner > * > .decrement-arrow {
+    -fx-background-color: AccentColor;
+}
+.spinner .text-field {
+    -fx-alignment: center;
+}
+
+.time-picker .label {
+    -fx-text-fill: AccentColor;
+}
+
+.SeatIcon,
+#seatMap .SeatIcon {
+    -fx-background-radius: 30% 30% 0 0;
+    -fx-border-radius: 30% 30% 0 0;
+    -fx-border-width: 3;
+}
+
+.FirstSeatIcon,
+#seatMap .FirstSeatIcon  {
+    -fx-border-color: #ffb01e;
+}
+
+.BusinessSeatIcon,
+#seatMap .BusinessSeatIcon  {
+    -fx-border-color: #4fc10c;
+}
+
+.EconomySeatIcon,
+#seatMap .EconomySeatIcon  {
+    -fx-border-color: darkgray;
+}
+
+.underLine-field {
+    -fx-background-color:  transparent;
+    -fx-border-color: AccentColor;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0;
+}
+
+.separator:horizontal {
+    -fx-padding: 0;
+}
+
+#avatar .button {
+    -fx-opacity: 0;
+    -fx-background-color: rgba(162, 162, 162, 0.5);
+    -fx-background-radius: 50%;
+}
+
+#avatar .button:hover {
+    -fx-opacity: 1;
+    -fx-effect: null;
+}
+
+#close-button {
+    -fx-background-color: transparent;
+    -fx-effect: null;
+}
+
+#close-button .ikonli-font-icon {
+    -fx-icon-color: darkgrey;
+}
+
+#close-button:hover .ikonli-font-icon {
+    -fx-icon-color: red;
+}
+
+.action-button:hover {
+    -fx-effect: null;
+}
+#delete-button {
+    -fx-background-color: red;
+}
+#edit-button {
+    -fx-background-color: orange;
+}
+#add-button {
+    -fx-background-color: #069cff;
+}
+
+.search-bar {
+    -fx-border-radius: 50%;
+    -fx-border-width: 1.5;
+    -fx-border-color: AccentColor;
+    -fx-background-color: transparent;
+}
+
+.main-header .text {
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.sub-header .text {
+    -fx-font-weight: normal;
+    -fx-cursor: hand;
+}
+
+.table-view,
+.table-view .column-header,
+.table-view .corner,
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1.5 0;
+    -fx-border-color: AccentColor;
+    -fx-padding: 0 0 5 0;
+}
+
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.table-row-cell:odd{
+    -fx-background-color: PrimaryColor;
+    -fx-text-alignment: center;
+}
+.table-row-cell:even{
+    -fx-background-color: SecondaryColor;
+}
+.table-row-cell:hover {
+    -fx-background-color: AlphaAccentColor;
+    -fx-text-background-color: white;
+}
+.table-row-cell:selected {
+    -fx-background-color: AccentCoLor;
+    -fx-text-background-color: white;
+}
+
+#themeButton {
+    -fx-background-color: SecondaryColor;
+    -fx-background-radius: 50%;
+}
+#themeButton .ikonli-font-icon {
+    -fx-icon-code: mdi-weather-night;
+    -fx-icon-color: #7c38e5
+}
+#themeButton:selected .ikonli-font-icon {
+    -fx-icon-code: mdi-white-balance-sunny;
+    -fx-icon-color: #ffea00
+}

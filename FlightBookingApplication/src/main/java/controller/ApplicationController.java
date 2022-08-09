@@ -13,6 +13,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Account;
 import view.Palette;
 
 import java.io.IOException;
@@ -48,9 +49,19 @@ public class ApplicationController implements Initializable {
 
     public static void appLoad(Stage primaryStage){
         try {
-
-            HBox root = FXMLLoader.load(ApplicationController.class.getResource("/view/Application.fxml"));
-            root.getStylesheets().add(ApplicationController.class.getResource("/style/Application.css").toExternalForm());
+            Parent root;
+            if (Account.getCurrentUser().getPassenger() != null) {
+                root = FXMLLoader.load(ApplicationController.class.getResource("/view/Application.fxml"));
+                root.getStylesheets().add(ApplicationController.class.getResource("/style/Application.css").toExternalForm());
+            }
+            else if (Account.getCurrentUser().getAirline() != null) {
+                root = FXMLLoader.load(ApplicationController.class.getResource("/view/Dashboard_Airline.fxml"));
+                root.getStylesheets().add(ApplicationController.class.getResource("/style/Dashboard_Airline.css").toExternalForm());
+            }
+            else {
+                root = FXMLLoader.load(ApplicationController.class.getResource("/view/Application.fxml"));
+                root.getStylesheets().add(ApplicationController.class.getResource("/style/Application.css").toExternalForm());
+            }
 
             Scene scene = new Scene(root, 1366, 768);
 

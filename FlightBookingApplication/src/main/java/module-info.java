@@ -10,4 +10,5 @@ module FlightBookingApplication {
 
     opens application;
     opens controller;
+    opens models;
 }

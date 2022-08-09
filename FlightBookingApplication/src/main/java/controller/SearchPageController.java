@@ -56,8 +56,6 @@ public class SearchPageController implements Initializable {
 
     @FXML
     private ScrollPane scrollPane;
-    private final FilteredList<String> filteredDepCityList = new FilteredList<String>(AirportDao.getCityList());
-    private final FilteredList<String> filteredArrCityList = new FilteredList<String>(AirportDao.getCityList());
     private final FilteredList<Flight> results = new FilteredList<>(FlightDao.getInstance().getFlightsList());
 
 
@@ -68,8 +66,8 @@ public class SearchPageController implements Initializable {
         //add search results
         getData();
 
-        inputDepartureCity.setItems(filteredDepCityList);
-        inputArrivalCity.setItems(filteredArrCityList);
+        inputDepartureCity.setItems(AirportDao.getCityList());
+        inputArrivalCity.setItems(AirportDao.getCityList());
 
     }
 

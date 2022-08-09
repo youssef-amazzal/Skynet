@@ -13,6 +13,29 @@ public class ReservationDao implements Dao<Reservation> {
     FlightDao flightDao = FlightDao.getInstance();
     SeatDao seatDao = new SeatDao();
 
+    public int countReservations(Flight flight) {
+        Connection conn = DataSource.getConnection();
+        String statement = "SELECT COUNT(reservations.id) AS total FROM reservations WHERE id_flight = ?;";
+        int total = 0;
+        try {
+            PreparedStatement query = conn.prepareStatement(statement);
+            query.setInt(1, flight.getId());
+
+            ResultSet res = query.executeQuery();
+
+            if (res.next()) {
+                total = res.getInt("total");
+            }
+
+            query.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return total;
+    }
+
 
     @Override
     public int create(Reservation reservation) {
