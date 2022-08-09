@@ -21,10 +21,14 @@ public class AirlineDao implements Dao<Airline> {
         read(id);
     }
 
-    private FileInputStream imageToStream(Image logo) throws IOException {
+    private byte[] imageToStream(Image logo) throws IOException {
         File file = new File("logo.png");
         ImageIO.write(SwingFXUtils.fromFXImage(logo, null), "png", file);
-        return new FileInputStream(file);
+        FileInputStream fileInputStream =  new FileInputStream(file);
+        byte[] byteArray = fileInputStream.readAllBytes() ;
+        fileInputStream.close();
+        file.delete();
+        return byteArray;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class AirlineDao implements Dao<Airline> {
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, airline.getName());
-            query.setBinaryStream(2, imageToStream(airline.getLogo()));
+            query.setBytes(2, imageToStream(airline.getLogo()));
 
 
             query.executeUpdate();
@@ -90,7 +94,7 @@ public class AirlineDao implements Dao<Airline> {
     @Override
     public List<Airline> readAll() {
         Connection conn = DataSource.getConnection();
-        List<Airline> list = new ArrayList<Airline>();
+        List<Airline> list = new ArrayList<>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM airlines;");
@@ -131,10 +135,10 @@ public class AirlineDao implements Dao<Airline> {
             }
 
             if (airline.getLogo() != null) {
-                query.setBinaryStream(2, imageToStream(airline.getLogo()));
+                query.setBytes(2, imageToStream(airline.getLogo()));
             }
             else {
-                query.setBinaryStream(2, imageToStream(original.getLogo()));
+                query.setBytes(2, imageToStream(original.getLogo()));
             }
             query.executeUpdate();
             query.close();

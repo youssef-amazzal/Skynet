@@ -1,5 +1,6 @@
 package controller;
 
+import data.AirlineDao;
 import data.AirportDao;
 import data.FlightDao;
 import data.ReservationDao;
@@ -7,21 +8,30 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import models.Account;
 import models.Airport;
 import models.Flight;
 import org.controlsfx.control.SearchableComboBox;
 import view.Palette;
 
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -424,6 +434,29 @@ public class DashboardController implements Initializable {
         }
         else {
             Palette.LightPalette.usePalette(parent.getScene());
+        }
+    }
+
+    @FXML
+    void uploadeImage(ActionEvent event) {
+        AirlineDao airlineDao = new AirlineDao();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PNG IMAGE","*.png")
+        );
+
+        File picturesDir = new File(System.getProperty("user.home") + "\\pictures");
+        if (picturesDir.exists()) {
+            fileChooser.setInitialDirectory(picturesDir);
+        }
+
+        File selectedFile = fileChooser.showOpenDialog(parent.getScene().getWindow());
+
+        if (selectedFile != null) {
+            Image logo = new Image(selectedFile.getAbsolutePath());
+            airlineLogo.setImage(logo);
+            Account.getCurrentUser().getAirline().setLogo(logo);
+            airlineDao.update(Account.getCurrentUser().getAirline().getId(), Account.getCurrentUser().getAirline());
         }
     }
 }
