@@ -14,15 +14,25 @@
 .bookingWindow> .scroll-bar:vertical .thumb:hover {
     -fx-background-color: transparent;
 }
-
-#airPlane {
-    -fx-border-radius: 50% 50% 0 0;
-    -fx-background-radius: 50% 50% 0 0;
+#airPlane-head {
+    -fx-border-radius: 100% 100% 0 0;
+    -fx-background-radius: 100% 100% 0 0;
     -fx-background-color: SecondaryColor;
+    -fx-border-color: darkgrey;
+    -fx-border-width: 0.5;
+    -fx-background-insets: 1;
+    -fx-padding: 300 30 30 30;
+}
+#airPlane-body {
+    -fx-background-radius: 500 500 0 0;
+    -fx-background-color: SecondaryColor;
+    -fx-background-insets: 1;
+    -fx-padding: 0 30 30 30;
 }
 
-#airPlane > * {
-    -fx-background-radius: 37% 37% 0 0;
+
+#airPlane-body > * {
+    -fx-background-radius: 500 500 0 0;
     -fx-background-color: DerivedColor;
 }
 

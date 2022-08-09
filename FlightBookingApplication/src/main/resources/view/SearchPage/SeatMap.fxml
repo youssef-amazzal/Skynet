@@ -435,43 +435,56 @@
                   <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0">
                      <children>
                         <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="85.0" HBox.hgrow="ALWAYS" />
-                        <StackPane id="airPlane" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="562.0" styleClass="card">
-                           <children>
-                              <StackPane maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="439.0" StackPane.alignment="TOP_CENTER">
-                                 <StackPane.margin>
-                                    <Insets bottom="10.0" left="30.0" right="30.0" top="200.0" />
-                                 </StackPane.margin>
-                                 <children>
-                                    <GridPane id="seatMap" fx:id="seatMap" hgap="15.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="406.0" vgap="15.0" StackPane.alignment="TOP_CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <StackPane.margin>
-                                          <Insets bottom="20.0" left="30.0" right="30.0" top="130.0" />
-                                       </StackPane.margin>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </GridPane>
-                                 </children>
-                                 <effect>
-                                    <InnerShadow blurType="GAUSSIAN" choke="0.48" height="69.36" radius="23.555" width="26.86">
-                                       <color>
-                                          <Color opacity="0.1335877925157547" />
-                                       </color>
-                                    </InnerShadow>
-                                 </effect>
-                              </StackPane>
-                           </children>
+                        <StackPane alignment="TOP_CENTER">
                            <HBox.margin>
                               <Insets bottom="100.0" />
                            </HBox.margin>
+                           <children>
+                              <StackPane id="airPlane-head" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="562.0" style="-fx-background-radius: 0; -fx-border-radius: 0;">
+                                 <StackPane.margin>
+                                    <Insets top="1200.0" />
+                                 </StackPane.margin>
+                              </StackPane>
+                              <StackPane id="airPlane-head" alignment="TOP_CENTER" maxHeight="1200.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1200.0" prefWidth="562.0" />
+                              <StackPane id="airPlane-body" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="562.0">
+                                 <children>
+                                    <StackPane id="airPlane-interior" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="439.0" StackPane.alignment="TOP_CENTER">
+                                       <StackPane.margin>
+                                          <Insets />
+                                       </StackPane.margin>
+                                       <children>
+                                          <GridPane id="seatMap" fx:id="seatMap" hgap="15.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="406.0" vgap="15.0" StackPane.alignment="TOP_CENTER">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <StackPane.margin>
+                                                <Insets bottom="20.0" left="30.0" right="30.0" top="130.0" />
+                                             </StackPane.margin>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </GridPane>
+                                       </children>
+                                       <effect>
+                                          <InnerShadow blurType="GAUSSIAN" choke="0.48" height="69.36" radius="23.555" width="26.86">
+                                             <color>
+                                                <Color opacity="0.1335877925157547" />
+                                             </color>
+                                          </InnerShadow>
+                                       </effect>
+                                    </StackPane>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets top="300.0" />
+                                 </StackPane.margin>
+                              </StackPane>
+                           </children>
                         </StackPane>
                         <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="85.0" HBox.hgrow="ALWAYS" />
                      </children>
