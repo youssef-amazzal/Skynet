@@ -96,10 +96,7 @@ public class FlightCardController implements Initializable {
     void setData(Flight flight) {
         this.flight = flight;
 
-        Image defaultLogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_logo_x96.png")));
-        Image airLineLogo = flight.getAirline().getLogo();
-        AirlineLogo.setImage((airLineLogo != null) ? airLineLogo : defaultLogo);
-
+        AirlineLogo.setImage(flight.getAirline().getLogo());
         lblDepAirport.setText(flight.getDepAirport().getIATA());
         lblDepCity.setText(flight.getDepAirport().getCity());
         lblDepTime.setText(flight.getDepDatetime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));

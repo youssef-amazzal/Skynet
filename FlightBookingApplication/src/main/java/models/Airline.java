@@ -2,6 +2,8 @@ package models;
 
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 public class Airline {
     private int id;
     private String name;
@@ -22,6 +24,9 @@ public class Airline {
     }
 
     public Image getLogo() {
+        if (logo == null) {
+            return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_logo_x96.png")));
+        }
         return logo;
     }
     public void setLogo(Image logo) {
