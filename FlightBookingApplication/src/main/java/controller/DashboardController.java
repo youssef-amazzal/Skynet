@@ -8,16 +8,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -28,10 +25,7 @@ import models.Flight;
 import org.controlsfx.control.SearchableComboBox;
 import view.Palette;
 
-import javax.imageio.ImageIO;
-import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -46,9 +40,6 @@ public class DashboardController implements Initializable {
     private StackPane parent;
     @FXML
     private Button actionButton;
-
-    @FXML
-    private Button addButton;
 
     @FXML
     private Button editButton;
@@ -151,8 +142,9 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         FlightDao flightDao = new FlightDao();
-        results = new FilteredList<>(FXCollections.observableList(flightDao.read(Account.getCurrentUser().getAirline())));
+        results = new FilteredList<>(FXCollections.observableList(flightDao.read(Account.getCurrentUser().getAirline())), flight -> true);
         setData();
+        findFlight();
     }
 
     private void setData() {
@@ -458,5 +450,57 @@ public class DashboardController implements Initializable {
             Account.getCurrentUser().getAirline().setLogo(logo);
             airlineDao.update(Account.getCurrentUser().getAirline().getId(), Account.getCurrentUser().getAirline());
         }
+    }
+
+    private void findFlight() {
+
+        serachBar.textProperty().addListener((observableValue, oldValue, newValue) -> {
+
+            results.setPredicate(flight -> {
+
+                if (newValue.isBlank()) {
+                    return true;
+                }
+
+                String keyword = newValue.toLowerCase();
+
+                if (String.valueOf(flight.getId()).equals(keyword)) {
+                    return true;
+                }
+                else if (flight.getDepAirport().getName().toLowerCase().contains(keyword)) {
+                    return true;
+                }
+                else if (flight.getDepAirport().getCountry().toLowerCase().contains(keyword)) {
+                    return true;
+                }
+                else if (flight.getDepAirport().getCity().toLowerCase().contains(keyword)) {
+                    return true;
+                }
+                else if (flight.getDepAirport().getIATA().toLowerCase().equals(keyword)) {
+                    return true;
+                }
+                else if (flight.getDepAirport().getICAO().toLowerCase().equals(keyword)) {
+                    return true;
+                }
+                else if (flight.getArrAirport().getName().toLowerCase().contains(keyword)) {
+                    return true;
+                }
+                else if (flight.getArrAirport().getCountry().toLowerCase().contains(keyword)) {
+                    return true;
+                }
+                else if (flight.getArrAirport().getCity().toLowerCase().contains(keyword)) {
+                    return true;
+                }
+                else if (flight.getArrAirport().getIATA().toLowerCase().equals(keyword)) {
+                    return true;
+                }
+                else if (flight.getArrAirport().getICAO().toLowerCase().equals(keyword)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+        });
     }
 }
