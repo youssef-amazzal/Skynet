@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import view.Palette;
 
 public class Main extends Application {
@@ -25,6 +26,8 @@ public class Main extends Application {
 			Palette.getDefaultPalette().usePalette(scene);
 
 			CSSFX.start();
+			primaryStage.initStyle(StageStyle.UNIFIED);
+			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Flight Booking Application");
 			primaryStage.show();
