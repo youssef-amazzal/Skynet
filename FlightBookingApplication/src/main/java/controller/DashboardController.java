@@ -145,6 +145,10 @@ public class DashboardController implements Initializable {
         results = new FilteredList<>(FXCollections.observableList(flightDao.read(Account.getCurrentUser().getAirline())), flight -> true);
         setData();
         findFlight();
+
+        if (Palette.getDefaultPalette().equals(Palette.DarkPalette)) {
+            themeButton.setSelected(true);
+        }
     }
 
     private void setData() {
@@ -422,10 +426,12 @@ public class DashboardController implements Initializable {
     @FXML
     void changeTheme() {
         if (themeButton.isSelected()) {
-            Palette.DarkPalette.usePalette(parent.getScene());
+            Palette.setDefaultPalette(Palette.DarkPalette);
+            Palette.getDefaultPalette().usePalette(parent.getScene());
         }
         else {
-            Palette.LightPalette.usePalette(parent.getScene());
+            Palette.setDefaultPalette(Palette.LightPalette);
+            Palette.getDefaultPalette().usePalette(parent.getScene());
         }
     }
 
