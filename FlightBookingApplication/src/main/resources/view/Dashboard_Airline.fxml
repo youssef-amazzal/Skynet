@@ -31,7 +31,7 @@
                <children>
                   <VBox>
                      <children>
-                        <HBox alignment="CENTER_LEFT">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Dashboard">
                                  <font>
@@ -44,6 +44,11 @@
                                     <FontIcon iconLiteral="mdi-weather-night" iconSize="30" />
                                  </graphic>
                               </ToggleButton>
+                              <Button id="logoutBtn" mnemonicParsing="false" onAction="#Logout" prefHeight="50.0" prefWidth="50.0">
+                                 <graphic>
+                                    <FontIcon iconLiteral="mdi-exit-to-app" iconSize="30" />
+                                 </graphic>
+                              </Button>
                            </children>
                         </HBox>
                      </children>

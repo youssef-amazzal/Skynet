@@ -205,15 +205,32 @@
     -fx-text-background-color: white;
 }
 
+#logoutBtn,
 #themeButton {
     -fx-background-color: SecondaryColor;
     -fx-background-radius: 50%;
 }
+
 #themeButton .ikonli-font-icon {
     -fx-icon-code: mdi-weather-night;
+    -fx-icon-color: grey;
+}
+#themeButton:hover .ikonli-font-icon {
     -fx-icon-color: #7c38e5
 }
 #themeButton:selected .ikonli-font-icon {
     -fx-icon-code: mdi-white-balance-sunny;
+}
+#themeButton:selected:hover .ikonli-font-icon {
     -fx-icon-color: #ffea00
+}
+
+#logoutBtn .ikonli-font-icon {
+    -fx-icon-size: 30px ;
+    -fx-icon-color: grey;
+}
+#logoutBtn:hover,
+#logoutBtn:hover .ikonli-font-icon {
+    -fx-icon-color: tomato;
+    -fx-effect: null;
 }

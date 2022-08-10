@@ -10,7 +10,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -19,6 +22,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Account;
 import models.Airport;
 import models.Flight;
@@ -432,6 +437,28 @@ public class DashboardController implements Initializable {
         else {
             Palette.setDefaultPalette(Palette.LightPalette);
             Palette.getDefaultPalette().usePalette(parent.getScene());
+        }
+    }
+
+    @FXML
+    void Logout(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/Signin.fxml"));
+
+            Scene scene = new Scene(root);
+            Palette.getDefaultPalette().usePalette(scene);
+
+            Stage oldStage = (Stage) parent.getScene().getWindow();
+            oldStage.close();
+
+            Stage stage = new Stage(StageStyle.UNIFIED);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.setTitle("Flight Booking Application");
+            stage.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
