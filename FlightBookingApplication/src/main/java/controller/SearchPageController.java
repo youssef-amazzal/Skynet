@@ -102,13 +102,13 @@ public class SearchPageController implements Initializable {
     void search(ActionEvent event) {
 
         results.setPredicate(flight -> {
-            if (inputDepartureCity.getSelectionModel().getSelectedItem() != null) {
+            if (inputDepartureCity.getSelectionModel().getSelectedItem() != null && !inputDepartureCity.getSelectionModel().getSelectedItem().isBlank()) {
                 if (!flight.getDepAirport().getCity().equals(inputDepartureCity.getSelectionModel().getSelectedItem())) {
                     return false;
                 }
             }
 
-            if (inputArrivalCity.getSelectionModel().getSelectedItem() != null) {
+            if (inputArrivalCity.getSelectionModel().getSelectedItem() != null && !inputArrivalCity.getSelectionModel().getSelectedItem().isBlank()) {
                 if (!flight.getArrAirport().getCity().equals(inputArrivalCity.getSelectionModel().getSelectedItem())) {
                     return false;
                 }
