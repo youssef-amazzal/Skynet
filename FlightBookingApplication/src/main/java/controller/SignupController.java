@@ -86,6 +86,8 @@ public class SignupController implements Initializable {
         passenger.setFirstname(txtFirstname.getText().trim());
         passenger.setLastname(txtLastname.getText().trim());
         passenger.setBirthDate(birthDatePicker.getValue());
+
+        passengerDao.create(passenger);
         account.setPassenger(passenger.getId());
 
         if (accountDao.read(txtUsername.getText()) != null) {

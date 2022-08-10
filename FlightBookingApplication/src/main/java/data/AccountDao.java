@@ -27,11 +27,9 @@ public class AccountDao implements Dao<Account> {
             query.setString(2, account.getPassword());
             query.setString(3, account.getEmailAddress());
             if (account.getPassenger() != null) {
-                passengerDao.create(account.getPassenger());
                 query.setInt(4, account.getPassenger().getId());
             }
             if (account.getAirline() != null) {
-                airlineDao.create(account.getAirline());
                 query.setInt(5, account.getAirline().getId());
             }
 
