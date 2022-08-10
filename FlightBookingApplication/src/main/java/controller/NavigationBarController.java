@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -15,6 +16,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import view.Palette;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,9 +37,6 @@ public class NavigationBarController implements Initializable {
     private ToggleButton homeBtn;
 
     @FXML
-    private ToggleButton logoutBtn;
-
-    @FXML
     private VBox navigationBar;
 
     @FXML
@@ -45,18 +46,22 @@ public class NavigationBarController implements Initializable {
     private ToggleButton searchBtn;
 
     @FXML
-    private ToggleButton settingsBtn;
+    private ToggleButton themeButton;
 
     private final ObservableList<Node> searchPages = FXCollections.observableList(ApplicationController.searchPageStack);
+
     private final ObservableList<Node> homePages = FXCollections.observableList(ApplicationController.homePageStack);
     private Node accountPages;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         navigationBar.getStylesheets().add(getClass().getResource("/style/NavigationBar.css").toExternalForm());
         VBox.setVgrow(navigationBar, Priority.ALWAYS);
         alwaysOneSelected();
+
+        if (Palette.getDefaultPalette().equals(Palette.DarkPalette)) {
+            themeButton.setSelected(true);
+        }
     }
 
     private void alwaysOneSelected() {
@@ -95,7 +100,24 @@ public class NavigationBarController implements Initializable {
 
     @FXML
     void Logout(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/Signin.fxml"));
 
+            Scene scene = new Scene(root);
+            Palette.getDefaultPalette().usePalette(scene);
+
+            Stage oldStage = (Stage) navigationBar.getScene().getWindow();
+            oldStage.close();
+
+            Stage stage = new Stage(StageStyle.UNIFIED);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.setTitle("Flight Booking Application");
+            stage.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -129,8 +151,15 @@ public class NavigationBarController implements Initializable {
     }
 
     @FXML
-    void openSettings(ActionEvent event) {
-
+    void changeTheme() {
+        if (themeButton.isSelected()) {
+            Palette.setDefaultPalette(Palette.DarkPalette);
+            Palette.getDefaultPalette().usePalette(navigationBar.getScene());
+        }
+        else {
+            Palette.setDefaultPalette(Palette.LightPalette);
+            Palette.getDefaultPalette().usePalette(navigationBar.getScene());
+        }
     }
 
     public void refreshSearchPage() {
