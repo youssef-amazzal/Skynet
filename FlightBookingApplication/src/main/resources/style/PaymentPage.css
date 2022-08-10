@@ -27,23 +27,7 @@
 
 .spinner,
 .spinner > * {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
     -fx-pref-width: 55;
-}
-
-.spinner > .increment-arrow-button,
-.spinner > .decrement-arrow-button {
-    -fx-padding: 1;
-    -fx-cursor: hand;
-}
-
-.spinner > * > .increment-arrow,
-.spinner > * > .decrement-arrow {
-    -fx-background-color: AccentColor;
-}
-.spinner .text-field {
-    -fx-alignment: center;
 }
 
 .credit-card,

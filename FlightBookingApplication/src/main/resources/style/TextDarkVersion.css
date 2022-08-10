@@ -4,7 +4,10 @@
     -fx-fill: white;
 }
 
-#calendarContainer .text {
+.date-picker .text {
+    -fx-fill: white;
+}
+.date-picker-popup .text {
     -fx-fill: white;
 }
 

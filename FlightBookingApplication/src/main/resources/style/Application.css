@@ -35,7 +35,6 @@
 .arrow {
     -fx-background-color: AccentColor;
 }
-
 /*========================================== Separator Styling ==========================================*/
 .separator:vertical,
 .separator:horizontal {
@@ -71,7 +70,6 @@
     -fx-background-color: AccentColor;
 }
 /*======================================== Date-Picker-Popup ====================================================*/
-
 .date-picker,
 .date-picker > .text-field,
 .date-picker > .arrow-button {
@@ -79,24 +77,82 @@
 }
 
 .date-picker-popup {
-    -fx-background-color: AccentColor;
-
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-color: PrimaryColor;
+    -fx-border-color: darkgrey;
+    -fx-border-width: 0.5;
+    -fx-effect: null;
 }
+
 .date-picker-popup > .month-year-pane,
-.date-picker-popup > .month-year-pane .text {
-    -fx-background-color: AccentColor;
-    -fx-font-weight: bold;
-}
-
-.date-picker-popup > * > .spinner > .button > * {
-    -fx-background-color: white;
-}
-
-.date-picker-popup > * > .spinner > .button:hover,
-.date-picker-popup > * > .spinner > .button:focused {
+.date-picker-popup > .calendar-grid {
     -fx-background-color: transparent;
 }
 
+.date-picker-popup > * > .spinner > .label {
+    -fx-min-width: 60;
+}
+
+.date-picker-popup > * > .spinner > .button:selected,
+.date-picker-popup > * > .spinner > .button:hover,
+.date-picker-popup > * > .spinner > .button:focused,
+.date-picker-popup > * > .spinner > .button {
+    -fx-background-radius: 50%;
+    -fx-min-width: 20;
+    -fx-min-height: 20;
+    -fx-max-width: 20;
+    -fx-max-height: 20;
+    -fx-background-color: AccentColor;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 0);
+}
+
+.date-picker-popup > * > .spinner > .button > .left-arrow,
+.date-picker-popup > * > .spinner > .button > .right-arrow {
+    -fx-background-color: white;
+    -fx-border-width: 1;
+    -fx-border-color: white;
+}
+
+.date-picker-popup > * > .date-cell {
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 50%;
+    -fx-font-size: 12;
+    -fx-min-height: 40;
+    -fx-min-width: 40;
+    -fx-max-height: 40;
+    -fx-max-width: 40;
+}
+
+.date-picker-popup > * > .today .text {
+    -fx-fill: AccentColor;
+}
+
+.date-picker-popup > * > .day-cell:hover,
+.date-picker-popup > * > .day-cell:hover .text,
+.date-picker-popup > * > .today.selected .text,
+.date-picker-popup > * > .previous-month.selected .text,
+.date-picker-popup > * > .next-month.selected .text,
+.date-picker-popup > * > .previous-month.selected,
+.date-picker-popup > * > .next-month.selected,
+.date-picker-popup > * > .selected {
+    -fx-background-color: AccentColor;
+    -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup > * > .previous-month .text,
+.date-picker-popup > * > .next-month .text {
+    -fx-fill: grey;
+}
+
+.date-picker-popup > * > .previous-month.today .text,
+.date-picker-popup > * > .next-month.today .text {
+    -fx-fill: AccentColor;
+}
 /*======================================== text & font styling ====================================================*/
 .text-input {
     -fx-font-size: 13;
@@ -109,9 +165,119 @@
 .ikonli-font-icon {
     -fx-icon-color: AccentColor;
 }
+/*======================================== SearchableComboBox ====================================================*/
+.searchable-combo-box .list-view {
+    -fx-background-color: PrimaryColor;
+    -fx-border-color: darkgrey;
+    -fx-border-width: 0.5;
+    -fx-effect: null;
+}
+
+.searchable-combo-box .list-view .list-cell {
+    -fx-background-color: transparent;
+}
+
+.searchable-combo-box .list-view .list-cell:hover,
+.searchable-combo-box .list-view .list-cell:hover .text {
+    -fx-background-color: AlphaAccentColor;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.searchable-combo-box .list-view .list-cell:selected,
+.searchable-combo-box .list-view .list-cell:selected .text {
+    -fx-background-color: AccentColor;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.searchable-combo-box {
+    -fx-prompt-text-fill: grey;
+    -fx-border-width: 1;
+    -fx-border-color: AccentColor;
+}
+
+.searchable-combo-box,
+.searchable-combo-box > * {
+    -fx-background-color: transparent;
+    -fx-border-radius: 50%;
+}
+
+.searchable-combo-box .image-view {
+    visibility:false;
+}
+/*======================================== Spinner ====================================================*/
+.spinner,
+.spinner > * {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.spinner > .increment-arrow-button,
+.spinner > .decrement-arrow-button {
+    -fx-padding: 1;
+    -fx-cursor: hand;
+}
+
+.spinner > * > .increment-arrow,
+.spinner > * > .decrement-arrow {
+    -fx-background-color: AccentColor;
+}
+.spinner .text-field {
+    -fx-alignment: center;
+}
+/*======================================== Table-view ====================================================*/
+.main-header .text {
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.sub-header .text {
+    -fx-font-weight: normal;
+    -fx-cursor: hand;
+}
+
+.table-view,
+.table-view .column-header,
+.table-view .corner,
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1.5 0;
+    -fx-border-color: AccentColor;
+    -fx-padding: 0 0 5 0;
+}
+
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.table-row-cell:odd{
+    -fx-background-color: PrimaryColor;
+    -fx-text-alignment: center;
+}
+.table-row-cell:even{
+    -fx-background-color: SecondaryColor;
+}
+.table-row-cell:hover {
+    -fx-background-color: AlphaAccentColor;
+    -fx-text-background-color: white;
+}
+.table-row-cell:selected {
+    -fx-background-color: AccentCoLor;
+    -fx-text-background-color: white;
+}
 /*
 ==========================================================================================
- */
+*/
 
 .TransparentTextField,
 .TransparentTextField > *,

@@ -6,48 +6,6 @@
     -fx-border-width: 0;
 }
 
-.searchable-combo-box .list-view {
-    -fx-background-color: PrimaryColor;
-    -fx-border-color: darkgrey;
-    -fx-border-width: 0.5;
-    -fx-effect: null;
-}
-
-.searchable-combo-box .list-view .list-cell {
-    -fx-background-color: transparent;
-}
-
-.searchable-combo-box .list-view .list-cell:hover,
-.searchable-combo-box .list-view .list-cell:hover .text {
-    -fx-background-color: AlphaAccentColor;
-    -fx-fill: white;
-    -fx-font-weight: bold;
-}
-
-.searchable-combo-box .list-view .list-cell:selected,
-.searchable-combo-box .list-view .list-cell:selected .text {
-    -fx-background-color: AccentColor;
-    -fx-fill: white;
-    -fx-font-weight: bold;
-}
-
-.searchable-combo-box {
-    -fx-prompt-text-fill: grey;
-    -fx-border-width: 1;
-    -fx-border-color: AccentColor;
-}
-
-.searchable-combo-box,
-.searchable-combo-box > * {
-    -fx-background-color: transparent;
-    -fx-border-radius: 50%;
-}
-
-.searchable-combo-box .image-view {
-    visibility:false;
-}
-
-
 .date-picker {
     -fx-border-width: 2;
     -fx-border-color: AccentColor;
@@ -56,24 +14,7 @@
 
 .spinner,
 .spinner > * {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
     -fx-pref-width: 35;
-    -fx-padding: 0;
-}
-
-.spinner > .increment-arrow-button,
-.spinner > .decrement-arrow-button {
-    -fx-padding: 1;
-    -fx-cursor: hand;
-}
-
-.spinner > * > .increment-arrow,
-.spinner > * > .decrement-arrow {
-    -fx-background-color: AccentColor;
-}
-.spinner .text-field {
-    -fx-alignment: center;
 }
 
 .time-picker .label {
@@ -155,54 +96,6 @@
     -fx-border-width: 1.5;
     -fx-border-color: AccentColor;
     -fx-background-color: transparent;
-}
-
-.main-header .text {
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-}
-
-.sub-header .text {
-    -fx-font-weight: normal;
-    -fx-cursor: hand;
-}
-
-.table-view,
-.table-view .column-header,
-.table-view .corner,
-.table-view .column-header-background .filler {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header-background{
-    -fx-background-color: transparent;
-    -fx-border-width: 0 0 1.5 0;
-    -fx-border-color: AccentColor;
-    -fx-padding: 0 0 5 0;
-}
-
-.table-view .table-column {
-    -fx-alignment: CENTER;
-}
-
-.table-view .table-cell{
-    -fx-border-color: transparent;
-    -fx-padding: 2 0 2 10px;
-}
-.table-row-cell:odd{
-    -fx-background-color: PrimaryColor;
-    -fx-text-alignment: center;
-}
-.table-row-cell:even{
-    -fx-background-color: SecondaryColor;
-}
-.table-row-cell:hover {
-    -fx-background-color: AlphaAccentColor;
-    -fx-text-background-color: white;
-}
-.table-row-cell:selected {
-    -fx-background-color: AccentCoLor;
-    -fx-text-background-color: white;
 }
 
 #logoutBtn,
