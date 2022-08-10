@@ -100,6 +100,9 @@ public class NavigationBarController implements Initializable {
 
     @FXML
     void Logout(ActionEvent event) {
+
+        ApplicationController.clearAllCollections();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/Signin.fxml"));
 

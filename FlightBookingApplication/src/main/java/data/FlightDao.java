@@ -12,7 +12,6 @@ import java.util.List;
 
 public class FlightDao implements Dao<Flight> {
     private static FlightDao flightDao;
-    private static ObservableList<Flight> fightsList;
     public static FlightDao getInstance() {
         if (flightDao == null) {
             flightDao = new FlightDao();
@@ -21,10 +20,7 @@ public class FlightDao implements Dao<Flight> {
     }
 
     public ObservableList<Flight> getFlightsList() {
-        if (fightsList == null) {
-            fightsList = FXCollections.observableList(this.readAll());
-        }
-        return  fightsList;
+        return FXCollections.observableList(this.readAll());
     }
 
     AirportDao airportDao = new AirportDao();
