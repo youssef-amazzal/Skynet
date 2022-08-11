@@ -299,3 +299,34 @@
     -fx-border-color: AccentColor;
     -fx-border-width: 0 0 2 0;
 }
+
+.credit-card,
+.credit-card-overlay,
+.credit-card .ikonli-font-icon {
+    first-color: rgba(20, 136, 204, 1);
+    second-color: #2B32B2;
+    gradient-color: linear-gradient(to right bottom, first-color, second-color);
+    -fx-background-color: gradient-color;
+    -fx-background-radius: 20;
+    -fx-border-color: DarkGray;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 20;
+    -fx-cursor: default;
+    -fx-icon-color: white;
+}
+
+.credit-card-text {
+    -fx-text-fill: white;
+}
+
+.credit-card-overlay {
+    -fx-background-color: rgba(255,255,255,0.2);
+}
+
+.credit-card:selected .credit-card-overlay {
+    -fx-background-color: transparent;
+}
+
+.credit-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(20, 136, 204, 0.25), 10, 0.3, 0, 0);
+}

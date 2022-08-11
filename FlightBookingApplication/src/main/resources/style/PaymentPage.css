@@ -13,6 +13,10 @@
     -fx-background-color: transparent;
 }
 
+.credit-card {
+    -fx-cursor: hand;
+}
+
 #Summary {
     -fx-border-radius: 0;
     -fx-background-radius: 0;
@@ -28,35 +32,6 @@
 .spinner,
 .spinner > * {
     -fx-pref-width: 55;
-}
-
-.credit-card,
-.credit-card-overlay,
-.credit-card .ikonli-font-icon,
-.credit-card .text{
-    first-color: rgba(20, 136, 204, 1);
-    second-color: #2B32B2;
-    gradient-color: linear-gradient(to right bottom, first-color, second-color);
-    -fx-background-color: gradient-color;
-    -fx-background-radius: 20;
-    -fx-border-color: DarkGray;
-    -fx-border-width: 0.5;
-    -fx-border-radius: 20;
-    -fx-cursor: hand;
-    -fx-icon-color: white;
-
-}
-
-.credit-card-overlay {
-    -fx-background-color: rgba(255,255,255,0.2);
-}
-
-.credit-card:selected .credit-card-overlay {
-    -fx-background-color: transparent;
-}
-
-.credit-card:hover {
-    -fx-effect: dropshadow(gaussian, rgba(20, 136, 204, 0.25), 10, 0.3, 0, 0);;
 }
 
 #add-credit-card {

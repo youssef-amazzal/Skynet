@@ -12,7 +12,7 @@
 
 <HBox fx:id="parent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountPageController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="508.0" spacing="20.0">
+      <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="508.0" spacing="20.0" HBox.hgrow="ALWAYS">
          <children>
             <StackPane minWidth="-Infinity" prefHeight="130.0" prefWidth="408.0">
                <children>

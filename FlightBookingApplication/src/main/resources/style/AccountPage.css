@@ -29,3 +29,36 @@
 .imageView {
     -fx-background-radius: 50%;
 }
+
+/*================================= My Cards =================================*/
+.credit-card-overlay {
+    -fx-background-color: transparent;
+}
+
+.credit-card:hover {
+    -fx-effect: null;
+}
+
+.arrow-button,
+.arrow-button .ikonli-font-icon {
+    -fx-padding: 0;
+    -fx-min-width: 70;
+    -fx-background-color: transparent;
+    -fx-icon-size: 100;
+    -fx-icon-color: AccentColor;
+}
+
+.arrow-button:hover,
+.arrow-button:hover .ikonli-font-icon {
+    -fx-effect: null;
+    -fx-icon-size: 120;
+}
+
+#add-credit-card {
+    -fx-background-radius: 20;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 20;
+    -fx-background-color: PrimaryColor;
+    -fx-cursor: default;
+    -fx-effect: null;
+}
