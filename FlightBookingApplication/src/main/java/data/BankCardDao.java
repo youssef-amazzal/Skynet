@@ -15,13 +15,15 @@ public class BankCardDao implements Dao<BankCard> {
     @Override
     public int create(BankCard bankCard) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO bankCards (cardNumber, expirationDate, CVV, cardHolder) VALUES (?,?,?,?);";
+        String statement = "INSERT INTO bankCards (cardNumber, expirationDate, CVV, id_account, cardHolder) VALUES (?,?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, bankCard.getCardNumber());
             query.setLong(2, bankCard.getExpirationDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
             query.setString(3, bankCard.getCVV());
-            query.setInt(4, bankCard.getCardHolder().getId());
+            query.setInt(4, bankCard.getAccount().getId());
+            query.setString(5, bankCard.getCardHolder());
+
 
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
@@ -53,7 +55,8 @@ public class BankCardDao implements Dao<BankCard> {
                 bankCard.setCardNumber(res.getString("cardNumber"));
                 bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
                 bankCard.setCVV(res.getString("CVV"));
-                bankCard.setCardHolder(res.getInt("cardHolder"));
+                bankCard.setAccount(res.getInt("id_account"));
+                bankCard.setCardHolder(res.getString("cardHolder"));
 
             }
 
@@ -66,13 +69,13 @@ public class BankCardDao implements Dao<BankCard> {
         return bankCard;
     }
 
-    public List<BankCard> read(Account account) {
+    public List<BankCard> read(Account id_account) {
         Connection conn = DataSource.getConnection();
         List<BankCard> list = new ArrayList<>();
 
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM bankCards Where cardHolder = ?;");
-            query.setInt(1, account.getId());
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM bankCards Where id_account = ?;");
+            query.setInt(1, id_account.getId());
             ResultSet res = query.executeQuery();
 
             while (res.next()) {
@@ -81,7 +84,8 @@ public class BankCardDao implements Dao<BankCard> {
                 bankCard.setCardNumber(res.getString("cardNumber"));
                 bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
                 bankCard.setCVV(res.getString("CVV"));
-                bankCard.setCardHolder(res.getInt("cardHolder"));
+                bankCard.setAccount(res.getInt("id_account"));
+                bankCard.setCardHolder(res.getString("cardHolder"));
 
                 list.add(bankCard);
             }
@@ -107,7 +111,8 @@ public class BankCardDao implements Dao<BankCard> {
                 bankCard.setCardNumber(res.getString("cardNumber"));
                 bankCard.setExpirationDate(res.getTimestamp("expirationDate").toLocalDateTime().toLocalDate());
                 bankCard.setCVV(res.getString("CVV"));
-                bankCard.setCardHolder(res.getInt("cardHolder"));
+                bankCard.setAccount(res.getInt("id_account"));
+                bankCard.setCardHolder(res.getString("cardHolder"));
 
                 list.add(bankCard);
             }
@@ -123,11 +128,11 @@ public class BankCardDao implements Dao<BankCard> {
         Connection conn = DataSource.getConnection();
         BankCard original =  this.read(id);
 
-        String statement = "UPDATE bankCards SET cardNumber = ?, expirationDate = ?, CVV = ? WHERE id = ? ;";
+        String statement = "UPDATE bankCards SET cardNumber = ?, expirationDate = ?, CVV = ?, cardHolder = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(4, id);
+            query.setInt(5, id);
 
             if (bankCard.getCardNumber() != null) {
                 query.setString(1, bankCard.getCardNumber());
@@ -150,6 +155,12 @@ public class BankCardDao implements Dao<BankCard> {
                 query.setString(3, original.getCVV());
             }
 
+            if (bankCard.getCardHolder() != null) {
+                query.setString(1, bankCard.getCardHolder());
+            }
+            else {
+                query.setString(1, original.getCardHolder());
+            }
 
             query.executeUpdate();
             query.close();

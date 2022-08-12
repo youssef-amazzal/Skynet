@@ -6,11 +6,13 @@ import java.time.LocalDate;
 
 public class BankCard {
     private int id;
+    private  String cardHolder;
+
     private String cardNumber;
+
     private LocalDate expirationDate;
     private String CVV;
-    private int cardHolder;
-
+    private int account;
     public int getId() {
         return id;
     }
@@ -47,13 +49,21 @@ public class BankCard {
         this.CVV = CVV;
     }
 
-    public Account getCardHolder() {
-        return AccountDao.accountsMap.get(cardHolder);
+    public Account getAccount() {
+        return AccountDao.accountsMap.get(account);
     }
 
-    public void setCardHolder(int cardHolder) {
-        this.cardHolder = cardHolder;
+    public void setAccount(int account) {
+        this.account = account;
         AccountDao accountDao = new AccountDao();
-        accountDao.updateAccountsMap(cardHolder);
+        accountDao.updateAccountsMap(account);
+    }
+
+    public String getCardHolder() {
+        return cardHolder;
+    }
+
+    public void setCardHolder(String cardHolder) {
+        this.cardHolder = cardHolder;
     }
 }
