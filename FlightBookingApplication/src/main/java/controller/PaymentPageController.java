@@ -2,6 +2,7 @@ package controller;
 
 import data.BankCardDao;
 import data.ReservationDao;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -90,7 +91,7 @@ public class PaymentPageController implements Initializable {
         parent.getStylesheets().add(getClass().getResource("/style/PaymentPage.css").toExternalForm());
 
         BankCardDao bankCardDao = new BankCardDao();
-        ArrayList<BankCard> cardList = new ArrayList<>(bankCardDao.read(Account.getCurrentUser()));
+        ObservableList<BankCard> cardList = bankCardDao.getCardList();
         if (!cardList.isEmpty()) {
             for (BankCard card : cardList) {
                 try {

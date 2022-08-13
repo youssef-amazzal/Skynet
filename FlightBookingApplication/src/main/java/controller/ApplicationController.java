@@ -1,5 +1,6 @@
 package controller;
 
+import data.BankCardDao;
 import data.FavoriteDao;
 import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.event.ActionEvent;
@@ -81,5 +82,6 @@ public class ApplicationController implements Initializable {
         searchPageStack.clear();
         homePageStack.clear();
         FavoriteDao.favoritesMap.clear();
+        BankCardDao.deleteCardList();
     }
 }

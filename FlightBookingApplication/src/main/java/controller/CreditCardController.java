@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import models.Account;
 import models.BankCard;
 
 import java.net.URL;
@@ -29,17 +28,11 @@ public class CreditCardController implements Initializable {
     }
 
     public void setData(BankCard bankCard) {
-
-        lblCardHolder.setText(bankCard.getCardHolder());
-        Account.getCurrentUser().getPassenger().firstnameProperty().addListener((observable, oldValue, newValue) -> {
-            lblCardHolder.setText(bankCard.getAccount().getPassenger().getFirstname() + " " + bankCard.getAccount().getPassenger().getLastname());
+        lblCardHolder.textProperty().bind(bankCard.cardHolderProperty());
+        lblCardNumber.setText(bankCard.getCardNumberFormatted());
+        bankCard.cardNumberProperty().addListener((observable, oldValue, newValue) -> {
+            lblCardNumber.setText(bankCard.getCardNumberFormatted());
         });
-        Account.getCurrentUser().getPassenger().lastnameProperty().addListener((observable, oldValue, newValue) -> {
-            lblCardHolder.setText(bankCard.getAccount().getPassenger().getFirstname() + " " + bankCard.getAccount().getPassenger().getLastname());
-        });
-        lblCardNumber.setText(String.valueOf(bankCard.getCardNumberFormatted()));
-        int expYear = bankCard.getExpirationDate().getYear();
-        int expMonth = bankCard.getExpirationDate().getMonthValue();
-        lblExpirationDate.setText(expMonth + "/" + expYear);
+        lblExpirationDate.textProperty().bind(bankCard.expirationDateProperty());
     }
 }
