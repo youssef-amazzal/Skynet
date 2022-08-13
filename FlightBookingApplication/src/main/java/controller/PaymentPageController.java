@@ -1,6 +1,6 @@
 package controller;
 
-import data.BankCardDao;
+import data.CreditCardDao;
 import data.ReservationDao;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +14,6 @@ import models.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -90,10 +89,10 @@ public class PaymentPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/PaymentPage.css").toExternalForm());
 
-        BankCardDao bankCardDao = new BankCardDao();
-        ObservableList<BankCard> cardList = bankCardDao.getCardList();
+        CreditCardDao creditCardDao = new CreditCardDao();
+        ObservableList<CreditCard> cardList = creditCardDao.getCardList();
         if (!cardList.isEmpty()) {
-            for (BankCard card : cardList) {
+            for (CreditCard card : cardList) {
                 try {
                     FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/SearchPage/CreditCard.fxml")));
                     ToggleButton creditCard = cardLoader.load();

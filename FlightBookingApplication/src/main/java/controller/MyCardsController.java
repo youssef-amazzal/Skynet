@@ -1,6 +1,6 @@
 package controller;
 
-import data.BankCardDao;
+import data.CreditCardDao;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import models.Account;
-import models.BankCard;
+import models.CreditCard;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,13 +53,13 @@ public class MyCardsController implements Initializable {
     @FXML
     private Label lblMessage;
 
-    ObservableList<BankCard> cardList;
+    ObservableList<CreditCard> cardList;
     private final SimpleIntegerProperty lastIndex = new SimpleIntegerProperty(-1);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        BankCardDao bankCardDao = new BankCardDao();
-        cardList = bankCardDao.getCardList();
+        CreditCardDao creditCardDao = new CreditCardDao();
+        cardList = creditCardDao.getCardList();
 
         previousButton.setVisible(lastIndex.intValue() != -1);
         nextButton.setVisible(lastIndex.intValue() != cardList.size() - 1);
@@ -194,7 +194,7 @@ public class MyCardsController implements Initializable {
 
     private void setData() {
         if (lastIndex.get() > -1) {
-            BankCard card = cardList.get(lastIndex.get());
+            CreditCard card = cardList.get(lastIndex.get());
 
             inputCardHolder.setText(card.getCardHolder());
             inputCardNumber.setText(card.getCardNumber());
@@ -221,14 +221,14 @@ public class MyCardsController implements Initializable {
         }
         else {
             lblMessage.setText("");
-            BankCard card = cardList.get(lastIndex.get());
+            CreditCard card = cardList.get(lastIndex.get());
             card.setCardHolder(inputCardHolder.getText());
             card.setCardNumber(inputCardNumber.getTextFormatter().getValue().toString());
             card.setExpirationDate(inputExpiryDate.getText());
             card.setCVV(inputCVV.getText());
 
-            BankCardDao bankCardDao = new BankCardDao();
-            bankCardDao.update(card.getId(), card);
+            CreditCardDao creditCardDao = new CreditCardDao();
+            creditCardDao.update(card.getId(), card);
         }
     }
 
@@ -244,15 +244,15 @@ public class MyCardsController implements Initializable {
         }
         else {
             lblMessage.setText("");
-            BankCard card = new BankCard();
+            CreditCard card = new CreditCard();
             card.setAccount(Account.getCurrentUser().getId());
             card.setCardHolder(inputCardHolder.getText());
             card.setCardNumber(inputCardNumber.getTextFormatter().getValue().toString());
             card.setExpirationDate(inputExpiryDate.getText());
             card.setCVV(inputCVV.getText());
 
-            BankCardDao bankCardDao = new BankCardDao();
-            bankCardDao.create(card);
+            CreditCardDao creditCardDao = new CreditCardDao();
+            creditCardDao.create(card);
             cardList.add(card);
 
             goToCard(cardList.size() - 1);
@@ -261,8 +261,8 @@ public class MyCardsController implements Initializable {
 
     @FXML
     void deleteCard() {
-        BankCardDao bankCardDao = new BankCardDao();
-        bankCardDao.delete(cardList.get(lastIndex.get()).getId());
+        CreditCardDao creditCardDao = new CreditCardDao();
+        creditCardDao.delete(cardList.get(lastIndex.get()).getId());
         cardList.remove(lastIndex.get());
         goToCard(-1);
     }

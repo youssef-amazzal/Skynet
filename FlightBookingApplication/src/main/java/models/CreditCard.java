@@ -3,7 +3,7 @@ package models;
 import data.AccountDao;
 import javafx.beans.property.SimpleStringProperty;
 
-public class BankCard {
+public class CreditCard {
     private int id;
     private final SimpleStringProperty cardHolder;
 
@@ -14,7 +14,7 @@ public class BankCard {
     private final SimpleStringProperty CVV;
     private int account;
 
-    public BankCard() {
+    public CreditCard() {
         cardHolder = new SimpleStringProperty();
         cardNumber = new SimpleStringProperty();
         expirationDate = new SimpleStringProperty();
