@@ -54,71 +54,89 @@
                   </StackPane>
                </children>
             </HBox>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="364.0" spacing="30.0" VBox.vgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" prefWidth="364.0">
                <children>
-                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                  <Label fx:id="lblMessage" textFill="RED">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="364.0" spacing="30.0">
                      <children>
-                        <TextField fx:id="inputCardHolder" promptText="Card Holder" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="underLine-field" />
-                              <String fx:value="TransparentTextField" />
-                           </styleClass>
-                        </TextField>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="inputCardHolder" promptText="Card Holder" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="underLine-field" />
+                                    <String fx:value="TransparentTextField" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="inputCardNumber" promptText="Card Number" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="TransparentTextField" />
+                                    <String fx:value="underLine-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="500.0" spacing="50.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="inputExpiryDate" promptText="Expiry Date   MM/YY" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="TransparentTextField" />
+                                    <String fx:value="underLine-field" />
+                                 </styleClass>
+                              </TextField>
+                              <PasswordField fx:id="inputCVV" promptText="CVV" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="TransparentTextField" />
+                                    <String fx:value="underLine-field" />
+                                 </styleClass>
+                              </PasswordField>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="500.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <TextField fx:id="inputCardNumber" promptText="Card Number" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="TransparentTextField" />
-                              <String fx:value="underLine-field" />
-                           </styleClass>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="500.0" spacing="50.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <TextField fx:id="inputExpiryDate" promptText="Expiry Date   MM/YY" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="TransparentTextField" />
-                              <String fx:value="underLine-field" />
-                           </styleClass>
-                        </TextField>
-                        <PasswordField fx:id="inputCVV" promptText="CVV" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="TransparentTextField" />
-                              <String fx:value="underLine-field" />
-                           </styleClass>
-                        </PasswordField>
-                     </children>
-                  </HBox>
+                  </VBox>
                </children>
             </VBox>
-            <Button fx:id="actionButton" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="364.0" text="Confirm" />
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="364.0" spacing="5.0">
+               <children>
+                  <Button fx:id="actionButton" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="364.0" text="ADD" />
+                  <Button id="delete-credit-card" fx:id="deleteButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteCard" prefHeight="50.0" prefWidth="50.0">
+                     <graphic>
+                        <FontIcon iconLiteral="mdi-delete" iconSize="30" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="40.0" top="40.0" />

@@ -62,3 +62,16 @@
     -fx-cursor: default;
     -fx-effect: null;
 }
+
+#delete-credit-card,
+#delete-credit-card .ikonli-font-icon {
+    -fx-background-color: transparent;
+    -fx-icon-code: mdi-delete ;
+    -fx-icon-color: grey;
+}
+
+#delete-credit-card:hover,
+#delete-credit-card:hover .ikonli-font-icon {
+    -fx-effect: null;
+    -fx-icon-color: red;
+}
