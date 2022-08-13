@@ -152,7 +152,7 @@ public class PaymentPageController implements Initializable {
         StackPane content = (StackPane) parent.getScene().lookup("#content");
         int recentChild = content.getChildren().size() - 1;
         content.getChildren().remove(recentChild);
-        ApplicationController.searchPageStack.pop();
+        ApplicationController.navBarController.popPage();
     }
 
     public void setData(Flight flight, Seat selectedSeat) {
