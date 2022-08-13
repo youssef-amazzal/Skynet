@@ -74,8 +74,10 @@ public class NavigationBarController implements Initializable {
     private Node loadPage (String path) {
         Parent page = null;
         try {
-            page = FXMLLoader.load(getClass().getResource(path));
+            FXMLLoader pageLoader = new FXMLLoader(getClass().getResource(path));
+            page = pageLoader.load();
             VBox.setVgrow(page, Priority.ALWAYS);
+            page.setUserData(pageLoader.getController());
 
             StackPane content = (StackPane) navigationBar.getParent().getParent().lookup("#content");
             content.getChildren().clear();
@@ -124,17 +126,22 @@ public class NavigationBarController implements Initializable {
     }
 
     @FXML
-    void openAccount(ActionEvent event) {
+    AccountPageController openAccount(ActionEvent event) {
+        accounBtn.setSelected(true);
+
         if (accountPages == null ) {
             accountPages = loadPage("/view/accountPage/AccountPage.fxml");
         }
         else {
             loadPage(accountPages);
         }
+        return (AccountPageController) accountPages.getUserData();
     }
 
     @FXML
     void openHome(ActionEvent event) {
+        homeBtn.setSelected(true);
+
         if (homePages.isEmpty()) {
             ApplicationController.homePageStack.push(loadPage("/view/HomePage.fxml"));
         }
@@ -145,6 +152,8 @@ public class NavigationBarController implements Initializable {
 
     @FXML
     void openSearch(ActionEvent event) {
+        searchBtn.setSelected(true);
+
         if (searchPages.isEmpty()) {
             ApplicationController.searchPageStack.push(loadPage("/view/SearchPage/SearchPage.fxml"));
         }

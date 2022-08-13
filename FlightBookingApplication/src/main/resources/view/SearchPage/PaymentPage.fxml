@@ -50,7 +50,7 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+                        <Button mnemonicParsing="false" onAction="#addCrad" prefHeight="50.0" prefWidth="50.0">
                            <graphic>
                               <FontIcon iconLiteral="mdi-plus" iconSize="30" />
                            </graphic>

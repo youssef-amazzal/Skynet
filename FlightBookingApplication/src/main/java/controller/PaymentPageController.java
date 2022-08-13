@@ -2,6 +2,7 @@ package controller;
 
 import data.CreditCardDao;
 import data.ReservationDao;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,12 +86,31 @@ public class PaymentPageController implements Initializable {
     private double weightPrice;
     private final ToggleGroup cardGroup = new ToggleGroup();
 
+    private SimpleListProperty<CreditCard> cardList;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/PaymentPage.css").toExternalForm());
 
         CreditCardDao creditCardDao = new CreditCardDao();
-        ObservableList<CreditCard> cardList = creditCardDao.getCardList();
+        cardList = new SimpleListProperty<>(creditCardDao.getCardList());
+        loadCards();
+
+        cardList.sizeProperty().addListener(observable -> loadCards());
+
+    }
+
+    private void alwaysOneSelected() {
+        cardGroup.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
+            if (newVal == null)
+                oldVal.setSelected(true);
+        });
+    }
+
+    private void loadCards() {
+
+        creditCardList.getChildren().clear();
+
         if (!cardList.isEmpty()) {
             for (CreditCard card : cardList) {
                 try {
@@ -109,13 +129,6 @@ public class PaymentPageController implements Initializable {
             cardGroup.selectToggle(cardGroup.getToggles().get(0));
             alwaysOneSelected();
         }
-    }
-
-    private void alwaysOneSelected() {
-        cardGroup.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
-            if (newVal == null)
-                oldVal.setSelected(true);
-        });
     }
 
     @FXML
@@ -153,6 +166,12 @@ public class PaymentPageController implements Initializable {
         int recentChild = content.getChildren().size() - 1;
         content.getChildren().remove(recentChild);
         ApplicationController.navBarController.popPage();
+    }
+
+    @FXML
+    void addCrad() {
+        AccountPageController controller = ApplicationController.navBarController.openAccount(new ActionEvent());
+        controller.openCardsTab(new ActionEvent());
     }
 
     public void setData(Flight flight, Seat selectedSeat) {

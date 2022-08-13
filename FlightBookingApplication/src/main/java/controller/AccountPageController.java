@@ -57,16 +57,19 @@ public class AccountPageController implements Initializable {
     @FXML
     void openCardsTab(ActionEvent event) {
         loadTab("/view/accountPage/MyCards.fxml");
+        toggleCards.setSelected(true);
     }
 
     @FXML
     void openPasswordTab(ActionEvent event) {
         loadTab("/view/accountPage/Password-Security.fxml");
+        togglePassword.setSelected(true);
     }
 
     @FXML
     void openPersonalTab(ActionEvent event) {
         loadTab("/view/accountPage/PersonalInformation.fxml");
+        togglePersonal.setSelected(true);
     }
 
     private void loadTab(String path) {
