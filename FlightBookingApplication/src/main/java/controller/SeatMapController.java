@@ -112,7 +112,7 @@ public class SeatMapController implements Initializable {
                 lblSeat.setText(selectedSeat.getColumn() + selectedSeat.getRow());
             }
             else {
-                confirmationWindow.setVisible(true);
+                confirmationWindow.setVisible(false);
                 selectedSeat = null;
             }
         }));
