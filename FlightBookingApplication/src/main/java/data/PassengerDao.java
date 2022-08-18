@@ -1,6 +1,5 @@
 package data;
 
-import models.Favorite;
 import models.Passenger;
 
 import java.sql.*;

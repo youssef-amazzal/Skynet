@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 public class Passenger {
     private int id;
-    private SimpleStringProperty firstname;
-    private SimpleStringProperty lastname;
+    private final SimpleStringProperty firstname;
+    private final SimpleStringProperty lastname;
     private LocalDate birthDate;
 
     public Passenger() {

@@ -10,8 +10,6 @@ import java.util.List;
 public class AccountDao implements Dao<Account> {
 
     public static final HashMap<Integer, Account> accountsMap = new HashMap<>();
-    PassengerDao passengerDao = new PassengerDao();
-    AirlineDao airlineDao = new AirlineDao();
 
     public void updateAccountsMap(int id) {
         read(id);

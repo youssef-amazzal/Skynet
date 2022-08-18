@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Account;
@@ -22,9 +21,6 @@ import java.util.ResourceBundle;
 import java.util.Stack;
 
 public class ApplicationController implements Initializable {
-
-    @FXML
-    private StackPane content;
 
     @FXML
     private VBox navBarContainer;

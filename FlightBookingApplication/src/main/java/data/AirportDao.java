@@ -1,12 +1,13 @@
 package data;
 
-import java.sql.*;
-import java.util.*;
-
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import models.Airport;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class AirportDao implements Dao<Airport> {
     private static ObservableList<String> cityList;
@@ -14,7 +15,7 @@ public class AirportDao implements Dao<Airport> {
 
     public static ObservableList<String> getCityList() {
         if (cityList == null) {
-            cityList = FXCollections.observableList(new LinkedList<String>());
+            cityList = FXCollections.observableList(new LinkedList<>());
             Connection conn = DataSource.getConnection();
             String statement = "SELECT DISTINCT city FROM airports ORDER BY city;";
             try {

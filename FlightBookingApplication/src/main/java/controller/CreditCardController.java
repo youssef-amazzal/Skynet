@@ -3,7 +3,6 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import models.CreditCard;
 
 import java.net.URL;
@@ -19,9 +18,6 @@ public class CreditCardController implements Initializable {
 
     @FXML
     private Label lblExpirationDate;
-
-    @FXML
-    private ToggleButton parent;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -1,11 +1,6 @@
 package controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import data.AccountDao;
-import data.PassengerDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Account;
-import models.Passenger;
 import view.Palette;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class SigninController implements Initializable {
 

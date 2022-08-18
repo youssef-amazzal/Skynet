@@ -3,14 +3,16 @@ package controller;
 import data.CreditCardDao;
 import data.ReservationDao;
 import javafx.beans.property.SimpleListProperty;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import models.*;
 
 import java.io.IOException;
@@ -19,12 +21,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PaymentPageController implements Initializable {
-
-    @FXML
-    private Button btnBack;
-
-    @FXML
-    private Button btnPay;
 
     @FXML
     private VBox creditCardList;
