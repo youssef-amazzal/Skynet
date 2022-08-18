@@ -137,7 +137,7 @@ public class DashboardController implements Initializable {
     private TextField priceWeight;
 
     @FXML
-    private TextField serachBar;
+    private TextField searchBar;
 
     @FXML
     private ToggleButton themeButton;
@@ -489,7 +489,7 @@ public class DashboardController implements Initializable {
 
     private void findFlight() {
 
-        serachBar.textProperty().addListener((observableValue, oldValue, newValue) -> {
+        searchBar.textProperty().addListener((observableValue, oldValue, newValue) -> {
 
             results.setPredicate(flight -> {
 

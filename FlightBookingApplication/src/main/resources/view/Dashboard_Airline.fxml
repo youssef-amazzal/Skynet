@@ -98,7 +98,7 @@
                                  <children>
                                     <FontIcon iconLiteral="mdi-magnify" iconSize="25" />
                                     <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                    <TextField fx:id="serachBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="TransparentTextField" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="searchBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="TransparentTextField" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <padding>
                                     <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
