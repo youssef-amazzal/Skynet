@@ -308,6 +308,7 @@ public class DashboardController implements Initializable {
         flight.setWeightPrice(Double.parseDouble(priceWeight.getText()));
 
         flightDao.create(flight);
+        @SuppressWarnings("unchecked")
         ObservableList<Flight> source = (ObservableList<Flight>) results.getSource();
         source.add(0, flight);
     }
@@ -391,6 +392,7 @@ public class DashboardController implements Initializable {
         Flight selectedFlight = flightTable.getSelectionModel().getSelectedItem();
 
         flightDao.delete(selectedFlight.getId());
+        @SuppressWarnings("unchecked")
         ObservableList<Flight> source = (ObservableList<Flight>) results.getSource();
         source.remove(selectedFlight);
     }
