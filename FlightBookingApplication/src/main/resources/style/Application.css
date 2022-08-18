@@ -275,9 +275,62 @@
     -fx-background-color: AccentCoLor;
     -fx-text-background-color: white;
 }
-/*
-==========================================================================================
-*/
+/*======================================== Dialog-Pane ====================================================*/
+.dialog-pane {
+    -fx-background-color: SecondaryColor;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: lightgray;
+    -fx-border-width: 0.5;
+}
+
+.dialog-pane > .button-bar {
+    -fx-border-color: darkgrey;
+    -fx-border-width: 0.5 0 0 0;
+}
+
+.dialog-pane > .button-bar .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: AccentColor;
+    -fx-border-color: AccentColor;
+    -fx-border-width: 1;
+    -fx-font-weight: bolder;
+    -fx-font-family: "Arial Black";
+    -fx-effect: null;
+}
+
+.dialog-pane > .button-bar .button:default {
+    -fx-background-color: AccentColor;
+    -fx-text-fill: white;
+}
+
+.dialog-pane .header-panel,
+.dialog-pane .header-panel .text{
+    -fx-background-color: transparent;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 20px;
+    -fx-fill: AccentColor;
+    -fx-alignment: bottom-left;
+    -fx-pref-height: 40px;
+    -fx-padding: 0 0 0 10;
+}
+
+.dialog-pane > .content {
+    -fx-padding: 0.833em; /* 10 */
+    -fx-alignment: center-left;
+}
+
+.dialog-pane > .content.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold ;
+    -fx-font-family: Calibri;
+}
+
+
+.alert.confirmation.dialog-pane {
+    -fx-graphic: null;
+}
+/*=========================================================================================================*/
 
 .TransparentTextField,
 .TransparentTextField > *,
@@ -292,7 +345,6 @@
     -fx-border-width: 0.5;
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 0);
 }
 
 .underLine-field {
@@ -329,4 +381,13 @@
 
 .credit-card:hover {
     -fx-effect: dropshadow(gaussian, rgba(20, 136, 204, 0.25), 10, 0.3, 0, 0);
+}
+
+#overlay-layer {
+    -fx-background-color: black;
+    -fx-opacity: 0.6;
+}
+
+#overlay-layer:disabled {
+    -fx-opacity: 0;
 }

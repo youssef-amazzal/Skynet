@@ -10,13 +10,18 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Account;
 import models.Flight;
 import models.Seat;
+import view.Palette;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SeatMapController implements Initializable {
@@ -86,7 +91,6 @@ public class SeatMapController implements Initializable {
 
     @FXML
     private StackPane parent;
-
     @FXML
     private GridPane seatMap;
 
@@ -208,9 +212,36 @@ public class SeatMapController implements Initializable {
 
     @FXML
     void cancelReservation(ActionEvent event) {
-        ReservationDao reservationDao = new ReservationDao();
-        reservationDao.delete(Account.getCurrentUser().getReservation(flight).getId());
-        goBack(new ActionEvent());
+        parent.getScene().lookup("#overlay-layer").setDisable(false);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Do you really want to cancel your reservation ?");
+        alert.setHeaderText("Confirm the action");
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("YES");
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("NO");
+
+        DialogPane dialogPane = alert.getDialogPane();
+
+        Palette.getDefaultPalette().usePalette(dialogPane.getScene());
+        dialogPane.getStylesheets().add(getClass().getResource("/style/Application.css").toExternalForm());
+
+        Stage alertWindow = (Stage) dialogPane.getScene().getWindow();
+        alertWindow.initStyle(StageStyle.TRANSPARENT);
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+        alertWindow.initOwner(parent.getScene().getWindow());
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            ReservationDao reservationDao = new ReservationDao();
+            reservationDao.delete(Account.getCurrentUser().getReservation(flight).getId());
+
+            alert.close();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            goBack(new ActionEvent());
+        } else {
+            alert.close();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+        }
     }
 
     private void fillSeatMap() {
