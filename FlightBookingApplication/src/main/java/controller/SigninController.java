@@ -36,7 +36,7 @@ public class SigninController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		parent.getStylesheets().add(getClass().getResource("/style/sign-in.css").toExternalForm());
+		parent.getStylesheets().add(getClass().getResource("/style/Sign-in.css").toExternalForm());
 	}
 
 	@FXML
@@ -72,7 +72,6 @@ public class SigninController implements Initializable {
 
 	public void SwitchtoSignup(ActionEvent e) throws IOException {
 		Parent root =FXMLLoader.load(getClass().getResource("/view/Signup.fxml"));
-		root.getStylesheets().add(getClass().getResource("/style/Sign-up.css").toExternalForm());
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root);
 		Palette.getDefaultPalette().usePalette(scene);

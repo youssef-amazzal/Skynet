@@ -52,12 +52,11 @@ public class SignupController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        parent.getStylesheets().add(getClass().getResource("/style/sign-up.css").toExternalForm());
+        parent.getStylesheets().add(getClass().getResource("/style/Sign-up.css").toExternalForm());
     }
 
     public void SwitchtoSignin(ActionEvent e) throws IOException {
         Parent root =FXMLLoader.load(getClass().getResource("/view/Signin.fxml"));
-        root.getStylesheets().add(getClass().getResource("/style/Sign-in.css").toExternalForm());
         Stage stage = (Stage) parent.getScene().getWindow();
         Scene scene = new Scene(root);
         Palette.getDefaultPalette().usePalette(scene);
