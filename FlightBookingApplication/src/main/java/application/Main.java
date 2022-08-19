@@ -1,6 +1,5 @@
 package application;
 
-import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +13,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -25,7 +23,6 @@ public class Main extends Application {
 			Palette.setDefaultPalette(Palette.LightPalette);
 			Palette.getDefaultPalette().usePalette(scene);
 
-			CSSFX.start();
 			primaryStage.initStyle(StageStyle.UNIFIED);
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);

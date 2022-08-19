@@ -2,7 +2,6 @@ package controller;
 
 import data.CreditCardDao;
 import data.FavoriteDao;
-import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,7 +62,6 @@ public class ApplicationController implements Initializable {
 
             Palette.getDefaultPalette().usePalette(scene);
 
-            CSSFX.start();
             primaryStage.setScene(scene);
             primaryStage.setTitle("Flight Booking Application");
             primaryStage.show();

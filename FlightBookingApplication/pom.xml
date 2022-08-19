@@ -49,11 +49,6 @@
 			<version>${ikonli.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>fr.brouillard.oss</groupId>
-			<artifactId>cssfx</artifactId>
-			<version>11.5.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.36.0.3</version>
