@@ -330,6 +330,54 @@
 .alert.confirmation.dialog-pane {
     -fx-graphic: null;
 }
+/*======================================== Pagination ====================================================*/
+/* Remove spacing */
+.pagination > .pagination-control > .control-box {
+    -fx-spacing: 10;
+}
+
+/* You can control the actual button sizes here */
+.pagination > .pagination-control > .control-box > .number-button,
+.pagination > .pagination-control > .control-box > .bullet-button,
+.pagination > .pagination-control > .control-box > .left-arrow-button,
+.pagination > .pagination-control > .control-box > .right-arrow-button {
+    -fx-background-insets: 0, 0.5;
+    -fx-background-color: darkgray, SecondaryColor;
+    -fx-background-radius: 50%;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+}
+
+.pagination > .pagination-control > .control-box > .left-arrow-button .left-arrow,
+.pagination > .pagination-control > .control-box > .right-arrow-button .right-arrow {
+    -fx-background-color: AccentColor;
+}
+
+/* Colors on hover */
+.pagination > .pagination-control > .control-box > .number-button:hover,
+.pagination > .pagination-control > .control-box > .bullet-button:hover,
+.pagination > .pagination-control > .control-box > .left-arrow-button:hover,
+.pagination > .pagination-control > .control-box > .right-arrow-button:hover {
+    -fx-background-insets: 0;
+    -fx-background-color: AlphaAccentColor;
+    -fx-effect: null;
+}
+
+.pagination > .pagination-control > .page-information {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+/* Selected toggle color */
+.pagination > .pagination-control > .control-box > .number-button:selected,
+.pagination > .pagination-control > .control-box > .bullet-button:selected{
+    -fx-background-insets: 0;
+    -fx-background-color: AccentColor;
+    -fx-text-fill: white;
+    -fx-effect: glow;
+}
 /*=========================================================================================================*/
 
 .TransparentTextField,

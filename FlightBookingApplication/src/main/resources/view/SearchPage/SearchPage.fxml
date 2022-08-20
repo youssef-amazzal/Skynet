@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -19,9 +20,9 @@
 
 <StackPane fx:id="parent" alignment="BOTTOM_RIGHT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchPageController">
    <children>
-      <ScrollPane fx:id="scrollPane" fitToWidth="true" styleClass="backGround">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" styleClass="backGround">
          <content>
-            <VBox alignment="TOP_CENTER" prefHeight="761.0" prefWidth="1263.0">
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="761.0" prefWidth="1263.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -148,7 +149,11 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <VBox fx:id="searchPage" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="761.0" prefWidth="1263.0" VBox.vgrow="ALWAYS" />
+                  <Pagination fx:id="pagination" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Pagination>
                </children>
             </VBox>
          </content>

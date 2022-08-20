@@ -23,10 +23,6 @@ public class SearchPageController implements Initializable {
 
     @FXML
     private StackPane parent;
-
-    @FXML
-    private Button SearchButton;
-
     @FXML
     private Button topButton;
 
@@ -56,6 +52,10 @@ public class SearchPageController implements Initializable {
 
     @FXML
     private ScrollPane scrollPane;
+
+    @FXML
+    private Pagination pagination;
+
     private final FilteredList<Flight> results = new FilteredList<>(FlightDao.getInstance().getFlightsList());
 
 
@@ -63,32 +63,41 @@ public class SearchPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/SearchPage.css").toExternalForm());
 
-        //add search results
-        getData();
-
         inputDepartureCity.setItems(AirportDao.getCityList());
         inputArrivalCity.setItems(AirportDao.getCityList());
+
+        int itemsPerPage = 10;
+        int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
+        pagination.setPageCount(nbrPages == 0 ? 1 : nbrPages);
+        pagination.setMaxPageIndicatorCount(5);
+
+        pagination.setPageFactory((pageIndex) -> {
+            VBox page = new VBox();
+
+            int firstItemIndex = pageIndex * itemsPerPage;
+            int lastItemIndex = (pageIndex + 1) * itemsPerPage;
+
+            for (int i = firstItemIndex; i < Math.min(lastItemIndex, results.size()) ; i++) {
+                Flight flight = results.get(i);
+                try {
+                    FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/FlightCard.fxml"));
+                    HBox card = cardLoader.load();
+                    FlightCardController controller = cardLoader.getController();
+                    controller.setData(flight);
+                    page.getChildren().add(card);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return page;
+        });
 
     }
 
     @FXML
     void goToTop(ActionEvent event) {
         scrollPane.setVvalue(0);
-    }
-
-    private void getData() {
-        searchPage.getChildren().clear();
-        for (Flight flight : results) {
-            try {
-                FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/FlightCard.fxml"));
-                HBox card = cardLoader.load();
-                FlightCardController controller = cardLoader.getController();
-                controller.setData(flight);
-                searchPage.getChildren().add(card);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     @FXML
@@ -124,6 +133,6 @@ public class SearchPageController implements Initializable {
 
         });
 
-        getData();
+        pagination.setCurrentPageIndex(0);
     }
 }
