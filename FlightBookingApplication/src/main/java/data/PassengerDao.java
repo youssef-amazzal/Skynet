@@ -19,14 +19,14 @@ public class PassengerDao implements Dao<Passenger> {
     @Override
     public int create(Passenger passenger) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO passengers (firstname, lastname, birthDate, gender, pays) VALUES (?,?,?,?,?);";
+        String statement = "INSERT INTO passengers (firstname, lastname, birthDate, gender, country) VALUES (?,?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, passenger.getFirstname());
             query.setString(2, passenger.getLastname());
             query.setString(3, passenger.getBirthDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             query.setString(4, passenger.getGender());
-            query.setString(5, passenger.getPays());
+            query.setString(5, passenger.getCountry());
 
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
@@ -66,7 +66,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setLastname(res.getString("lastname"));
                 passenger.setBirthDate(LocalDate.parse(res.getString("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 passenger.setGender(res.getString("gender"));
-                passenger.setPays(res.getString("pays"));
+                passenger.setCountry(res.getString("country"));
 
                 passengersMap.put(res.getInt("id"), passenger);
             }
@@ -96,7 +96,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setLastname(res.getString("lastname"));
                 passenger.setBirthDate(LocalDate.parse(res.getString("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 passenger.setGender(res.getString("gender"));
-                passenger.setPays(res.getString("pays"));
+                passenger.setCountry(res.getString("country"));
                 list.add(passenger);
                 passengersMap.put(res.getInt("id"), passenger);
             }
@@ -113,7 +113,7 @@ public class PassengerDao implements Dao<Passenger> {
         Connection conn = DataSource.getConnection();
         Passenger original =  this.read(id);
 
-        String statement = "UPDATE passengers SET firstname = ?, lastname = ?, birthDate = ?, gender = ?, pays = ? WHERE id = ? ;";
+        String statement = "UPDATE passengers SET firstname = ?, lastname = ?, birthDate = ?, gender = ?, country = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
@@ -151,12 +151,12 @@ public class PassengerDao implements Dao<Passenger> {
                 query.setString(4, original.getGender());
             }
 
-            if (passenger.getPays() != null) {
-                query.setString(5, passenger.getPays());
-                original.setPays(passenger.getPays());
+            if (passenger.getCountry() != null) {
+                query.setString(5, passenger.getCountry());
+                original.setCountry(passenger.getCountry());
             }
             else {
-                query.setString(5, original.getPays());
+                query.setString(5, original.getCountry());
             }
 
             query.executeUpdate();

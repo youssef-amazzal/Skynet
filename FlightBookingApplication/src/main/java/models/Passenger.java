@@ -10,13 +10,13 @@ public class Passenger {
     private final SimpleStringProperty lastname;
     private LocalDate birthDate;
     private final SimpleStringProperty gender;
-    private final SimpleStringProperty pays;
+    private final SimpleStringProperty country;
 
     public Passenger() {
         this.firstname = new SimpleStringProperty();
         this.lastname = new SimpleStringProperty();
         this.gender = new SimpleStringProperty();
-        this.pays = new SimpleStringProperty();
+        this.country = new SimpleStringProperty();
     }
 
 
@@ -65,13 +65,13 @@ public class Passenger {
         this.gender.set(gender);
     }
 
-    public String getPays() {
-        return pays.get();
+    public String getCountry() {
+        return country.get();
     }
-    public SimpleStringProperty paysProperty() {
-        return pays;
+    public SimpleStringProperty countryProperty() {
+        return country;
     }
-    public void setPays(String pays) {
-        this.pays.set(pays);
+    public void setCountry(String country) {
+        this.country.set(country);
     }
 }
