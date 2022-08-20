@@ -5,8 +5,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
-import java.time.Year;
-import java.time.temporal.ChronoUnit;
 
 public class CreditCard {
     private int id;

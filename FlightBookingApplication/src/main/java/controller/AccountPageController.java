@@ -47,13 +47,6 @@ public class AccountPageController implements Initializable {
         }
     }
 
-    private void alwaysOneSelected() {
-        tabs.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
-            if (newVal == null)
-                oldVal.setSelected(true);
-        });
-    }
-
     @FXML
     void openCardsTab(ActionEvent event) {
         loadTab("/view/accountPage/MyCards.fxml");
