@@ -1,7 +1,12 @@
 package models;
 
 import data.AccountDao;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.temporal.ChronoUnit;
 
 public class CreditCard {
     private int id;
@@ -9,7 +14,7 @@ public class CreditCard {
 
     private final SimpleStringProperty cardNumber;
 
-    private final SimpleStringProperty expirationDate;
+    private final SimpleObjectProperty<LocalDate> expirationDate;
 
     private final SimpleStringProperty CVV;
     private int account;
@@ -17,7 +22,7 @@ public class CreditCard {
     public CreditCard() {
         cardHolder = new SimpleStringProperty();
         cardNumber = new SimpleStringProperty();
-        expirationDate = new SimpleStringProperty();
+        expirationDate = new SimpleObjectProperty<>();
         CVV = new SimpleStringProperty();
     }
 
@@ -67,15 +72,15 @@ public class CreditCard {
         this.cardNumber.set(cardNumber);
     }
 
-    public String getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate.get();
     }
 
-    public SimpleStringProperty expirationDateProperty() {
+    public SimpleObjectProperty<LocalDate> expirationDateProperty() {
         return expirationDate;
     }
 
-    public void setExpirationDate(String expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate.set(expirationDate);
     }
 

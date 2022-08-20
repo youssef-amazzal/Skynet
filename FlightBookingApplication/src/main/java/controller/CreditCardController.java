@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import models.CreditCard;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class CreditCardController implements Initializable {
@@ -29,6 +31,9 @@ public class CreditCardController implements Initializable {
         creditCard.cardNumberProperty().addListener((observable, oldValue, newValue) -> {
             lblCardNumber.setText(creditCard.getCardNumberFormatted());
         });
-        lblExpirationDate.textProperty().bind(creditCard.expirationDateProperty());
+        lblExpirationDate.setText(creditCard.getExpirationDate().format(DateTimeFormatter.ofPattern("MM/yyyy")));
+        creditCard.expirationDateProperty().addListener((observable, oldValue, newValue) -> {
+            lblExpirationDate.setText(creditCard.getExpirationDate().format(DateTimeFormatter.ofPattern("MM/yyyy")));
+        });
     }
 }

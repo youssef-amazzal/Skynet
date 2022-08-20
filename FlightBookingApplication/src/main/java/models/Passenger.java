@@ -9,10 +9,14 @@ public class Passenger {
     private final SimpleStringProperty firstname;
     private final SimpleStringProperty lastname;
     private LocalDate birthDate;
+    private final SimpleStringProperty gender;
+    private final SimpleStringProperty pays;
 
     public Passenger() {
         this.firstname = new SimpleStringProperty();
         this.lastname = new SimpleStringProperty();
+        this.gender = new SimpleStringProperty();
+        this.pays = new SimpleStringProperty();
     }
 
 
@@ -49,5 +53,25 @@ public class Passenger {
     }
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender.get();
+    }
+    public SimpleStringProperty genderProperty() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender.set(gender);
+    }
+
+    public String getPays() {
+        return pays.get();
+    }
+    public SimpleStringProperty paysProperty() {
+        return pays;
+    }
+    public void setPays(String pays) {
+        this.pays.set(pays);
     }
 }

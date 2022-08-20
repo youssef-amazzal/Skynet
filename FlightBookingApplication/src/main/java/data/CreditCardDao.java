@@ -6,6 +6,8 @@ import models.Account;
 import models.CreditCard;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class CreditCardDao implements Dao<CreditCard> {
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, creditCard.getCardNumber());
-            query.setString(2, creditCard.getExpirationDate());
+            query.setString(2, creditCard.getExpirationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             query.setString(3, creditCard.getCVV());
             query.setInt(4, creditCard.getAccount().getId());
             query.setString(5, creditCard.getCardHolder());
@@ -64,7 +66,7 @@ public class CreditCardDao implements Dao<CreditCard> {
                 creditCard = new CreditCard();
                 creditCard.setId(res.getInt("id"));
                 creditCard.setCardNumber(res.getString("cardNumber"));
-                creditCard.setExpirationDate(res.getString("expirationDate"));
+                creditCard.setExpirationDate(LocalDate.parse(res.getString("expirationDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 creditCard.setCVV(res.getString("CVV"));
                 creditCard.setAccount(res.getInt("id_account"));
                 creditCard.setCardHolder(res.getString("cardHolder"));
@@ -93,7 +95,7 @@ public class CreditCardDao implements Dao<CreditCard> {
                 CreditCard creditCard = new CreditCard();
                 creditCard.setId(res.getInt("id"));
                 creditCard.setCardNumber(res.getString("cardNumber"));
-                creditCard.setExpirationDate(res.getString("expirationDate"));
+                creditCard.setExpirationDate(LocalDate.parse(res.getString("expirationDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 creditCard.setCVV(res.getString("CVV"));
                 creditCard.setAccount(res.getInt("id_account"));
                 creditCard.setCardHolder(res.getString("cardHolder"));
@@ -120,7 +122,7 @@ public class CreditCardDao implements Dao<CreditCard> {
                 CreditCard creditCard = new CreditCard();
                 creditCard.setId(res.getInt("id"));
                 creditCard.setCardNumber(res.getString("cardNumber"));
-                creditCard.setExpirationDate(res.getString("expirationDate"));
+                creditCard.setExpirationDate(LocalDate.parse(res.getString("expirationDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 creditCard.setCVV(res.getString("CVV"));
                 creditCard.setAccount(res.getInt("id_account"));
                 creditCard.setCardHolder(res.getString("cardHolder"));
@@ -153,10 +155,10 @@ public class CreditCardDao implements Dao<CreditCard> {
             }
 
             if (creditCard.getExpirationDate() != null) {
-                query.setString(2,  creditCard.getExpirationDate());
+                query.setString(2,  creditCard.getExpirationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             }
             else {
-                query.setString(2,  creditCard.getExpirationDate());
+                query.setString(2,  creditCard.getExpirationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             }
 
             if (creditCard.getCVV() != null) {

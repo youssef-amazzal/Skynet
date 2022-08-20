@@ -15,6 +15,9 @@ import models.CreditCard;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
@@ -198,7 +201,7 @@ public class MyCardsController implements Initializable {
 
             inputCardHolder.setText(card.getCardHolder());
             inputCardNumber.setText(card.getCardNumber());
-            inputExpiryDate.setText(card.getExpirationDate());
+            inputExpiryDate.setText(card.getExpirationDate().format(DateTimeFormatter.ofPattern("MM/yyyy")));
             inputCVV.setText(card.getCVV());
         }
         else {
@@ -224,7 +227,10 @@ public class MyCardsController implements Initializable {
             CreditCard card = cardList.get(lastIndex.get());
             card.setCardHolder(inputCardHolder.getText());
             card.setCardNumber(inputCardNumber.getTextFormatter().getValue().toString());
-            card.setExpirationDate(inputExpiryDate.getText());
+
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/yyyy");
+            YearMonth expiryDate = YearMonth.parse(inputExpiryDate.getText(), dateFormat);
+            card.setExpirationDate(expiryDate.atDay(expiryDate.getMonth().length(expiryDate.isLeapYear()) - 1));
             card.setCVV(inputCVV.getText());
 
             CreditCardDao creditCardDao = new CreditCardDao();
@@ -248,7 +254,9 @@ public class MyCardsController implements Initializable {
             card.setAccount(Account.getCurrentUser().getId());
             card.setCardHolder(inputCardHolder.getText());
             card.setCardNumber(inputCardNumber.getTextFormatter().getValue().toString());
-            card.setExpirationDate(inputExpiryDate.getText());
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/yyyy");
+            YearMonth expiryDate = YearMonth.parse(inputExpiryDate.getText(), dateFormat);
+            card.setExpirationDate(expiryDate.atDay(expiryDate.getMonth().length(expiryDate.isLeapYear()) - 1));
             card.setCVV(inputCVV.getText());
 
             CreditCardDao creditCardDao = new CreditCardDao();

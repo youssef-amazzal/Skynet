@@ -3,7 +3,9 @@ package data;
 import models.Passenger;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,12 +20,14 @@ public class PassengerDao implements Dao<Passenger> {
     @Override
     public int create(Passenger passenger) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO passengers (firstname, lastname, birthDate) VALUES (?,?,?);";
+        String statement = "INSERT INTO passengers (firstname, lastname, birthDate, gender, pays) VALUES (?,?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, passenger.getFirstname());
             query.setString(2, passenger.getLastname());
-            query.setLong(3, passenger.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+            query.setString(3, passenger.getBirthDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            query.setString(4, passenger.getGender());
+            query.setString(5, passenger.getPays());
 
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
@@ -61,7 +65,10 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setId(res.getInt("id"));
                 passenger.setFirstname(res.getString("firstname"));
                 passenger.setLastname(res.getString("lastname"));
-                passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime().toLocalDate());
+                passenger.setBirthDate(LocalDate.parse(res.getString("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                passenger.setGender(res.getString("gender"));
+                passenger.setPays(res.getString("pays"));
+
                 passengersMap.put(res.getInt("id"), passenger);
             }
 
@@ -88,7 +95,9 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setId(res.getInt("id"));
                 passenger.setFirstname(res.getString("firstname"));
                 passenger.setLastname(res.getString("lastname"));
-                passenger.setBirthDate(res.getTimestamp("birthDate").toLocalDateTime().toLocalDate());
+                passenger.setBirthDate(LocalDate.parse(res.getString("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                passenger.setGender(res.getString("gender"));
+                passenger.setPays(res.getString("pays"));
                 list.add(passenger);
                 passengersMap.put(res.getInt("id"), passenger);
             }
@@ -105,11 +114,11 @@ public class PassengerDao implements Dao<Passenger> {
         Connection conn = DataSource.getConnection();
         Passenger original =  this.read(id);
 
-        String statement = "UPDATE passengers SET firstname = ?, lastname = ?, birthDate = ? WHERE id = ? ;";
+        String statement = "UPDATE passengers SET firstname = ?, lastname = ?, birthDate = ?, gender = ?, pays = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(4, id);
+            query.setInt(6, id);
 
             if (passenger.getFirstname() != null) {
                 query.setString(1, passenger.getFirstname());
@@ -128,11 +137,27 @@ public class PassengerDao implements Dao<Passenger> {
             }
 
             if (passenger.getBirthDate() != null) {
-                query.setLong(3, passenger.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                query.setString(3, passenger.getBirthDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 original.setBirthDate(passenger.getBirthDate());
             }
             else {
-                query.setLong(3, original.getBirthDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                query.setString(3, original.getBirthDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            }
+
+            if (passenger.getGender() != null) {
+                query.setString(4, passenger.getGender());
+                original.setGender(passenger.getGender());
+            }
+            else {
+                query.setString(4, original.getGender());
+            }
+
+            if (passenger.getPays() != null) {
+                query.setString(5, passenger.getPays());
+                original.setPays(passenger.getPays());
+            }
+            else {
+                query.setString(5, original.getPays());
             }
 
             query.executeUpdate();

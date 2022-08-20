@@ -6,7 +6,8 @@ import models.Airline;
 import models.Flight;
 
 import java.sql.*;
-import java.time.ZoneId;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class FlightDao implements Dao<Flight> {
         String statement = "INSERT INTO flights (dep_datetime, arr_datetime, first_price, business_price, economy_price, luggage_price, weight_price, id_airline, dep_airport, arr_airport) VALUES (?,?,?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
-            query.setLong(1, flight.getDepDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
-            query.setLong(2, flight.getArrDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+            query.setString(1, flight.getDepDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            query.setString(2, flight.getArrDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             query.setDouble(3, flight.getFirstPrice());
             query.setDouble(4, flight.getBusinessPrice());
             query.setDouble(5, flight.getEconomyPrice());
@@ -67,8 +68,8 @@ public class FlightDao implements Dao<Flight> {
             if (res.next()) {
                 flight = new Flight();
                 flight.setId(res.getInt("id"));
-                flight.setDepDatetime(res.getTimestamp("dep_datetime").toLocalDateTime());
-                flight.setArrDatetime(res.getTimestamp("arr_datetime").toLocalDateTime());
+                flight.setDepDatetime(LocalDateTime.parse(res.getString("dep_datetime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                flight.setArrDatetime(LocalDateTime.parse(res.getString("arr_datetime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 flight.setFirstPrice(res.getDouble("first_price"));
                 flight.setBusinessPrice(res.getDouble("business_price"));
                 flight.setEconomyPrice(res.getDouble("economy_price"));
@@ -99,8 +100,8 @@ public class FlightDao implements Dao<Flight> {
             while (res.next()) {
                 Flight flight = new Flight();
                 flight.setId(res.getInt("id"));
-                flight.setDepDatetime(res.getTimestamp("dep_datetime").toLocalDateTime());
-                flight.setArrDatetime(res.getTimestamp("arr_datetime").toLocalDateTime());
+                flight.setDepDatetime(LocalDateTime.parse(res.getString("dep_datetime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                flight.setArrDatetime(LocalDateTime.parse(res.getString("arr_datetime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 flight.setFirstPrice(res.getDouble("first_price"));
                 flight.setBusinessPrice(res.getDouble("business_price"));
                 flight.setEconomyPrice(res.getDouble("economy_price"));
@@ -131,8 +132,8 @@ public class FlightDao implements Dao<Flight> {
             while (res.next()) {
                 Flight flight = new Flight();
                 flight.setId(res.getInt("id"));
-                flight.setDepDatetime(res.getTimestamp("dep_datetime").toLocalDateTime());
-                flight.setArrDatetime(res.getTimestamp("arr_datetime").toLocalDateTime());
+                flight.setDepDatetime(LocalDateTime.parse(res.getString("dep_datetime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                flight.setArrDatetime(LocalDateTime.parse(res.getString("arr_datetime"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 flight.setFirstPrice(res.getDouble("first_price"));
                 flight.setBusinessPrice(res.getDouble("business_price"));
                 flight.setEconomyPrice(res.getDouble("economy_price"));
@@ -164,17 +165,17 @@ public class FlightDao implements Dao<Flight> {
             query.setInt(11, id);
 
             if (flight.getDepDatetime() != null) {
-                query.setLong(1, flight.getDepDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                query.setString(1, flight.getDepDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             }
             else {
-                query.setLong(1, original.getDepDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                query.setString(1, original.getDepDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             }
 
             if (flight.getArrDatetime() != null) {
-                query.setLong(2, flight.getArrDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                query.setString(2, flight.getArrDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             }
             else {
-                query.setLong(2, original.getArrDatetime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+                query.setString(2, original.getArrDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             }
 
             if (flight.getFirstPrice() != -1) {
