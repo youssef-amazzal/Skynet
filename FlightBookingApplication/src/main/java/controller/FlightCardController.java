@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -118,9 +117,11 @@ public class FlightCardController implements Initializable {
 
         if (Account.getCurrentUser().hasReservation(flight)) {
             btnAction.setText("Edit");
+            btnAction.getStyleClass().add("button-edit");
         }
         else {
             btnAction.setText("Book");
+            btnAction.getStyleClass().remove("button-edit");
         }
 
         if (flight.getDepDatetime().isBefore(LocalDateTime.now())) {

@@ -5,6 +5,18 @@
     -fx-font-size: 17;
 }
 
+.button-edit {
+    -fx-background-color: AccentColor, SecondaryColor;
+    -fx-background-insets: 0, 1;
+    -fx-text-fill: AccentColor;
+}
+
+.button-edit:hover {
+    -fx-background-color: AccentColor;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+
 .favorite {
     -fx-background-color: transparent;
 }
