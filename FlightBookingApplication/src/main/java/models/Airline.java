@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Airline {
     private int id;
     private String name;
+    private String IATA;
     private Image logo;
 
     public int getId() {
@@ -23,9 +24,16 @@ public class Airline {
         this.name = name;
     }
 
+    public String getIATA() {
+        return IATA;
+    }
+    public void setIATA(String IATA) {
+        this.IATA = IATA;
+    }
+
     public Image getLogo() {
         if (logo == null) {
-            return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_logo_x96.png")));
+            return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_logo.png")));
         }
         return logo;
     }

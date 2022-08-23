@@ -1,6 +1,9 @@
 package models;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 
@@ -11,12 +14,14 @@ public class Passenger {
     private LocalDate birthDate;
     private final SimpleStringProperty gender;
     private final SimpleStringProperty country;
+    private final ObjectProperty<Image> profilePictue;
 
     public Passenger() {
         this.firstname = new SimpleStringProperty();
         this.lastname = new SimpleStringProperty();
         this.gender = new SimpleStringProperty();
         this.country = new SimpleStringProperty();
+        this.profilePictue = new SimpleObjectProperty<>();
     }
 
 
@@ -73,5 +78,17 @@ public class Passenger {
     }
     public void setCountry(String country) {
         this.country.set(country);
+    }
+
+    public Image getProfilePictue() {
+        return profilePictue.get();
+    }
+
+    public ObjectProperty<Image> profilePictueProperty() {
+        return profilePictue;
+    }
+
+    public void setProfilePictue(Image profilePictue) {
+        this.profilePictue.set(profilePictue);
     }
 }

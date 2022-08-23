@@ -1,7 +1,14 @@
 package data;
 
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import models.Passenger;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,10 +23,23 @@ public class PassengerDao implements Dao<Passenger> {
         read(id);
     }
 
+    private byte[] imageToStream(Image logo) throws IOException {
+        if (logo != null) {
+            File file = new File("pic.png");
+            ImageIO.write(SwingFXUtils.fromFXImage(logo, null), "png", file);
+            FileInputStream fileInputStream =  new FileInputStream(file);
+            byte[] byteArray = fileInputStream.readAllBytes() ;
+            fileInputStream.close();
+            file.delete();
+            return byteArray;
+        }
+        return null;
+    }
+
     @Override
     public int create(Passenger passenger) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO passengers (firstname, lastname, birthDate, gender, country) VALUES (?,?,?,?,?);";
+        String statement = "INSERT INTO passengers (firstname, lastname, birthDate, gender, country, profilePicture) VALUES (?,?,?,?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, passenger.getFirstname());
@@ -27,6 +47,7 @@ public class PassengerDao implements Dao<Passenger> {
             query.setString(3, passenger.getBirthDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             query.setString(4, passenger.getGender());
             query.setString(5, passenger.getCountry());
+            query.setBytes(6, imageToStream(passenger.getProfilePictue()));
 
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
@@ -39,6 +60,8 @@ public class PassengerDao implements Dao<Passenger> {
             return id.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return 0;
     }
@@ -67,6 +90,12 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setBirthDate(LocalDate.parse(res.getString("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 passenger.setGender(res.getString("gender"));
                 passenger.setCountry(res.getString("country"));
+                InputStream inputStream = res.getBinaryStream("profilePictue");
+                if ((inputStream != null)) {
+                    passenger.setProfilePictue(new Image(inputStream));
+                } else {
+                    passenger.setProfilePictue(null);
+                }
 
                 passengersMap.put(res.getInt("id"), passenger);
             }
@@ -97,6 +126,12 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setBirthDate(LocalDate.parse(res.getString("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 passenger.setGender(res.getString("gender"));
                 passenger.setCountry(res.getString("country"));
+                InputStream inputStream = res.getBinaryStream("profilePictue");
+                if ((inputStream != null)) {
+                    passenger.setProfilePictue(new Image(inputStream));
+                } else {
+                    passenger.setProfilePictue(null);
+                }
                 list.add(passenger);
                 passengersMap.put(res.getInt("id"), passenger);
             }
@@ -113,11 +148,11 @@ public class PassengerDao implements Dao<Passenger> {
         Connection conn = DataSource.getConnection();
         Passenger original =  this.read(id);
 
-        String statement = "UPDATE passengers SET firstname = ?, lastname = ?, birthDate = ?, gender = ?, country = ? WHERE id = ? ;";
+        String statement = "UPDATE passengers SET firstname = ?, lastname = ?, birthDate = ?, gender = ?, country = ?, profilePicture = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(6, id);
+            query.setInt(7, id);
 
             if (passenger.getFirstname() != null) {
                 query.setString(1, passenger.getFirstname());
@@ -159,12 +194,21 @@ public class PassengerDao implements Dao<Passenger> {
                 query.setString(5, original.getCountry());
             }
 
+            if (passenger.getProfilePictue() != null) {
+                query.setBytes(2, imageToStream(passenger.getProfilePictue()));
+            }
+            else {
+                query.setBytes(2, imageToStream(original.getProfilePictue()));
+            }
+
             query.executeUpdate();
             query.close();
             read(id);
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

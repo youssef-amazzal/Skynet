@@ -10,8 +10,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AirlineDao implements Dao<Airline> {
@@ -22,24 +22,27 @@ public class AirlineDao implements Dao<Airline> {
     }
 
     private byte[] imageToStream(Image logo) throws IOException {
-        File file = new File("logo.png");
-        ImageIO.write(SwingFXUtils.fromFXImage(logo, null), "png", file);
-        FileInputStream fileInputStream =  new FileInputStream(file);
-        byte[] byteArray = fileInputStream.readAllBytes() ;
-        fileInputStream.close();
-        file.delete();
-        return byteArray;
+        if (logo != null) {
+            File file = new File("logo.png");
+            ImageIO.write(SwingFXUtils.fromFXImage(logo, null), "png", file);
+            FileInputStream fileInputStream =  new FileInputStream(file);
+            byte[] byteArray = fileInputStream.readAllBytes() ;
+            fileInputStream.close();
+            file.delete();
+            return byteArray;
+        }
+        return null;
     }
 
     @Override
     public int create(Airline airline) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO airlines (name, logo) VALUES (?,?);";
+        String statement = "INSERT INTO airlines (name, logo, IATA) VALUES (?,?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setString(1, airline.getName());
             query.setBytes(2, imageToStream(airline.getLogo()));
-
+            query.setString(3, airline.getIATA());
 
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
@@ -72,6 +75,7 @@ public class AirlineDao implements Dao<Airline> {
                 airline = new Airline();
                 airline.setId(res.getInt("id"));
                 airline.setName(res.getString("name"));
+                airline.setIATA(res.getString("IATA"));
                 InputStream inputStream = res.getBinaryStream("logo");
                 if ((inputStream != null)) {
                     airline.setLogo(new Image(inputStream));
@@ -94,7 +98,7 @@ public class AirlineDao implements Dao<Airline> {
     @Override
     public List<Airline> readAll() {
         Connection conn = DataSource.getConnection();
-        List<Airline> list = new ArrayList<>();
+        LinkedList<Airline> list = new LinkedList<>();
 
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM airlines;");
@@ -103,9 +107,15 @@ public class AirlineDao implements Dao<Airline> {
                 Airline airline = new Airline();
                 airline.setId(res.getInt("id"));
                 airline.setName(res.getString("name"));
-                airline.setLogo(new Image(res.getBinaryStream("logo")));
+                airline.setIATA(res.getString("IATA"));
+                InputStream inputStream = res.getBinaryStream("logo");
+                if ((inputStream != null)) {
+                    airline.setLogo(new Image(inputStream));
+                } else {
+                    airline.setLogo(null);
+                }
 
-                list.add(airline);
+                list.addFirst(airline);
                 airlinesMap.put(res.getInt("id"), airline);
             }
             return list;
@@ -121,11 +131,11 @@ public class AirlineDao implements Dao<Airline> {
         Connection conn = DataSource.getConnection();
         Airline original =  this.read(id);
 
-        String statement = "UPDATE airlines SET name = ?, logo = ? WHERE id = ? ;";
+        String statement = "UPDATE airlines SET name = ?, logo = ?, IATA = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(3, id);
+            query.setInt(4, id);
 
             if (airline.getName() != null) {
                 query.setString(1, airline.getName());
@@ -139,6 +149,13 @@ public class AirlineDao implements Dao<Airline> {
             }
             else {
                 query.setBytes(2, imageToStream(original.getLogo()));
+            }
+
+            if (airline.getIATA() != null) {
+                query.setString(3, airline.getIATA());
+            }
+            else {
+                query.setString(3, original.getIATA());
             }
             query.executeUpdate();
             query.close();
