@@ -13,7 +13,7 @@ public class DataSource {
     private DataSource() {
         try {
 
-            Path dataBasePath = Path.of(System.getProperty("user.home"), "FlightBookingApp", "applicationDataBase.db");
+            Path dataBasePath = Path.of(System.getProperty("user.home"), ".Skynet", "applicationDataBase.db");
             String resourceName= "/dataBase/applicationDataBase.db";
 
             if (!Files.exists(dataBasePath)) {
