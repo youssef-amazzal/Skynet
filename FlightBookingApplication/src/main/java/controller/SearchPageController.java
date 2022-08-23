@@ -66,16 +66,18 @@ public class SearchPageController implements Initializable {
         inputDepartureCity.setItems(AirportDao.getCityList());
         inputArrivalCity.setItems(AirportDao.getCityList());
 
-        int itemsPerPage = 10;
+        // set up the pagination
+        pagination.setMaxPageIndicatorCount(10);
+        int itemsPerPage = 5;
         int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
         pagination.setPageCount(nbrPages == 0 ? 1 : nbrPages);
-        pagination.setMaxPageIndicatorCount(5);
 
         pagination.setPageFactory((pageIndex) -> {
             VBox page = new VBox();
 
             int firstItemIndex = pageIndex * itemsPerPage;
             int lastItemIndex = (pageIndex + 1) * itemsPerPage;
+
 
             for (int i = firstItemIndex; i < Math.min(lastItemIndex, results.size()) ; i++) {
                 Flight flight = results.get(i);
@@ -133,6 +135,10 @@ public class SearchPageController implements Initializable {
 
         });
 
-        pagination.setCurrentPageIndex(0);
+        int itemsPerPage = 5;
+        int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
+        pagination.setPageCount(Integer.MAX_VALUE);
+        pagination.setPageCount(nbrPages == 0 ? 1 : nbrPages);
+
     }
 }
