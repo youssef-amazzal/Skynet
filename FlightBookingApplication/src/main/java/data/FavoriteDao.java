@@ -18,12 +18,11 @@ public class FavoriteDao implements Dao<Favorite> {
     @Override
     public int create(Favorite favorite) {
         Connection conn = DataSource.getConnection();
-        String statement = "INSERT INTO favorites (id_flight, id_account, isFavorite) VALUES (?,?,?);";
+        String statement = "INSERT INTO favorites (id_flight, id_account) VALUES (?,?);";
         try {
             PreparedStatement query = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
             query.setInt(1, favorite.getFlight().getId());
             query.setInt(2, favorite.getAccount().getId());
-            query.setBoolean(3, favorite.getIsFavoriteProperty().get());
 
             query.executeUpdate();
             ResultSet id = query.getGeneratedKeys();
@@ -54,7 +53,6 @@ public class FavoriteDao implements Dao<Favorite> {
                 favorite.setId(res.getInt("id"));
                 favorite.setFlight(flightDao.read(res.getInt("id_flight")));
                 favorite.setAccount((res.getInt("id_account")));
-                favorite.setIsFavorite((res.getBoolean("isFavorite")));
                 favoritesMap.put(res.getInt("id_flight"), favorite);
             }
 
@@ -86,7 +84,6 @@ public class FavoriteDao implements Dao<Favorite> {
                 favorite.setId(res.getInt("id"));
                 favorite.setFlight(flightDao.read(res.getInt("id_flight")));
                 favorite.setAccount((res.getInt("id_account")));
-                favorite.setIsFavorite((res.getBoolean("isFavorite")));
                 favoritesMap.put(res.getInt("id_flight"), favorite);
             }
 
@@ -94,7 +91,6 @@ public class FavoriteDao implements Dao<Favorite> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return favorite;
     }
 
@@ -111,7 +107,6 @@ public class FavoriteDao implements Dao<Favorite> {
                 favorite.setId(res.getInt("id"));
                 favorite.setFlight(flightDao.read(res.getInt("id_flight")));
                 favorite.setAccount((res.getInt("id_account")));
-                favorite.setIsFavorite((res.getBoolean("isFavorite")));
 
                 list.add(favorite);
                 favoritesMap.put(res.getInt("id_flight"), favorite);
@@ -129,11 +124,11 @@ public class FavoriteDao implements Dao<Favorite> {
         Connection conn = DataSource.getConnection();
         Favorite original =  this.read(id);
 
-        String statement = "UPDATE favorites SET id_flight = ?, id_account = ?, isFavorite = ? WHERE id = ? ;";
+        String statement = "UPDATE favorites SET id_flight = ?, id_account = ? WHERE id = ? ;";
 
         try {
             PreparedStatement query = conn.prepareStatement(statement);
-            query.setInt(4, id);
+            query.setInt(3, id);
 
             if (favorite.getFlight() != null) {
                 query.setInt(1, favorite.getFlight().getId());
@@ -147,14 +142,6 @@ public class FavoriteDao implements Dao<Favorite> {
             }
             else {
                 query.setInt(2, original.getAccount().getId());
-            }
-
-            if (favorite.getIsFavoriteProperty() != null) {
-                query.setBoolean(3, favorite.getIsFavoriteProperty().get());
-                favoritesMap.get(original.getFlight().getId()).setIsFavorite(favorite.getIsFavoriteProperty().get());
-            }
-            else {
-                query.setBoolean(3, original.getIsFavoriteProperty().get());
             }
 
             query.executeUpdate();

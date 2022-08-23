@@ -19,6 +19,7 @@ public class Flight {
     private Airport depAirport;
     private Airport arrAirport;
     private int airline;
+    private SimpleBooleanProperty favorite;
 
     public Flight() {
         this.firstPrice = -1;
@@ -26,47 +27,35 @@ public class Flight {
         this.economyPrice = -1;
         this.luggagePrice = -1;
         this.weightPrice = -1;
+        this.favorite = new SimpleBooleanProperty(false);
     }
 
     public boolean isFavorite() {
         FavoriteDao favoriteDao = new FavoriteDao();
         Favorite favorite = favoriteDao.read(this, Account.getCurrentUser());
         if (favorite != null) {
-            return favorite.getIsFavoriteProperty().get();
+            this.getFavoriteProperty().set(true);
+            return true;
         }
         else {
-            favoriteDao.create(new Favorite(this, Account.getCurrentUser(), false));
+            this.getFavoriteProperty().set(false);
             return false;
         }
     }
 
     public SimpleBooleanProperty getFavoriteProperty() {
-        FavoriteDao favoriteDao = new FavoriteDao();
-        Favorite favorite = favoriteDao.read(this, Account.getCurrentUser());
-        return favorite.getIsFavoriteProperty();
+        return favorite;
     }
 
     public void addFavorite() {
         FavoriteDao favoriteDao = new FavoriteDao();
-        Favorite favorite = favoriteDao.read(this, Account.getCurrentUser());
-        if (favorite != null) {
-            favorite.setIsFavorite(true);
-            favoriteDao.update(favorite.getId(), favorite);
-            FavoriteDao.favoritesMap.get(this.getId()).setIsFavorite(true);
-        }
-        else {
-            favoriteDao.create(new Favorite(this, Account.getCurrentUser(), true));
-        }
+        favoriteDao.create(new Favorite(this, Account.getCurrentUser()));
     }
 
     public void removeFavorite() {
         FavoriteDao favoriteDao = new FavoriteDao();
         Favorite favorite = favoriteDao.read(this, Account.getCurrentUser());
-        if (favorite != null) {
-            favorite.setIsFavorite(false);
-            favoriteDao.update(favorite.getId(), favorite);
-            FavoriteDao.favoritesMap.get(this.getId()).setIsFavorite(false);
-        }
+        favoriteDao.delete(favorite.getId());
     }
 
     public int getId() {

@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -129,20 +130,23 @@ public class FlightCardController implements Initializable {
         }
 
         btnFavorite.setSelected(flight.isFavorite());
-
-        SimpleBooleanProperty property = flight.getFavoriteProperty();
+        if (flight.isFavorite()) {
+            btnFavorite.setOnAction(event -> flight.removeFavorite());
+        }
+        else {
+            btnFavorite.setOnAction(event -> flight.addFavorite());
+        }
 
         flight.getFavoriteProperty().addListener((observable, oldValue, newValue) -> {
             btnFavorite.setSelected(newValue);
         });
 
         btnFavorite.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue && !oldValue) {
-                flight.addFavorite();
+            if (newValue) {
+                Platform.runLater(() -> btnFavorite.setOnAction(event -> flight.removeFavorite()));
             }
-
-            if (!newValue && oldValue) {
-                flight.removeFavorite();
+            else {
+                Platform.runLater(() -> btnFavorite.setOnAction(event -> flight.addFavorite()));
             }
         });
     }

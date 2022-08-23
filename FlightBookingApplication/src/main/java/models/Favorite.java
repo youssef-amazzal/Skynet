@@ -1,37 +1,24 @@
 package models;
 
 import data.AccountDao;
-import javafx.beans.property.SimpleBooleanProperty;
 
 public class Favorite {
     private int id;
-    private final SimpleBooleanProperty isFavorite;
     private Flight flight;
     private int account;
 
-    public Favorite(Flight flight, Account account, boolean isFavorite) {
-        this.isFavorite = new SimpleBooleanProperty(isFavorite);
+    public Favorite(Flight flight, Account account) {
         this.flight = flight;
         this.account = account.getId();
     }
 
     public Favorite() {
-        isFavorite = new SimpleBooleanProperty(true);
     }
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setIsFavorite(boolean isFavorite) {
-        this.isFavorite.set(isFavorite);
-    }
-
-    public SimpleBooleanProperty getIsFavoriteProperty() {
-        return isFavorite;
     }
 
     public Flight getFlight() {

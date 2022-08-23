@@ -2,6 +2,7 @@ package controller;
 
 import data.ReservationDao;
 import data.SeatDao;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -157,22 +158,24 @@ public class SeatMapController implements Initializable {
         }
 
         btnFavorite.setSelected(flight.isFavorite());
+        if (flight.isFavorite()) {
+            btnFavorite.setOnAction(event -> flight.removeFavorite());
+        }
+        else {
+            btnFavorite.setOnAction(event -> flight.addFavorite());
+        }
 
         flight.getFavoriteProperty().addListener((observable, oldValue, newValue) -> {
             btnFavorite.setSelected(newValue);
         });
 
         btnFavorite.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue && !oldValue) {
-                flight.addFavorite();
+            if (newValue) {
+                Platform.runLater(() -> btnFavorite.setOnAction(event -> flight.removeFavorite()));
             }
-
-            if (!newValue && oldValue) {
-                flight.removeFavorite();
+            else {
+                Platform.runLater(() -> btnFavorite.setOnAction(event -> flight.addFavorite()));
             }
-
-            FlightCardController cardController = (FlightCardController) parent.getUserData();
-            cardController.changeActionButtons();
         });
     }
 
