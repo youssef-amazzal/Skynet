@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -19,9 +18,9 @@
 
 <HBox fx:id="parent" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="823.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FlightCardController">
    <children>
-      <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="150.0">
+      <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0">
          <children>
-            <ImageView fx:id="AirlineLogo" fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+            <ImageView fx:id="AirlineLogo" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <effect>
                   <ColorAdjust brightness="0.05" contrast="0.08" hue="0.05" saturation="-0.02" />
                </effect>
@@ -69,9 +68,9 @@
             </TextFlow>
             <HBox alignment="CENTER">
                <children>
-                  <Circle fill="#208ceb00" radius="5.0" stroke="#3f98fc" strokeType="INSIDE" strokeWidth="2.0" />
-                  <Line endX="70.0" startX="-50.0" stroke="#3f98fc" strokeLineCap="BUTT" strokeWidth="2.0" HBox.hgrow="ALWAYS" />
-                  <Circle fill="#208ceb00" radius="5.0" stroke="#3f98fc" strokeType="INSIDE" strokeWidth="2.0" />
+                  <Circle fill="#208ceb00" radius="5.0" stroke="#3f98fc" strokeType="INSIDE" strokeWidth="2.0" styleClass="pathShape" />
+                  <Line endX="70.0" startX="-50.0" stroke="#3f98fc" strokeLineCap="BUTT" strokeWidth="2.0" styleClass="pathShape" HBox.hgrow="ALWAYS" />
+                  <Circle fill="#208ceb00" radius="5.0" stroke="#3f98fc" strokeType="INSIDE" strokeWidth="2.0" styleClass="pathShape" />
                </children>
             </HBox>
             <HBox prefHeight="10.0">
@@ -114,7 +113,7 @@
             <Font name="Calibri Bold" size="13.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="146.0" prefWidth="162.0" spacing="10.0">
+      <HBox alignment="CENTER" prefWidth="162.0" spacing="10.0">
          <children>
             <ToggleButton fx:id="btnFavorite" mnemonicParsing="false" styleClass="favorite">
                <graphic>
@@ -137,11 +136,7 @@
          </padding>
       </HBox>
    </children>
-   <styleClass>
-      <String fx:value="card" />
-      <String fx:value="listItem" />
-   </styleClass>
    <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
    </padding>
 </HBox>

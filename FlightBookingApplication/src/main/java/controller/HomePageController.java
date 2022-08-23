@@ -1,6 +1,7 @@
 package controller;
 
 import data.FlightDao;
+import javafx.application.Platform;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,8 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.skin.DatePickerSkin;
+import javafx.scene.control.skin.PaginationSkin;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -48,7 +51,7 @@ public class HomePageController implements Initializable {
     private StackPane parent;
 
     @FXML
-    private VBox resultsContainer;
+    private Pagination pagination;
 
     @FXML
     private ToggleGroup tabsGroup;
@@ -58,37 +61,77 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/HomePage.css").toExternalForm());
-
-
-        lblFirstName.setText(Account.getCurrentUser().getPassenger().getFirstname());
-        Account.getCurrentUser().getPassenger().firstnameProperty().addListener((observable, oldValue, newValue) -> {
-            lblFirstName.setText(newValue);
-        });
-        Image picture = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ProfilePicture.png")));
-        profilePicture.setFill(new ImagePattern(picture));
-
-
         alwaysOneSelected();
 
-        DatePickerSkin datePickerSkin = new DatePickerSkin(new DatePicker(LocalDate.now()));
-        Node popupContent = datePickerSkin.getPopupContent();
-        calendarContainer.getChildren().add(popupContent);
+        {
+            lblFirstName.setText(Account.getCurrentUser().getPassenger().getFirstname());
+            Account.getCurrentUser().getPassenger().firstnameProperty().addListener((observable, oldValue, newValue) -> {
+                lblFirstName.setText(newValue);
+            });
+            Image picture = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ProfilePicture.png")));
+            profilePicture.setFill(new ImagePattern(picture));
+        }
 
-        getUpcomigFlights();
-        tabsGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals(btnUpcoming)) {
-                getUpcomigFlights();
-            }
 
-            if (newValue.equals(btnFavorite)) {
-                getFavoriteFlights();
-            }
+        {
+            DatePickerSkin datePickerSkin = new DatePickerSkin(new DatePicker(LocalDate.now()));
+            Node popupContent = datePickerSkin.getPopupContent();
+            calendarContainer.getChildren().add(popupContent);
+        }
 
-            if (newValue.equals(btnArchive)) {
-                getArchiveFlights();
-            }
-        });
+        {
+            // set up the pagination
+            pagination.setMaxPageIndicatorCount(5);
 
+            int itemsPerPage = 4;
+            int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
+            pagination.setPageCount(nbrPages == 0 ? 1 : nbrPages);
+
+            pagination.setPageFactory((pageIndex) -> {
+                VBox page = new VBox();
+
+                //System.out.println(results.size());
+
+                int firstItemIndex = pageIndex * itemsPerPage;
+                int lastItemIndex = (pageIndex + 1) * itemsPerPage;
+
+
+                for (int i = firstItemIndex; i < Math.min(lastItemIndex, results.size()); i++) {
+                    Flight flight = results.get(i);
+                    try {
+                        FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/FlightCard_Small.fxml"));
+                        HBox card = cardLoader.load();
+                        FlightCardController controller = cardLoader.getController();
+                        controller.setData(flight);
+                        page.getChildren().add(card);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                return page;
+            });
+        }
+
+        {
+            tabsGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.equals(btnUpcoming)) {
+                    getUpcomigFlights();
+                }
+
+                if (newValue.equals(btnFavorite)) {
+                    getFavoriteFlights();
+                }
+
+                if (newValue.equals(btnArchive)) {
+                    getArchiveFlights();
+                }
+
+                refreshPagination();
+            });
+
+            btnUpcoming.setSelected(true);
+        }
     }
 
     private void alwaysOneSelected() {
@@ -105,7 +148,6 @@ public class HomePageController implements Initializable {
             }
             return false;
         });
-        getData();
     }
 
     private void getFavoriteFlights() {
@@ -115,7 +157,6 @@ public class HomePageController implements Initializable {
             }
             return false;
         });
-        getData();
     }
 
     private void getArchiveFlights() {
@@ -125,21 +166,12 @@ public class HomePageController implements Initializable {
             }
             return false;
         });
-        getData();
     }
 
-    private void getData() {
-        resultsContainer.getChildren().clear();
-        for (Flight flight : results) {
-            try {
-                FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/FlightCard_Small.fxml"));
-                HBox card = cardLoader.load();
-                FlightCardController controller = cardLoader.getController();
-                controller.setData(flight);
-                resultsContainer.getChildren().add(card);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    private void refreshPagination() {
+        int itemsPerPage = 4;
+        int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
+        pagination.setPageCount(Integer.MAX_VALUE);
+        pagination.setPageCount(nbrPages == 0 ? 1 : nbrPages);
     }
 }

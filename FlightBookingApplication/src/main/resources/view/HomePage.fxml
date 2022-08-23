@@ -3,7 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
@@ -17,16 +17,16 @@
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <children>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="761.0" prefWidth="1094.0" spacing="20.0" HBox.hgrow="ALWAYS">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="761.0" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Home">
                      <font>
                         <Font name="Arial Black" size="30.0" />
                      </font>
                   </Label>
-                  <HBox spacing="30.0">
+                  <HBox spacing="20.0">
                      <children>
-                        <ToggleButton id="upcoming-tab" fx:id="btnUpcoming" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="180.0" selected="true" HBox.hgrow="ALWAYS">
+                        <ToggleButton id="upcoming-tab" fx:id="btnUpcoming" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="180.0" HBox.hgrow="ALWAYS">
                            <padding>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </padding>
@@ -94,18 +94,10 @@
                         </ToggleButton>
                      </children>
                   </HBox>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
-                           <content>
-                              <VBox fx:id="resultsContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="823.0" />
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </StackPane>
+                  <Pagination fx:id="pagination" maxPageIndicatorCount="5" VBox.vgrow="ALWAYS" />
                </children>
                <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="40.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="393.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" styleClass="card">
