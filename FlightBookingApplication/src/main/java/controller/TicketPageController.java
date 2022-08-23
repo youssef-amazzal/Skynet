@@ -19,7 +19,6 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 public class TicketPageController {
 
@@ -134,8 +133,8 @@ public class TicketPageController {
         lblSelectedSeat.setText(selectedSeat.getColumn()+selectedSeat.getRow());
         lblClassType.setText(selectedSeat.getType() + " class");
 
-        lblDepDateTime.setText(flight.getDepDatetime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
-        lblArrDateTime.setText(flight.getArrDatetime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+        lblDepDateTime.setText(flight.getDepDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm")));
+        lblArrDateTime.setText(flight.getArrDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm")));
     }
 
 }
