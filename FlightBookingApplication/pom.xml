@@ -60,6 +60,9 @@
 		</dependency>
   	</dependencies>
 	<build>
+
+		<finalName>Skynet</finalName>
+
 		<plugins>
 
 			<plugin>
