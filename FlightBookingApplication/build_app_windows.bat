@@ -1,6 +1,6 @@
 @ECHO OFF
 
-rem Set desired installer type: "app-image" "msi" "exe".
+rem Set desired installer type:"msi" "exe".
 set INSTALLER_TYPE=msi
 
 set MAIN_JAR=%PROJECT_Name%.jar
