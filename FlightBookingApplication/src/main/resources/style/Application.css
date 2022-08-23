@@ -342,7 +342,7 @@
 .pagination > .pagination-control > .control-box > .left-arrow-button,
 .pagination > .pagination-control > .control-box > .right-arrow-button {
     -fx-background-insets: 0, 0.5;
-    -fx-background-color: darkgray, SecondaryColor;
+    -fx-background-color: lightgray, SecondaryColor;
     -fx-background-radius: 50%;
     -fx-min-width: 40;
     -fx-min-height: 40;
@@ -378,6 +378,17 @@
     -fx-text-fill: white;
     -fx-effect: glow;
 }
+
+.pagination > .page {
+    -fx-background-color: SecondaryColor;
+    -fx-background-radius: 20;
+    -fx-background-insets: 0 0 20 0;
+    -fx-border-color: lightgray;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 20;
+    -fx-border-insets: 0 0 20 0;
+    -fx-padding: 10 10 10 10;
+}
 /*=========================================================================================================*/
 
 .TransparentTextField,
@@ -389,7 +400,7 @@
 
 .card {
     -fx-background-color: SecondaryColor;
-    -fx-border-color: darkgray;
+    -fx-border-color: lightgray;
     -fx-border-width: 0.5;
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;

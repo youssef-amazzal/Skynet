@@ -2,7 +2,7 @@
 
 #searchBar{
     -fx-border-width: 0.5px;
-    -fx-border-color: darkgray;
+    -fx-border-color: lightgray;
     -fx-background-color: SecondaryColor;
 }
 
@@ -41,4 +41,8 @@
 
 .searchable-combo-box {
     -fx-border-width: 0;
+}
+
+.pagination > .page {
+    -fx-padding: 20 20 40 20;
 }
