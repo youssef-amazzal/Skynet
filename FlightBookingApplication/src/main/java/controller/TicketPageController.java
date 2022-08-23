@@ -111,6 +111,9 @@ public class TicketPageController {
         Flight flight = reservation.getFlight();
         Seat selectedSeat = reservation.getSeat();
         Passenger passenger = reservation.getAccount().getPassenger();
+        Airline airline = flight.getAirline();
+
+        imgAirlineLogo.setImage(airline.getLogo());
 
         String depIATA = flight.getDepAirport().getIATA();
         String depICAO = flight.getDepAirport().getICAO();
