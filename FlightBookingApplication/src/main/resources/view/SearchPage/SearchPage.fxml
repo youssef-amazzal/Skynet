@@ -149,9 +149,9 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <Pagination fx:id="pagination" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" VBox.vgrow="ALWAYS">
+                  <Pagination fx:id="pagination" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="1236.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets />
+                        <Insets bottom="20.0" left="30.0" right="30.0" />
                      </VBox.margin>
                   </Pagination>
                </children>
