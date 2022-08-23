@@ -90,7 +90,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setBirthDate(LocalDate.parse(res.getString("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 passenger.setGender(res.getString("gender"));
                 passenger.setCountry(res.getString("country"));
-                InputStream inputStream = res.getBinaryStream("profilePictue");
+                InputStream inputStream = res.getBinaryStream("profilePicture");
                 if ((inputStream != null)) {
                     passenger.setProfilePictue(new Image(inputStream));
                 } else {
