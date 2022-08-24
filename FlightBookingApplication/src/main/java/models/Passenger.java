@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Passenger {
     private int id;
@@ -81,6 +82,9 @@ public class Passenger {
     }
 
     public Image getProfilePictue() {
+        if (profilePictue.get() == null) {
+            return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ProfilePicture.png")));
+        }
         return profilePictue.get();
     }
 

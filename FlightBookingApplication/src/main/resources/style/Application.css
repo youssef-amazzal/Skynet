@@ -31,10 +31,6 @@
 .arrow-button {
     -fx-cursor: hand;
 }
-
-.arrow {
-    -fx-background-color: AccentColor;
-}
 /*========================================== Separator Styling ==========================================*/
 .separator:vertical,
 .separator:horizontal {
@@ -75,6 +71,11 @@
 .date-picker > .arrow-button {
     -fx-background-color: transparent;
 }
+
+.date-picker > .arrow-button .arrow {
+    -fx-background-color: AccentColor;
+}
+
 
 .date-picker-popup {
     -fx-background-radius: 10;
@@ -197,6 +198,10 @@
     -fx-border-color: AccentColor;
 }
 
+.searchable-combo-box .arrow {
+    -fx-background-color: AccentColor;
+}
+
 .searchable-combo-box,
 .searchable-combo-box > * {
     -fx-background-color: transparent;
@@ -205,6 +210,33 @@
 
 .searchable-combo-box .image-view {
     visibility:false;
+}
+/*======================================== Choice-Box ====================================================*/
+.choice-box {
+   -fx-background-color: transparent;
+}
+
+.choice-box .arrow {
+    -fx-background-color: AccentColor;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: PrimaryColor;
+    -fx-border-color: darkgrey;
+    -fx-border-width: 0.5;
+    -fx-effect: null;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: AccentColor;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box .menu-item:hover {
+    -fx-background-color: AlphaAccentColor;
 }
 /*======================================== Spinner ====================================================*/
 .spinner,

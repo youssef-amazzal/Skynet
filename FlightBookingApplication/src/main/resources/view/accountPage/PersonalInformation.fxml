@@ -3,184 +3,105 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PersonalInformationControlller">
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="762.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PersonalInformationControlller">
    <children>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="102.0" prefWidth="695.0" spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="626.0" spacing="40.0" styleClass="card" VBox.vgrow="ALWAYS">
          <children>
-            <Circle fx:id="profilePicture" fill="DODGERBLUE" radius="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Label text=" Upload a Picture">
-               <font>
-                  <Font name="System Bold" size="23.0" />
-               </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="161.0" text="upload" textFill="WHITE">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-         </padding>
-      </HBox>
-      <VBox maxHeight="1.7976931348623157E308" prefWidth="687.0" spacing="40.0" styleClass="card" VBox.vgrow="ALWAYS">
-         <children>
-            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="685.0" VBox.vgrow="ALWAYS">
+            <StackPane id="avatar" maxHeight="-Infinity" maxWidth="-Infinity">
                <children>
-                  <Label text="Personnel Information">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
+                  <Circle fx:id="profilePictureFrame" fill="#dbdbdb58" radius="100.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Button contentDisplay="TOP" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changeImage" text="uploade image" wrapText="true">
+                     <graphic>
+                        <FontIcon iconLiteral="mdi-camera" iconSize="30" />
+                     </graphic>
                      <font>
-                        <Font name="System Bold" size="28.0" />
+                        <Font name="Arial" size="11.0" />
                      </font>
-                  </Label>
+                  </Button>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
+            </StackPane>
+            <VBox alignment="CENTER" maxWidth="-Infinity" spacing="40.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="txtfirstname" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="FirstName" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="TransparentTextField" />
-                        <String fx:value="underLine-field" />
-                     </styleClass>
-                  </TextField>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="txtlastname" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="LastName" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="TransparentTextField" />
-                        <String fx:value="underLine-field" />
-                     </styleClass>
-                  </TextField>
+                  <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="txtfirstname" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="FirstName" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="TransparentTextField" />
+                              <String fx:value="underLine-field" />
+                           </styleClass>
+                        </TextField>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtlastname" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="LastName" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="TransparentTextField" />
+                              <String fx:value="underLine-field" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <DatePicker fx:id="txtbirthday" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Birthday" styleClass="underLine-field" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </DatePicker>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <ChoiceBox fx:id="genderBox" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" styleClass="underLine-field" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <SearchableComboBox fx:id="countryBox" maxHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" promptText="Country" styleClass="underLine-field" HBox.hgrow="ALWAYS" />
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtemail" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Email" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="TransparentTextField" />
+                              <String fx:value="underLine-field" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
+            </VBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
                <children>
-                  <TextField fx:id="txtcountry" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Country" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="TransparentTextField" />
-                        <String fx:value="underLine-field" />
-                     </styleClass>
-                  </TextField>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="txtnationality" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Nationality" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="TransparentTextField" />
-                        <String fx:value="underLine-field" />
-                     </styleClass>
-                  </TextField>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <DatePicker fx:id="txtbirthday" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Birthday" styleClass="underLine-field" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </DatePicker>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="txtgender" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Gender" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="TransparentTextField" />
-                        <String fx:value="underLine-field" />
-                     </styleClass>
-                  </TextField>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <TextField fx:id="txtphone" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="PhoneNumber" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="TransparentTextField" />
-                        <String fx:value="underLine-field" />
-                     </styleClass>
-                  </TextField>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="txtemail" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="400.0" promptText="Email" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="TransparentTextField" />
-                        <String fx:value="underLine-field" />
-                     </styleClass>
-                  </TextField>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateData" prefHeight="60.0" prefWidth="633.0" text="Update" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                  <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#updateData" prefHeight="50.0" prefWidth="364.0" text="Update" textFill="WHITE" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
          <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            <Insets bottom="40.0" left="60.0" right="60.0" top="40.0" />
          </padding>
       </VBox>
    </children>

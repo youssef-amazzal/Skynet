@@ -126,7 +126,7 @@ public class PassengerDao implements Dao<Passenger> {
                 passenger.setBirthDate(LocalDate.parse(res.getString("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 passenger.setGender(res.getString("gender"));
                 passenger.setCountry(res.getString("country"));
-                InputStream inputStream = res.getBinaryStream("profilePictue");
+                InputStream inputStream = res.getBinaryStream("profilePicture");
                 if ((inputStream != null)) {
                     passenger.setProfilePictue(new Image(inputStream));
                 } else {
@@ -195,10 +195,11 @@ public class PassengerDao implements Dao<Passenger> {
             }
 
             if (passenger.getProfilePictue() != null) {
-                query.setBytes(2, imageToStream(passenger.getProfilePictue()));
+                query.setBytes(6, imageToStream(passenger.getProfilePictue()));
+                original.setProfilePictue(passenger.getProfilePictue());
             }
             else {
-                query.setBytes(2, imageToStream(original.getProfilePictue()));
+                query.setBytes(6, imageToStream(original.getProfilePictue()));
             }
 
             query.executeUpdate();

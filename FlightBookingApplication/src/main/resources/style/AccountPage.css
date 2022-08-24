@@ -30,6 +30,22 @@
     -fx-background-radius: 50%;
 }
 
+#avatar .button {
+    -fx-opacity: 0;
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 50%;
+}
+
+#avatar .button:hover {
+    -fx-opacity: 1;
+    -fx-effect: null;
+}
+
+.searchable-combo-box {
+    -fx-border-radius: 0;
+    -fx-border-width: 0  0 1 0;
+}
+
 /*================================= My Cards =================================*/
 .credit-card-overlay {
     -fx-background-color: transparent;
