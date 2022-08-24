@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -10,7 +9,6 @@
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -24,90 +22,100 @@
          <content>
             <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="761.0" prefWidth="1263.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER">
                      <children>
-                        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="44.0" prefWidth="584.0">
-                           <children>
-                              <FontIcon iconLiteral="mdi-magnify" iconSize="33">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </FontIcon>
-                              <TextField fx:id="inputSearch" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" prefWidth="529.0" HBox.hgrow="ALWAYS" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                           </HBox.margin>
-                           <styleClass>
-                              <String fx:value="card" />
-                              <String fx:value="TransparentTextField" />
-                           </styleClass>
-                        </HBox>
+                        <Label maxWidth="-Infinity" prefWidth="1236.0" text="Search">
+                           <font>
+                              <Font name="Arial Black" size="30.0" />
+                           </font>
+                        </Label>
                      </children>
+                     <padding>
+                        <Insets left="30.0" right="30.0" top="40.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="50.0" prefWidth="1236.0" styleClass="card">
+                        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefWidth="1236.0" styleClass="card">
                            <HBox.margin>
                               <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                            </HBox.margin>
                            <children>
-                              <HBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+                              <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
+                                    <VBox styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <SearchableComboBox fx:id="inputDepartureCity" editable="true" maxHeight="27.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="TransparentTextField" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <SearchableComboBox fx:id="depCountry" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="150.0" promptText="Departure country" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="TransparentTextField" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <SearchableComboBox fx:id="depCity" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="150.0" promptText="Departure city" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
                                        </children>
-                                    </HBox>
-                                    <Label id="swapButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#swapCities" prefHeight="41.0" prefWidth="41.0">
-                                       <graphic>
-                                          <FontIcon iconLiteral="mdi-swap-horizontal">
+                                    </VBox>
+                                    <Separator maxHeight="1.7976931348623157E308" orientation="VERTICAL" />
+                                    <VBox alignment="CENTER" prefWidth="50.0">
+                                       <children>
+                                          <Label id="swapButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#swapData" prefHeight="41.0" prefWidth="41.0">
+                                             <graphic>
+                                                <FontIcon iconLiteral="mdi-swap-horizontal">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </FontIcon>
+                                             </graphic>
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
-                                          </FontIcon>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Label>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <SearchableComboBox fx:id="inputArrivalCity" editable="true" maxHeight="27.0" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                                          </Label>
                                        </children>
-                                    </HBox>
+                                    </VBox>
+                                    <Separator maxHeight="1.7976931348623157E308" orientation="VERTICAL" />
+                                    <VBox styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="TransparentTextField" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <SearchableComboBox fx:id="arrCountry" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="150.0" promptText="Arrival country" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="TransparentTextField" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <SearchableComboBox fx:id="arrCity" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="150.0" promptText="Arrival city" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <Separator maxHeight="1.7976931348623157E308" orientation="VERTICAL" />
+                                    <VBox styleClass="TransparentTextField">
+                                       <children>
+                                          <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="130.0">
+                                             <children>
+                                                <DatePicker fx:id="depDateAfter" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="130.0" promptText="After When ?" styleClass="TransparentTextField" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" right="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="130.0">
+                                             <children>
+                                                <DatePicker fx:id="depDateBefore" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="130.0" promptText="Before When ?" styleClass="TransparentTextField" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" right="5.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                  </children>
                                  <padding>
-                                    <Insets left="5.0" right="5.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </padding>
                               </HBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Separator>
-                              <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="130.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <DatePicker fx:id="inputDepartureDate" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="130.0" promptText="After When ?" styleClass="TransparentTextField" HBox.hgrow="ALWAYS" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="5.0" right="5.0" />
-                                 </padding>
-                              </HBox>
-                              <Separator orientation="VERTICAL" prefHeight="200.0">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Separator>
-                              <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="108.0" styleClass="TransparentTextField" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <TextField fx:id="inputPrice" maxWidth="1.7976931348623157E308" promptText="MAX price ?" HBox.hgrow="ALWAYS" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="5.0" right="5.0" />
-                                 </padding>
-                              </HBox>
-                              <Button id="SearchButton" defaultButton="true" mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="199.0" text="Search" HBox.hgrow="ALWAYS">
+                              <Button id="SearchButton" defaultButton="true" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#search" prefWidth="199.0" text="Search" HBox.hgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -158,7 +166,7 @@
             </VBox>
          </content>
       </ScrollPane>
-      <Button fx:id="topButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTop" prefHeight="60.0" prefWidth="60.0">
+      <Button id="topButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTop" prefHeight="60.0" prefWidth="60.0">
          <StackPane.margin>
             <Insets bottom="50.0" right="50.0" />
          </StackPane.margin>

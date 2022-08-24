@@ -3,6 +3,7 @@ package controller;
 import data.AirportDao;
 import data.FlightDao;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,24 +23,22 @@ import java.util.ResourceBundle;
 public class SearchPageController implements Initializable {
 
     @FXML
-    private StackPane parent;
-    @FXML
-    private Button topButton;
+    private SearchableComboBox<String> arrCity;
 
     @FXML
-    private SearchableComboBox<String> inputArrivalCity;
+    private SearchableComboBox<String> arrCountry;
 
     @FXML
-    private SearchableComboBox<String> inputDepartureCity;
+    private SearchableComboBox<String> depCity;
 
     @FXML
-    private DatePicker inputDepartureDate;
+    private SearchableComboBox<String> depCountry;
 
     @FXML
-    private TextField inputPrice;
+    private DatePicker depDateAfter;
 
     @FXML
-    private TextField inputSearch;
+    private DatePicker depDateBefore;
 
     @FXML
     private ChoiceBox<?> inputSortBox;
@@ -48,13 +47,13 @@ public class SearchPageController implements Initializable {
     private Label lblResultsCounter;
 
     @FXML
-    private VBox searchPage;
+    private Pagination pagination;
+
+    @FXML
+    private StackPane parent;
 
     @FXML
     private ScrollPane scrollPane;
-
-    @FXML
-    private Pagination pagination;
 
     private final FilteredList<Flight> results = new FilteredList<>(FlightDao.getInstance().getFlightsList());
 
@@ -62,9 +61,14 @@ public class SearchPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/SearchPage.css").toExternalForm());
+        lblResultsCounter.setText("Results(" + results.size() + ")");
 
-        inputDepartureCity.setItems(AirportDao.getCityList());
-        inputArrivalCity.setItems(AirportDao.getCityList());
+        depCountry.setItems(AirportDao.getCountryList());
+        arrCountry.setItems(AirportDao.getCountryList());
+
+        depCountry.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> depCity.setItems(AirportDao.getCityList(newValue)));
+        arrCountry.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> arrCity.setItems(AirportDao.getCityList(newValue)));
+
 
         // set up the pagination
         pagination.setMaxPageIndicatorCount(10);
@@ -103,30 +107,56 @@ public class SearchPageController implements Initializable {
     }
 
     @FXML
-    void swapCities(MouseEvent event) {
-        int tempCity = inputDepartureCity.getSelectionModel().getSelectedIndex();
-        inputDepartureCity.getSelectionModel().select(inputArrivalCity.getSelectionModel().getSelectedIndex());
-        inputArrivalCity.getSelectionModel().select(tempCity);
+    void swapData(MouseEvent event) {
+        int tempDepCountry = depCountry.getSelectionModel().getSelectedIndex();
+        int tempDepCity = depCity.getSelectionModel().getSelectedIndex();
+
+        int tempArrCountry = arrCountry.getSelectionModel().getSelectedIndex();
+        int tempArrCity = arrCity.getSelectionModel().getSelectedIndex();
+
+        depCountry.getSelectionModel().select(tempArrCountry);
+        depCity.getSelectionModel().select(tempArrCity);
+
+        arrCountry.getSelectionModel().select(tempDepCountry);
+        arrCity.getSelectionModel().select(tempDepCity);
     }
 
     @FXML
     void search(ActionEvent event) {
 
         results.setPredicate(flight -> {
-            if (inputDepartureCity.getSelectionModel().getSelectedItem() != null && !inputDepartureCity.getSelectionModel().getSelectedItem().isBlank()) {
-                if (!flight.getDepAirport().getCity().equals(inputDepartureCity.getSelectionModel().getSelectedItem())) {
+            if (depCountry.getSelectionModel().getSelectedItem() != null && !depCountry.getSelectionModel().getSelectedItem().isBlank()) {
+                if (!flight.getDepAirport().getCountry().equals(depCountry.getSelectionModel().getSelectedItem())) {
                     return false;
                 }
             }
 
-            if (inputArrivalCity.getSelectionModel().getSelectedItem() != null && !inputArrivalCity.getSelectionModel().getSelectedItem().isBlank()) {
-                if (!flight.getArrAirport().getCity().equals(inputArrivalCity.getSelectionModel().getSelectedItem())) {
+            if (arrCountry.getSelectionModel().getSelectedItem() != null && !arrCountry.getSelectionModel().getSelectedItem().isBlank()) {
+                if (!flight.getArrAirport().getCountry().equals(arrCountry.getSelectionModel().getSelectedItem())) {
                     return false;
                 }
             }
 
-            if (inputDepartureDate.getValue() != null) {
-                if (flight.getDepDatetime().toLocalDate().isBefore(inputDepartureDate.getValue())) {
+            if (depCity.getSelectionModel().getSelectedItem() != null && !depCity.getSelectionModel().getSelectedItem().isBlank()) {
+                if (!flight.getDepAirport().getCity().equals(depCity.getSelectionModel().getSelectedItem())) {
+                    return false;
+                }
+            }
+
+            if (arrCity.getSelectionModel().getSelectedItem() != null && !arrCity.getSelectionModel().getSelectedItem().isBlank()) {
+                if (!flight.getArrAirport().getCity().equals(arrCity.getSelectionModel().getSelectedItem())) {
+                    return false;
+                }
+            }
+
+            if (depDateAfter.getValue() != null) {
+                if (flight.getDepDatetime().toLocalDate().isBefore(depDateAfter.getValue())) {
+                    return false;
+                }
+            }
+
+            if (depDateBefore.getValue() != null) {
+                if (flight.getDepDatetime().toLocalDate().isAfter(depDateBefore.getValue())) {
                     return false;
                 }
             }
@@ -134,6 +164,8 @@ public class SearchPageController implements Initializable {
             return true;
 
         });
+
+        lblResultsCounter.setText("Results(" + results.size() + ")");
 
         int itemsPerPage = 5;
         int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
