@@ -4,6 +4,9 @@ import data.AirlineDao;
 import data.FavoriteDao;
 import data.PassengerDao;
 import data.ReservationDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,12 +83,20 @@ public class Account {
         return reservationDao.read(flight, this);
     }
 
-    public List<Flight> getFavoriteFlights() {
+    public ObservableList<Flight> getFavoriteFlights() {
         FavoriteDao favoriteDao = new FavoriteDao();
         List<Favorite> favoriteList = favoriteDao.readAll();
         List<Flight> favoriteFlights = new ArrayList<>();
         favoriteList.forEach(favorite -> favoriteFlights.add(favorite.getFlight()));
-        return favoriteFlights;
+        return FXCollections.observableList(favoriteFlights);
+    }
+
+    public ObservableList<Flight> getReservedFlights() {
+        ReservationDao reservationDao = new ReservationDao();
+        List<Reservation> reservationList = reservationDao.read(this);
+        List<Flight> reservedFlights = new ArrayList<>();
+        reservationList.forEach(reservation -> reservedFlights.add(reservation.getFlight()));
+        return FXCollections.observableList(reservedFlights);
     }
 
 }

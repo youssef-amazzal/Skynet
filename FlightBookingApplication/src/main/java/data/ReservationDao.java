@@ -1,18 +1,15 @@
 package data;
 
-import models.Account;
-import models.Flight;
-import models.Reservation;
-import models.Seat;
+import models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ReservationDao implements Dao<Reservation> {
     FlightDao flightDao = FlightDao.getInstance();
     SeatDao seatDao = new SeatDao();
-
     public int countReservations(Flight flight) {
         Connection conn = DataSource.getConnection();
         String statement = "SELECT COUNT(reservations.id) AS total FROM reservations WHERE id_flight = ?;";
@@ -90,6 +87,32 @@ public class ReservationDao implements Dao<Reservation> {
         }
 
         return reservation;
+    }
+
+    public List<Reservation> read(Account account) {
+        Connection conn = DataSource.getConnection();
+        List<Reservation> list = new ArrayList<>();
+        String statement = "SELECT * FROM reservations WHERE id_account = ?;";
+        try {
+            PreparedStatement query = conn.prepareStatement(statement);
+            query.setInt(1, account.getId());
+            ResultSet res = query.executeQuery();
+            while (res.next()) {
+                Reservation reservation = new Reservation();
+                reservation.setId(res.getInt("id"));
+                reservation.setFlight(flightDao.read(res.getInt("id_flight")));
+                reservation.setAccount((res.getInt("id_account")));
+                reservation.setSeat(seatDao.read(res.getInt("id_seat")));
+                reservation.setNbrLuggages(res.getInt("nbr_luggages"));
+                reservation.setWeight(res.getInt("weight"));
+
+                list.add(reservation);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public Reservation read(Flight flight, Seat seat) {
