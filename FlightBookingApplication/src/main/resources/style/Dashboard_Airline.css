@@ -57,7 +57,7 @@
 #avatar .button {
     -fx-opacity: 0;
     -fx-background-color: rgba(0, 0, 0, 0.2);
-    -fx-background-radius: 50%;
+    -fx-background-radius: 0;
 }
 
 #avatar .button:hover {
