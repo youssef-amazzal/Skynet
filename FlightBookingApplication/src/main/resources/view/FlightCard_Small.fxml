@@ -36,7 +36,7 @@
             <Insets />
          </HBox.margin>
       </HBox>
-      <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="lblDepTime" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="06:00" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <font>
@@ -50,7 +50,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0">
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="140.0">
          <children>
             <TextFlow textAlignment="CENTER">
                <children>
@@ -94,7 +94,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="lblArrTime" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="08:30" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <font>
