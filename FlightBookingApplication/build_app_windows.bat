@@ -13,7 +13,7 @@ call "%JAVA_HOME%\bin\jpackage" ^
   --type %INSTALLER_TYPE% ^
   --dest target/installer ^
   --input target/ ^
-  --name FlightBookingApp ^
+  --name %PROJECT_Name% ^
   --main-class %MAIN_CLASS% ^
   --main-jar %MAIN_JAR% ^
   --java-options -Xmx2048m ^
