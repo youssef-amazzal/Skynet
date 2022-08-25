@@ -21,6 +21,7 @@ import view.Palette;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class SignupController implements Initializable {
@@ -54,6 +55,14 @@ public class SignupController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         parent.getStylesheets().add(getClass().getResource("/style/Sign-up.css").toExternalForm());
+        birthDatePicker.showingProperty().addListener((observableValue, wasFocused, isNowFocus) -> {
+            if (isNowFocus && birthDatePicker.getValue() == null) {
+                birthDatePicker.setValue(LocalDate.now().minusYears(20));
+                Platform.runLater(()->{
+                    birthDatePicker.getEditor().clear();
+                });
+            }
+        });
     }
 
     public void SwitchtoSignin(ActionEvent e) throws IOException {

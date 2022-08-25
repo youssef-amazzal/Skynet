@@ -3,12 +3,11 @@ package controller;
 import data.AccountDao;
 import data.AirportDao;
 import data.PassengerDao;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -19,6 +18,7 @@ import org.controlsfx.control.SearchableComboBox;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
@@ -53,6 +53,16 @@ public class PersonalInformationControlller implements Initializable {
         genderBox.getItems().addAll("Male","Female");
         countryBox.setItems(AirportDao.getCountryList());
         this.setData();
+
+        txtbirthday.showingProperty().addListener((observableValue, wasFocused, isNowFocus) -> {
+            if (isNowFocus && txtbirthday.getValue() == null) {
+                txtbirthday.setValue(LocalDate.now().minusYears(20));
+                Platform.runLater(()->{
+                    txtbirthday.getEditor().clear();
+                });
+            }
+        });
+
     }
   
    @FXML
