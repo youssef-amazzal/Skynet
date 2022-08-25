@@ -16,8 +16,7 @@
 <?import javafx.scene.text.TextFlow?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
-<HBox fx:id="parent" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="130.0" prefWidth="1236.0" spacing="20.0" styleClass="TransparentTextField" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FlightCardController">
+<HBox fx:id="parent" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="130.0" prefWidth="1236.0" spacing="20.0" styleClass="TransparentTextField" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FlightCardController">
    <children>
       <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
          <children>
@@ -37,7 +36,7 @@
             <Insets />
          </HBox.margin>
       </HBox>
-      <VBox alignment="CENTER" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="130.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="lblDepTime" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="06:00" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <font>
@@ -51,7 +50,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="CENTER" maxWidth="-Infinity" prefWidth="200.0">
+      <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="222.0">
          <children>
             <TextFlow textAlignment="CENTER">
                <children>
@@ -70,7 +69,7 @@
             <HBox alignment="CENTER">
                <children>
                   <Circle fill="#208ceb00" radius="5.0" stroke="#3f98fc" strokeType="INSIDE" strokeWidth="2.0" styleClass="pathShape" />
-                  <Line endX="50.0" startX="300.0" stroke="#3f98fc" strokeLineCap="BUTT" strokeWidth="2.0" styleClass="pathShape" HBox.hgrow="ALWAYS" />
+                  <Line endX="50.0" startX="250.0" stroke="#3f98fc" strokeLineCap="BUTT" strokeWidth="2.0" styleClass="pathShape" HBox.hgrow="ALWAYS" />
                   <Circle fill="#208ceb00" radius="5.0" stroke="#3f98fc" strokeType="INSIDE" strokeWidth="2.0" styleClass="pathShape" />
                </children>
             </HBox>
@@ -95,7 +94,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="150.0" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="lblArrTime" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="08:30" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <font>
