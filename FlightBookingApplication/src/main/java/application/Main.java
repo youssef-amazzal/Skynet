@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import view.Palette;
@@ -26,7 +27,8 @@ public class Main extends Application {
 			primaryStage.initStyle(StageStyle.UNIFIED);
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Flight Booking Application");
+			primaryStage.setTitle("Skynet");
+			primaryStage.getIcons().add(new Image(getClass().getResource("/images/SkynetLogo.png").toExternalForm()));
 			primaryStage.show();
 		}
 		catch (Exception e) {

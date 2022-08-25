@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
@@ -31,7 +33,7 @@ public class NavigationBarController implements Initializable {
     private ToggleButton accounBtn;
 
     @FXML
-    private Label appLogo;
+    private ImageView appLogo;
 
     @FXML
     private ToggleButton homeBtn;
@@ -57,6 +59,8 @@ public class NavigationBarController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         navigationBar.getStylesheets().add(getClass().getResource("/style/NavigationBar.css").toExternalForm());
         VBox.setVgrow(navigationBar, Priority.ALWAYS);
+
+        appLogo.setImage(new Image(getClass().getResource("/images/SkynetLogo.png").toExternalForm()));
         alwaysOneSelected();
 
         if (Palette.getDefaultPalette().equals(Palette.DarkPalette)) {

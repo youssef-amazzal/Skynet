@@ -20,11 +20,11 @@
                <children>
                   <VBox id="Summary" fx:id="ticket" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="485.0" styleClass="card">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="19.0" prefWidth="423.0">
+                        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="423.0">
                            <children>
-                              <ImageView fx:id="imgAirlineLogo" fitHeight="73.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView fx:id="imgAirlineLogo" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
-                                    <Image url="@../../images/RoyalAirMaroc.png" />
+                                    <Image url="@../../images/default_logo.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
@@ -32,9 +32,9 @@
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="imgAppLogo" fitHeight="71.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView fx:id="imgAppLogo" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
-                                    <Image url="@../../images/logo_ests.png" />
+                                    <Image url="@../../images/SkynetLogo.png" />
                                  </image>
                               </ImageView>
                            </children>

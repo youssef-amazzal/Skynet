@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Account;
@@ -63,7 +64,8 @@ public class ApplicationController implements Initializable {
             Palette.getDefaultPalette().usePalette(scene);
 
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Flight Booking Application");
+            primaryStage.setTitle("Skynet");
+            primaryStage.getIcons().add(new Image(ApplicationController.class.getResource("/images/SkynetLogo.png").toExternalForm()));
             primaryStage.show();
 
         }

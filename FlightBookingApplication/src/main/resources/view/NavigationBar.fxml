@@ -6,19 +6,28 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <VBox id="NavigationBar" fx:id="navigationBar" alignment="CENTER" minWidth="-Infinity" prefHeight="768.0" prefWidth="73.0" spacing="15.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NavigationBarController">
    <children>
-      <Label fx:id="appLogo" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 50%;" VBox.vgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <ImageView fx:id="appLogo" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@../images/SkynetLogo.png" />
+               </image>
+            </ImageView>
+         </children>
          <VBox.margin>
-            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+            <Insets bottom="6.0" left="6.0" right="6.0" top="15.0" />
          </VBox.margin>
-         <graphic>
-            <FontIcon iconLiteral="mdi-airplane" iconSize="41" />
-         </graphic>
-      </Label>
+      </VBox>
       <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="44.0" textFill="#a174ff">
          <VBox.margin>
             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />

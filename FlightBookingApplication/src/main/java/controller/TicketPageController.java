@@ -3,9 +3,11 @@ package controller;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
@@ -18,9 +20,11 @@ import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
-public class TicketPageController {
+public class TicketPageController implements Initializable {
 
     @FXML
     private ImageView imgAirlineLogo;
@@ -137,4 +141,8 @@ public class TicketPageController {
         lblArrDateTime.setText(flight.getArrDatetime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm")));
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        imgAppLogo.setImage(new Image(getClass().getResource("/images/SkynetLogo.png").toExternalForm()));
+    }
 }
