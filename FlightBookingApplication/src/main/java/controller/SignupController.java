@@ -2,6 +2,7 @@ package controller;
 
 import data.AccountDao;
 import data.PassengerDao;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,13 +67,22 @@ public class SignupController implements Initializable {
 
     @FXML
     void signUp(ActionEvent event) throws IOException {
-        if (txtFirstname.getText().isBlank() || txtLastname.getText().isBlank() || txtEmail.getText().isBlank() ||
-            txtUsername.getText().isBlank() || txtPassword.getText().isBlank() || birthDatePicker.getValue() == null
-        ) {
+        if
+        (
+                txtFirstname.getText().isBlank() || txtLastname.getText().isBlank() || txtEmail.getText().isBlank() ||
+                txtUsername.getText().isBlank() || txtPassword.getText().isBlank() || birthDatePicker.getValue() == null
+        )
+        {
             labelMessage.setText("All fields are required");
             return;
         }
-        else {
+        else if (!txtEmail.getText().matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
+        {
+            labelMessage.setText("Please enter a valid email address");
+            return;
+        }
+        else
+        {
             labelMessage.setText("");
         }
 
