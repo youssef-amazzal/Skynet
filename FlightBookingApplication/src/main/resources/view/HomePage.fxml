@@ -2,6 +2,8 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ToggleButton?>
@@ -17,7 +19,7 @@
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <children>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="761.0" spacing="15.0" HBox.hgrow="ALWAYS">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="761.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Home">
                      <font>
@@ -94,10 +96,33 @@
                         </ToggleButton>
                      </children>
                   </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="lblResultsCounter" minWidth="-Infinity" text="Results" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER" prefHeight="20.0" prefWidth="103.0">
+                           <children>
+                              <ChoiceBox fx:id="inputSortBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <FontIcon iconLiteral="mdi-sort" iconSize="25" />
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </HBox>
+                     </children>
+                  </HBox>
                   <Pagination fx:id="pagination" maxPageIndicatorCount="5" VBox.vgrow="ALWAYS" />
                </children>
                <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="15.0" />
                </padding>
             </VBox>
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="393.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" styleClass="card">

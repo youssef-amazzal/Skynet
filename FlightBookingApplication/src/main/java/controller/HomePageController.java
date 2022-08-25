@@ -3,6 +3,7 @@ package controller;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
@@ -52,7 +54,14 @@ public class HomePageController implements Initializable {
     @FXML
     private ToggleGroup tabsGroup;
 
-    private FilteredList<Flight> results;
+    @FXML
+    private ChoiceBox<String> inputSortBox;
+
+    @FXML
+    private Label lblResultsCounter;
+
+    private final FilteredList<Flight> results = new FilteredList<>(Account.getCurrentUser().getReservedFlights());
+    private final SortedList<Flight> sortedResults = new SortedList<>(results);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,8 +86,21 @@ public class HomePageController implements Initializable {
             calendarContainer.getChildren().add(popupContent);
         }
 
+        // Set up ComboBox
+        inputSortBox.getItems().addAll("","Closest Date", "Farthest Date");
+        inputSortBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Closest Date")) {
+                sortByClosestDate();
+            }
+            else if (newValue.equals("Farthest Date")) {
+                sortByFarthestDate();
+            }
+            else {
+                stopSorting();
+            }
+        });
+
         // set up the pagination
-        results = new FilteredList<>(Account.getCurrentUser().getReservedFlights());
         pagination.setMaxPageIndicatorCount(5);
         pagination.setPageCount(1);
         int itemsPerPage = 4;
@@ -90,8 +112,8 @@ public class HomePageController implements Initializable {
                 int firstItemIndex = pageIndex * itemsPerPage;
                 int lastItemIndex = (pageIndex + 1) * itemsPerPage;
 
-                for (int i = firstItemIndex; i < Math.min(lastItemIndex, results.size()); i++) {
-                    Flight flight = results.get(i);
+                for (int i = firstItemIndex; i < Math.min(lastItemIndex, sortedResults.size()); i++) {
+                    Flight flight = sortedResults.get(i);
                     new Thread(() -> {
                         try {
                             final FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/FlightCard_Small.fxml"));
@@ -136,7 +158,11 @@ public class HomePageController implements Initializable {
             source.addAll(Account.getCurrentUser().getReservedFlights());
             results.setPredicate(null);
             results.setPredicate(flight -> flight.getDepDatetime().isAfter(LocalDateTime.now()));
-            Platform.runLater(this::refreshPagination);
+
+            Platform.runLater(() -> {
+                lblResultsCounter.setText("Results(" + results.size() + ")");
+                refreshPagination();
+            });
         }).start();
     }
     private void getFavoriteFlights() {
@@ -146,7 +172,11 @@ public class HomePageController implements Initializable {
             source.addAll(Account.getCurrentUser().getFavoriteFlights());
             results.setPredicate(null);
             results.setPredicate(flight -> true);
-            Platform.runLater(this::refreshPagination);
+
+            Platform.runLater(() -> {
+                lblResultsCounter.setText("Results(" + results.size() + ")");
+                refreshPagination();
+            });
         }).start();
     }
     private void getArchiveFlights() {
@@ -156,14 +186,53 @@ public class HomePageController implements Initializable {
             source.addAll(Account.getCurrentUser().getReservedFlights());
             results.setPredicate(null);
             results.setPredicate(flight -> flight.getDepDatetime().isBefore(LocalDateTime.now()));
-            Platform.runLater(this::refreshPagination);
+
+            Platform.runLater(() -> {
+                lblResultsCounter.setText("Results(" + results.size() + ")");
+                refreshPagination();
+            });
         }).start();
     }
     private void refreshPagination() {
         int itemsPerPage = 4;
-        int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
+        int nbrPages = (int) Math.ceil((double) sortedResults.size() / itemsPerPage);
         pagination.setPageCount(Integer.MAX_VALUE);
         pagination.setPageCount(nbrPages == 0 ? 1 : nbrPages);
+    }
+
+    private void sortByClosestDate() {
+        sortedResults.setComparator((flight1, flight2) -> {
+            if (flight1.getDepDatetime().isAfter(flight2.getDepDatetime())) {
+                return 1;
+            }
+
+            if (flight1.getDepDatetime().isBefore(flight2.getDepDatetime())) {
+                return -1;
+            }
+
+            return 0;
+        });
+        Platform.runLater(this::refreshPagination);
+    }
+
+    private void sortByFarthestDate() {
+        sortedResults.setComparator((flight1, flight2) -> {
+            if (flight1.getDepDatetime().isAfter(flight2.getDepDatetime())) {
+                return -1;
+            }
+
+            if (flight1.getDepDatetime().isBefore(flight2.getDepDatetime())) {
+                return 1;
+            }
+
+            return 0;
+        });
+        Platform.runLater(this::refreshPagination);
+    }
+
+    private void stopSorting() {
+        sortedResults.setComparator(Comparator.comparingInt(Flight::getId).reversed());
+        Platform.runLater(this::refreshPagination);
     }
 
 }
