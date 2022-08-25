@@ -2,6 +2,7 @@ package controller;
 
 import data.AirportDao;
 import data.FlightDao;
+import javafx.application.Platform;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class SearchPageController implements Initializable {
@@ -41,7 +43,7 @@ public class SearchPageController implements Initializable {
     private DatePicker depDateBefore;
 
     @FXML
-    private ChoiceBox<?> inputSortBox;
+    private ChoiceBox<String> inputSortBox;
 
     @FXML
     private Label lblResultsCounter;
@@ -56,6 +58,7 @@ public class SearchPageController implements Initializable {
     private ScrollPane scrollPane;
 
     private final FilteredList<Flight> results = new FilteredList<>(FlightDao.getInstance().getFlightsList());
+    private final SortedList<Flight> sortedResults = new SortedList<>(results);
 
 
     @Override
@@ -69,11 +72,25 @@ public class SearchPageController implements Initializable {
         depCountry.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> depCity.setItems(AirportDao.getCityList(newValue)));
         arrCountry.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> arrCity.setItems(AirportDao.getCityList(newValue)));
 
+        // Set up ComboBox
+        inputSortBox.getItems().addAll("","Closest Date", "Farthest Date");
+        inputSortBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Closest Date")) {
+                sortByClosestDate();
+            }
+            else if (newValue.equals("Farthest Date")) {
+                sortByFarthestDate();
+            }
+            else {
+                stopSorting();
+            }
+        });
+
 
         // set up the pagination
         pagination.setMaxPageIndicatorCount(10);
         int itemsPerPage = 5;
-        int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
+        int nbrPages = (int) Math.ceil((double) sortedResults.size() / itemsPerPage);
         pagination.setPageCount(nbrPages == 0 ? 1 : nbrPages);
 
         pagination.setPageFactory((pageIndex) -> {
@@ -83,8 +100,8 @@ public class SearchPageController implements Initializable {
             int lastItemIndex = (pageIndex + 1) * itemsPerPage;
 
 
-            for (int i = firstItemIndex; i < Math.min(lastItemIndex, results.size()) ; i++) {
-                Flight flight = results.get(i);
+            for (int i = firstItemIndex; i < Math.min(lastItemIndex, sortedResults.size()) ; i++) {
+                Flight flight = sortedResults.get(i);
                 try {
                     FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/SearchPage/FlightCard.fxml"));
                     HBox card = cardLoader.load();
@@ -167,10 +184,52 @@ public class SearchPageController implements Initializable {
 
         lblResultsCounter.setText("Results(" + results.size() + ")");
 
+        Platform.runLater(this::refreshPage);
+    }
+
+    private void sortByClosestDate() {
+        sortedResults.setComparator((flight1, flight2) -> {
+            if (flight1.getDepDatetime().isAfter(flight2.getDepDatetime())) {
+                return 1;
+            }
+
+            if (flight1.getDepDatetime().isBefore(flight2.getDepDatetime())) {
+                return -1;
+            }
+
+            return 0;
+        });
+        Platform.runLater(this::refreshPage);
+    }
+
+    private void sortByFarthestDate() {
+        sortedResults.setComparator((flight1, flight2) -> {
+            if (flight1.getDepDatetime().isAfter(flight2.getDepDatetime())) {
+                return -1;
+            }
+
+            if (flight1.getDepDatetime().isBefore(flight2.getDepDatetime())) {
+                return 1;
+            }
+
+            return 0;
+        });
+        Platform.runLater(this::refreshPage);
+    }
+
+    private void refreshPage() {
         int itemsPerPage = 5;
-        int nbrPages = (int) Math.ceil((double) results.size() / itemsPerPage);
+        int nbrPages = (int) Math.ceil((double) sortedResults.size() / itemsPerPage);
         pagination.setPageCount(Integer.MAX_VALUE);
         pagination.setPageCount(nbrPages == 0 ? 1 : nbrPages);
+    }
+    private void stopSorting() {
+        sortedResults.setComparator(Comparator.comparingInt(Flight::getId).reversed());
+        Platform.runLater(this::refreshPage);
+    }
 
+    @FXML
+    private void openSortBox() {
+        inputSortBox.show();
     }
 }
