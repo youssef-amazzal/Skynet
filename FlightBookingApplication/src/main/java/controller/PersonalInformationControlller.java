@@ -9,9 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Account;
 import models.Passenger;
 import org.controlsfx.control.SearchableComboBox;
@@ -47,6 +50,8 @@ public class PersonalInformationControlller implements Initializable {
     private Circle profilePictureFrame;
     private Image profilePicture;
 
+    private final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,6 +67,15 @@ public class PersonalInformationControlller implements Initializable {
                 });
             }
         });
+
+        alert.setHeaderText("Warning");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/style/Application.css").toExternalForm());
+
+        Stage alertWindow = (Stage) dialogPane.getScene().getWindow();
+        alertWindow.initStyle(StageStyle.TRANSPARENT);
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+        Platform.runLater(() -> alertWindow.initOwner(txtfirstname.getScene().getWindow()));
 
     }
   
@@ -81,6 +95,28 @@ public class PersonalInformationControlller implements Initializable {
    }
    @FXML 
    void updateData(ActionEvent  event ) {
+       if
+       (
+               txtfirstname.getText().isBlank() || txtlastname.getText().isBlank() || txtemail.getText().isBlank() ||
+               txtbirthday.getValue() == null || countryBox.getSelectionModel().isEmpty() || countryBox.getSelectionModel().getSelectedItem() == null ||
+               genderBox.getSelectionModel().isEmpty()
+       )
+       {
+           alert.setContentText("All fields are required.");
+           txtfirstname.getScene().lookup("#overlay-layer").setDisable(false);
+           alert.showAndWait();
+           txtfirstname.getScene().lookup("#overlay-layer").setDisable(true);
+           return;
+       }
+
+       if (!txtemail.getText().matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+           alert.setContentText("Please enter a valid email address.");
+           txtfirstname.getScene().lookup("#overlay-layer").setDisable(false);
+           alert.showAndWait();
+           txtfirstname.getScene().lookup("#overlay-layer").setDisable(true);
+           return;
+       }
+
         Passenger passenger = new Passenger();
         PassengerDao passengerDao = new PassengerDao();
         Account account = new Account();

@@ -4,6 +4,7 @@ import data.AirlineDao;
 import data.AirportDao;
 import data.FlightDao;
 import data.ReservationDao;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -142,6 +144,7 @@ public class DashboardController implements Initializable {
     @FXML
     private ToggleButton themeButton;
 
+    private final Alert alert = new Alert(Alert.AlertType.INFORMATION);
     private FilteredList<Flight> results;
 
     @Override
@@ -154,6 +157,15 @@ public class DashboardController implements Initializable {
         if (Palette.getDefaultPalette().equals(Palette.DarkPalette)) {
             themeButton.setSelected(true);
         }
+
+        alert.setHeaderText("Warning");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/style/Application.css").toExternalForm());
+
+        Stage alertWindow = (Stage) dialogPane.getScene().getWindow();
+        alertWindow.initStyle(StageStyle.TRANSPARENT);
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+        Platform.runLater(() -> alertWindow.initOwner(parent.getScene().getWindow()));
     }
 
     private void setData() {
@@ -289,6 +301,46 @@ public class DashboardController implements Initializable {
     }
 
     private void addFlight() {
+        DialogPane dialogPane = alert.getDialogPane();
+        Platform.runLater(() -> Palette.getDefaultPalette().usePalette(dialogPane.getScene()));
+
+        if (depAirport.getSelectionModel().isEmpty() || arrAirport.getSelectionModel().isEmpty()) {
+            alert.setContentText("Please select airports to continue.");
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+
+        }
+
+        if (depDate.getValue() == null || arrDate.getValue() == null) {
+            alert.setContentText("Please specify dates to continue.");
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+        }
+
+        LocalDateTime depDateTime = LocalDateTime.of(depDate.getValue(), LocalTime.of(depHour.getValue(), depMinute.getValue()));
+        LocalDateTime arrDateTime = LocalDateTime.of(arrDate.getValue(), LocalTime.of(arrHour.getValue(), arrMinute.getValue()));
+
+        if (!depDateTime.isBefore(arrDateTime)) {
+            alert.setContentText("Arrival dateTime should be after departure dateTime.");
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+        }
+
+        if (priceFirstClass.getText().isBlank() || priceEconomyClass.getText().isBlank() || priceBusinessClass.getText().isBlank() || priceLuggage.getText().isBlank() || priceWeight.getText().isBlank())
+        {
+            alert.setContentText("Please fill the pricing fields");
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+        }
+
         FlightDao flightDao = new FlightDao();
 
         Flight flight = new Flight();
@@ -298,8 +350,8 @@ public class DashboardController implements Initializable {
         flight.setDepAirport(depAirport.getValue());
         flight.setArrAirport(arrAirport.getValue());
 
-        flight.setDepDatetime(LocalDateTime.of(depDate.getValue(), LocalTime.of(depHour.getValue(), depMinute.getValue())));
-        flight.setArrDatetime(LocalDateTime.of(arrDate.getValue(), LocalTime.of(arrHour.getValue(), arrMinute.getValue())));
+        flight.setDepDatetime(depDateTime);
+        flight.setArrDatetime(arrDateTime);
 
         flight.setFirstPrice(Double.parseDouble(priceFirstClass.getText()));
         flight.setBusinessPrice(Double.parseDouble(priceBusinessClass.getText()));
@@ -366,6 +418,47 @@ public class DashboardController implements Initializable {
     }
 
     private void updateFlight(Flight flight) {
+        DialogPane dialogPane = alert.getDialogPane();
+        Platform.runLater(() -> Palette.getDefaultPalette().usePalette(dialogPane.getScene()));
+
+        if (depAirport.getSelectionModel().isEmpty() || arrAirport.getSelectionModel().isEmpty())
+        {
+            alert.setContentText("Please select airports to continue.");
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+
+        }
+
+        if (depDate.getValue() == null || arrDate.getValue() == null) {
+            alert.setContentText("Please specify dates to continue.");
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+        }
+
+        LocalDateTime depDateTime = LocalDateTime.of(depDate.getValue(), LocalTime.of(depHour.getValue(), depMinute.getValue()));
+        LocalDateTime arrDateTime = LocalDateTime.of(arrDate.getValue(), LocalTime.of(arrHour.getValue(), arrMinute.getValue()));
+
+        if (!depDateTime.isBefore(arrDateTime)) {
+            alert.setContentText("Arrival dateTime should be after departure dateTime.");
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+        }
+
+        if (priceFirstClass.getText().isBlank() || priceEconomyClass.getText().isBlank() || priceBusinessClass.getText().isBlank() || priceLuggage.getText().isBlank() || priceWeight.getText().isBlank())
+        {
+            alert.setContentText("Please fill the pricing fields");
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+        }
+
         FlightDao flightDao = new FlightDao();
 
         flight.setAirline(Account.getCurrentUser().getAirline().getId());

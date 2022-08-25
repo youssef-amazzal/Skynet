@@ -13,7 +13,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.*;
+import view.Palette;
 
 import java.io.IOException;
 import java.net.URL;
@@ -130,6 +134,27 @@ public class PaymentPageController implements Initializable {
     @FXML
     void payNow(ActionEvent event) {
         ReservationDao reservationDao = new ReservationDao();
+        if (cardGroup.getToggles().isEmpty()) {
+            parent.getScene().lookup("#overlay-layer").setDisable(false);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Warning");
+            alert.setContentText("Please add a credit card to continue");
+
+            DialogPane dialogPane = alert.getDialogPane();
+
+            Palette.getDefaultPalette().usePalette(dialogPane.getScene());
+            dialogPane.getStylesheets().add(getClass().getResource("/style/Application.css").toExternalForm());
+
+            Stage alertWindow = (Stage) dialogPane.getScene().getWindow();
+            alertWindow.initStyle(StageStyle.TRANSPARENT);
+            dialogPane.getScene().setFill(Color.TRANSPARENT);
+            alertWindow.initOwner(parent.getScene().getWindow());
+
+            alert.showAndWait();
+            parent.getScene().lookup("#overlay-layer").setDisable(true);
+            return;
+        }
         Reservation reservation = new Reservation(flight, Account.getCurrentUser().getId(), selectedSeat, spinnerLuggage.getValue(), spinnerWeight.getValue());
 
         if (Account.getCurrentUser().hasReservation(flight)) {

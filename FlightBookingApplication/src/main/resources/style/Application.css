@@ -358,7 +358,7 @@
     -fx-font-family: Calibri;
 }
 
-
+.alert.information.dialog-pane,
 .alert.confirmation.dialog-pane {
     -fx-graphic: null;
 }
