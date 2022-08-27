@@ -19,6 +19,7 @@ import org.controlsfx.control.SearchableComboBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
@@ -116,6 +117,7 @@ public class SearchPageController implements Initializable {
             return page;
         });
 
+        search(new ActionEvent());
     }
 
     @FXML
@@ -142,6 +144,10 @@ public class SearchPageController implements Initializable {
     void search(ActionEvent event) {
 
         results.setPredicate(flight -> {
+            if (flight.getDepDatetime().isBefore(LocalDateTime.now())) {
+                return false;
+            }
+
             if (depCountry.getSelectionModel().getSelectedItem() != null && !depCountry.getSelectionModel().getSelectedItem().isBlank()) {
                 if (!flight.getDepAirport().getCountry().equals(depCountry.getSelectionModel().getSelectedItem())) {
                     return false;
