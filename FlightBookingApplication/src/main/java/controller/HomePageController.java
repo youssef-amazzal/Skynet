@@ -112,9 +112,9 @@ public class HomePageController implements Initializable {
                 int firstItemIndex = pageIndex * itemsPerPage;
                 int lastItemIndex = (pageIndex + 1) * itemsPerPage;
 
-                for (int i = firstItemIndex; i < Math.min(lastItemIndex, sortedResults.size()); i++) {
-                    Flight flight = sortedResults.get(i);
-                    new Thread(() -> {
+                new Thread(() -> {
+                    for (int i = firstItemIndex; i < Math.min(lastItemIndex, sortedResults.size()); i++) {
+                        Flight flight = sortedResults.get(i);
                         try {
                             final FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/view/FlightCard_Small.fxml"));
                             HBox card = cardLoader.load();
@@ -126,9 +126,8 @@ public class HomePageController implements Initializable {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                    }).start();
-                }
-
+                    }
+                }).start();
                 return page;
             });
 
