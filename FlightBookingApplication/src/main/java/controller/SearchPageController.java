@@ -74,13 +74,13 @@ public class SearchPageController implements Initializable {
         arrCountry.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> arrCity.setItems(AirportDao.getCityList(newValue)));
 
         // Set up ComboBox
-        inputSortBox.getItems().addAll("","Closest Date", "Farthest Date");
+        inputSortBox.getItems().addAll("","Closest Date", "Furthest Date");
         inputSortBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Closest Date")) {
                 sortByClosestDate();
             }
-            else if (newValue.equals("Farthest Date")) {
-                sortByFarthestDate();
+            else if (newValue.equals("Furthest Date")) {
+                sortByFurthestDate();
             }
             else {
                 stopSorting();
@@ -208,7 +208,7 @@ public class SearchPageController implements Initializable {
         Platform.runLater(this::refreshPage);
     }
 
-    private void sortByFarthestDate() {
+    private void sortByFurthestDate() {
         sortedResults.setComparator((flight1, flight2) -> {
             if (flight1.getDepDatetime().isAfter(flight2.getDepDatetime())) {
                 return -1;
