@@ -85,7 +85,7 @@ public class Account {
 
     public ObservableList<Flight> getFavoriteFlights() {
         FavoriteDao favoriteDao = new FavoriteDao();
-        List<Favorite> favoriteList = favoriteDao.readAll();
+        List<Favorite> favoriteList = favoriteDao.readAll(this);
         List<Flight> favoriteFlights = new ArrayList<>();
         favoriteList.forEach(favorite -> favoriteFlights.add(favorite.getFlight()));
         return FXCollections.observableList(favoriteFlights);

@@ -119,6 +119,31 @@ public class FavoriteDao implements Dao<Favorite> {
         }
     }
 
+    public List<Favorite> readAll(Account account) {
+        Connection conn = DataSource.getConnection();
+        List<Favorite> list = new ArrayList<>();
+
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM favorites WHERE id_account = ?;");
+            query.setInt(1, account.getId());
+            ResultSet res = query.executeQuery();
+
+            while (res.next()) {
+                Favorite favorite = new Favorite();
+                favorite.setId(res.getInt("id"));
+                favorite.setFlight(flightDao.read(res.getInt("id_flight")));
+                favorite.setAccount((res.getInt("id_account")));
+
+                list.add(favorite);
+                favoritesMap.put(res.getInt("id_flight"), favorite);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     public void update(int id, Favorite favorite) {
         Connection conn = DataSource.getConnection();
