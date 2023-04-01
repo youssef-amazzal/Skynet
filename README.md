@@ -1,5 +1,5 @@
 # Skynet - Flight Booking System
-
+![preview.jpg](imgs/preview.jpg)
 ## What is Skynet?
 It is an academic project that aims to provide a comprehensive flight booking platform for both passengers and airlines. It is a desktop application that is built using Java and JavaFX. The application is built using the MVC design pattern.
 
